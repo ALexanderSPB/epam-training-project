@@ -1,0 +1,16 @@
+{
+  "name": "epam-project",
+  "version": "1.0.0",
+  "description": "1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://katrin-b@bitbucket.org/vladilen_minin/epam-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/vladilen_minin/epam-project#readme"
+}
