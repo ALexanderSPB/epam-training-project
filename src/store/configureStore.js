@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import persistState from 'redux-localstorage';
-import { rootReducer }from '../reducers';
-import { redirect } from '../middleware/redirect';
+import {rootReducer}from '../reducers';
+import {redirect} from '../middleware/redirect';
 
 export default function configureStore() {
     const store = compose(
