@@ -1,4 +1,4 @@
-import {browserHistory} from 'react-router'
+import {browserHistory} from 'react-router';
 
 
 export const redirect = store => next => action => { //eslint-disable-line no-unused-vars
