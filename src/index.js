@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import MainPage from './mainPage/mainPage';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
+  <MainPage />,
   document.getElementById('root')
 );
