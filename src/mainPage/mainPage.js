@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {Grid, Row, Col} from 'react-bootstrap';
-import Header from '../common/header';
-import Footer from '../common/footer';
-import InputGroup from '../common/inputGroup';
+import {Grid, Col, Button} from 'react-bootstrap';
+// import Header from '../common/header';
+// import Footer from '../common/footer';
+// import InputGroup from '../common/inputGroup';
 
 export default class App extends Component {
 
@@ -26,15 +26,17 @@ export default class App extends Component {
 
         return (
             <Grid>
-                <Header />
-                <Row>
+            {/*<Header />*/}
+                <section className="row">
                     <Col xs={10} xsOffset={1} sm={8} smOffset={2} md={6} mdOffset={3}>
-                        <form>
-                <InputGroup params={loginFormData} />
-                        </form>
+                            <form>
+            {/*<InputGroup params={loginFormData} />*/}
+                                <Button bsStyle="success">Войти</Button>
+                            </form>
+                            <p>Нет аккаунта? <Button bsStyle="link" href="#">Зарегистрируйся</Button></p>
                     </Col>
-                </Row>
-                <Row>
+                </section>
+                <section className="row">
                     <Col xs={10} xsOffset="1" md={8} mdOffset="2">
                         <h2>Что такое MySchedule?</h2>
                         <p>
@@ -45,8 +47,8 @@ export default class App extends Component {
                         <h3>Ты преподаватель?</h3>
                         <p>Регистрируйся и делай пометки об отмене занятия.</p>
                     </Col>
-                </Row>
-                <Footer />
+                </section>
+        {/*<Footer />*/}
             </Grid>
     );
     }
