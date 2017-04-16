@@ -4,7 +4,7 @@ import {Grid, Col, Button} from 'react-bootstrap';
 // import Footer from '../common/footer';
 // import InputGroup from '../common/inputGroup';
 
-export default class App extends Component {
+export default class MainPage extends Component {
 
     render() {
 
