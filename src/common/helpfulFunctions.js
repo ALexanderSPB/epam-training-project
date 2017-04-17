@@ -10,6 +10,6 @@ export default class LocalStorage {
     }
 
     set(key, value) {
-        window.localStorage.setItem(key, value);
+        window.localStorage.setItem(key, JSON.stringify(value));
     }
 };
