@@ -1,8 +1,6 @@
 import React, {PropTypes} from 'react';
 
 export default function Select({className, labelText, valueChanged, options}) {
-    let select;
-
     function handleChange(event) {
         valueChanged(event.target.value);
     }
