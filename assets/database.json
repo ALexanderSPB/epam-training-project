@@ -1,0 +1,101 @@
+{
+  "users" : [
+    {
+      "email" : "qwe@gmail.com",
+      "name" : "Vasiliy Vasilyev",
+      "password" : "qwe",
+      "role" : 0
+    }
+  ],
+  "institutions": [
+    {
+      "uuid" : "inst0",
+      "name" : "MyInstitution"
+    },
+    {
+      "uuid" : "inst1",
+      "name" : "Another Institution"
+    }
+  ],
+  "locations" : {
+    "inst0": [
+      {
+        "name" : "Office 1",
+        "address": "Some address",
+        "timing": {},
+        "rooms": [
+          {
+            "name": "1",
+            "capacity": "20"
+          },
+          {
+            "name": "12a",
+            "capacity": "10"
+          }
+        ]
+      },
+      {
+        "name" : "Office 2",
+        "address": "Some address",
+        "timing": {},
+        "rooms": [
+          {
+            "name": "1",
+            "capacity": "20"
+          },
+          {
+            "name": "12a",
+            "capacity": "10"
+          }
+        ]
+      }
+    ],
+    "inst1": [
+      {
+        "name" : "The only one office",
+        "address": "Some address",
+        "timing": {},
+        "rooms": [
+          {
+            "name": "1",
+            "capacity": "20"
+          },
+          {
+            "name": "12a",
+            "capacity": "10"
+          }
+        ]
+      }
+    ]
+  },
+  "groups": {
+    "inst0": [
+      {
+        "uuid": "group0x1x42",
+        "name": "Group 42"
+      }
+    ],
+    "inst1": []
+  },
+  "events": {
+    "inst0": [
+      {
+        "uuid": "ev0x122",
+        "name": "JavaScript",
+        "skills": [0, 2],
+        "timing": {},
+        "type": ""
+      },
+      {
+        "uuid": "ev0x132",
+        "name": "Java SE",
+        "skills": [1, 2],
+        "timing": {},
+        "type": ""
+      }
+    ],
+    "inst1": []
+  },
+  "skills": ["JS", "Java SE", "programming"],
+  "roles": ["root", "manager", "teacher", "user"]
+}
