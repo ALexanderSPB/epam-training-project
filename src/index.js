@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Router, Route, browserHistory} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
 import {Provider} from 'react-redux';
-import LoginPage from './loginPage/loginPage';
+import LoginPage from './pages/loginPage/loginPage';
 import configureStore from './store/configureStore';
 import './index.css';
 

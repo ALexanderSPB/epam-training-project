@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import Header from '../common/header';
-import Footer from '../common/footer';
-import Input from '../common/input';
+import Header from '../common/pageParts/header';
+import Footer from '../common/pageParts/footer';
+import Input from '../common/UI/input';
 
 export default class LoginPage extends Component {
 
