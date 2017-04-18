@@ -1,27 +1,32 @@
 import React, {PropTypes} from 'react';
+import classNames from 'classnames';
 
-export default function Select({className, labelText, valueChanged, options}) {
+export default function Select({classes, labelText, valueChanged, options, selectId, multiple}) {
     function handleChange(event) {
         valueChanged(event.target.value);
     }
 
     return (
-        <div className={className}>
-            <label className={`${className}__label`}>
+        <div className={classNames( classes.wrapper)}>
+            <label className={classNames(classes.label)} htmlFor={selectId}>
                 {labelText}
+            </label>
+            <div className={classNames(classes.selectWrapper)}>
                 <select
-                    className={`${className}__select`}
+                    className={classNames('form-control', classes.select)}
                     onChange={handleChange}
+                    multiple={multiple}
                 >
                     {options.map(option => <option key={option} value={option}>{option}</option>)}
                 </select>
-            </label>
+            </div>
         </div>
     )
 }
 
 Select.propTypes = {
-    className: PropTypes.string.isRequired,
+    classes: PropTypes.object.isRequired,
     labelText: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
+    multiple: PropTypes.bool.isRequired
 };
