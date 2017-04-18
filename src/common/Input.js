@@ -1,18 +1,18 @@
 import React, {PropTypes} from 'react';
 
-function errorMessage(error, className) {
-    if (error) {
-        return (
-            <span className={`${className}__error`}>
-                {error}
-            </span>
-        )
-    }
-}
-
 export default function Input({className, labelText, type, value, valueChanged, error}) {
     function handleChange(event) {
         valueChanged(event.target.value);
+    }
+
+    function errorMessage(error, className) {
+        if (error) {
+            return (
+                <span className={`${className}__error`}>
+                {error}
+            </span>
+            )
+        }
     }
 
     return (
