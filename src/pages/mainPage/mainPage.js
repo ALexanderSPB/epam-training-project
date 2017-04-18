@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import Header from '../common/header';
-import Footer from '../common/footer';
+import Header from '../common/pageParts/header';
+import Footer from '../common/pageParts/footer';
 
 export default class MainPage extends Component {
 
