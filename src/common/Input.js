@@ -1,14 +1,15 @@
 import React, {PropTypes} from 'react';
+import classNames from 'classnames';
 
-export default function Input({className, labelText, type, value, valueChanged, error}) {
+export default function Input({inputId, classes, placeholder, labelText, type, value, valueChanged, error}) {
     function handleChange(event) {
         valueChanged(event.target.value);
     }
 
-    function errorMessage(error, className) {
+    function errorMessage(error, classes) {
         if (error) {
             return (
-                <span className={`${className}__error`}>
+                <span className={classNames(classes)}>
                 {error}
             </span>
             )
@@ -16,23 +17,28 @@ export default function Input({className, labelText, type, value, valueChanged, 
     }
 
     return (
-        <div className={className}>
-            <label className={`${className}__label`}>
+        <div className={classNames('form-group', classes.wrapper)}>
+            <label className={classNames('label-control', classes.label)} htmlFor={inputId}>
                 {labelText}
+            </label>
+            <div className={classNames(classes.inputWrapper)}>
                 <input
-                    className={`${className}__input`}
+                    id={inputId}
+                    className={classNames('form-control', classes.input)}
+                    placeholder={placeholder}
                     onChange={handleChange}
                     type={type}
                     value={value ? value : null}
                 />
-            </label>
-            {errorMessage(error, className)}
+            </div>
+            {errorMessage(error, classes.error)}
         </div>
     )
 }
 
 Input.propTypes = {
-    className: PropTypes.string.isRequired,
+    classes: PropTypes.object.isRequired,
+    placeholder: PropTypes.string.isRequired,
     error: PropTypes.string,
     labelText: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
