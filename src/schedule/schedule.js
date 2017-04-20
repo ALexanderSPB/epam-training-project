@@ -3,7 +3,7 @@ import { daysOfWeek, scheduleCellHeight } from './../constants';
 import Cell from './cell/cell';
 
 export default function Schedule({officeHours, events}) {
-    const tableHeight = scheduleCellHeight*(officeHours.closing - officeHours.opening);
+    const tableHeight = scheduleCellHeight * (officeHours.closing - officeHours.opening);
 
     function eventsOfDay(events, openingHour, cellHeight) {
         if (events.length > 0) {
@@ -38,9 +38,9 @@ export default function Schedule({officeHours, events}) {
     }
 
     let eventsByDay = [];
-    for (let i = 0; i < daysOfWeek.length; i++) {
+    daysOfWeek.forEach(function (event, i) {
         eventsByDay[i] = [];
-    }
+    });
 
     events.forEach(function (event) {
         eventsByDay[event.timing.beginning.getDay()].push(event);
