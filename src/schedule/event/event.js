@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-export default function Cell({name, teacher, location, room, top, height}) {
+export default function Event({name, teacher, location, room, top, height, isActive}) {
     return (
         <div style={{
             top : top + 'px',
@@ -14,11 +14,12 @@ export default function Cell({name, teacher, location, room, top, height}) {
     )
 }
 
-Cell.propTypes = {
+Event.propTypes = {
     height: PropTypes.number.isRequired,
     location: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     room: PropTypes.string.isRequired,
     teacher: PropTypes.string.isRequired,
-    top: PropTypes.number.isRequired
+    top: PropTypes.number.isRequired,
+    isActive: PropTypes.bool.isRequired
 };

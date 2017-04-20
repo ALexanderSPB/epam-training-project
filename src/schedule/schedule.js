@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { daysOfWeek, scheduleCellHeight } from './../constants';
-import Cell from './cell/cell';
+import Event from './event/event';
 
 export default function Schedule({officeHours, events}) {
     const tableHeight = scheduleCellHeight * (officeHours.closing - officeHours.opening);
@@ -8,7 +8,7 @@ export default function Schedule({officeHours, events}) {
     function eventsOfDay(events, openingHour, cellHeight) {
         if (events.length > 0) {
             return events.map(event =>
-                <Cell
+                <Event
                     key={event.uuid}
                     name={event.name}
                     teacher={event.teacher}
@@ -16,6 +16,7 @@ export default function Schedule({officeHours, events}) {
                     room={event.room}
                     top={(event.timing.beginning.getHours() - openingHour) * cellHeight}
                     height={event.timing.duration * cellHeight}
+                    isActive={true}
                 />
             )
         }
