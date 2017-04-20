@@ -6,12 +6,12 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
         valueChanged(event.target.value);
     }
 
-    function errorMessage(error, classes) {
+    function errorMessage(error, errorClasses) {
         if (error) {
             return (
-                <span className={classNames(classes)}>
+                <span className={classNames(errorClasses)}>
                 {error}
-            </span>
+                </span>
             )
         }
     }
@@ -24,7 +24,7 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
             <div className={classNames(classes.inputWrapper)}>
                 <input
                     id={inputId}
-                    className={classNames('form-control', classes.input)}
+                    className={classNames('form-control', classes.input, classes.hasError)}
                     placeholder={placeholder}
                     onChange={handleChange}
                     type={type}
