@@ -1,22 +1,21 @@
 import React from 'react';
-import {Router, browserHistory} from 'react-router';
-import {syncHistoryWithStore} from 'react-router-redux';
-import Header from '../common/parts/header';
-import Footer from '../common/parts/footer';
+import { Router } from 'react-router';
+//import Header from '../common/parts/header'; //we don't have this component in repo, do we?
+//import Footer from '../common/parts/footer'; //same
 import { routes } from '../constants/routes';
+import { history } from '../index';
 
-const history = syncHistoryWithStore(browserHistory, store);
 
 const App = () => {
     return (
         <div className="container">
-            <Header />
+            <div>Header</div>
             <Router history={history}>
                 {routes}
             </Router>
-            <Footer />
+            <div>Footer</div>
         </div>
     );
-}
+};
 
 export default App;
