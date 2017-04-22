@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Background from './background';
 import Event from './event/event';
 import { daysOfWeek, scheduleCellHeight } from './../../constants';
 
@@ -23,6 +24,7 @@ export default function Row({officeHours, events}) {
                     teacher={event.teacher}
                     location={event.location}
                     room={event.room}
+                    date={event.timing.beginning}
                     top={(event.timing.beginning.getHours() - openingHour) * cellHeight}
                     height={event.timing.duration * cellHeight}
                     isActive={true}
@@ -40,6 +42,7 @@ export default function Row({officeHours, events}) {
         return hours.map(hour =>
             <div
                 key={hour}
+                className="time-cell"
                 style={{height: cellHeight + 'px'}}
             >
                 {hour}
@@ -48,23 +51,29 @@ export default function Row({officeHours, events}) {
     }
 
     return (
-        <div className="row">
-            <div className="col-md-1">
-                {timeColumn(officeHours.opening, officeHours.closing, scheduleCellHeight)}
-            </div>
-            {eventsByDay.map((events, i) => //columns for each day of week
-                <div
-                    key={`${i}day`}
-                    className="col-md-1"
-                    style={{
-                        height: tableHeight + 'px',
-                        position: 'relative'
-                    }}
+        <tbody>
+            <tr>
+                <th
+                    scope="row"
+                    className="time-col"
                 >
-                    {eventsOfDay(events, officeHours.opening, scheduleCellHeight)}
-                </div>
-            )}
-        </div>
+                    {timeColumn(officeHours.opening, officeHours.closing, scheduleCellHeight)}
+                </th>
+                {eventsByDay.map((events, i) => //columns for each day of week
+                    <td
+                        key={`${i}day`}
+                        className="week-col"
+                        style={{height: tableHeight + 'px'}}
+                    >
+                        <Background
+                            cellHeight={scheduleCellHeight}
+                            numOfCells={officeHours.closing - officeHours.opening}
+                        />
+                        {eventsOfDay(events, officeHours.opening, scheduleCellHeight)}
+                    </td>
+                )}
+            </tr>
+        </tbody>
     )
 }
 

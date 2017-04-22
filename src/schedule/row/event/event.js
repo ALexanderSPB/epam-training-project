@@ -1,15 +1,23 @@
 import React, { PropTypes } from 'react';
 
-export default function Event({name, teacher, location, room, top, height, isActive}) {
+export default function Event({name, teacher, location, room, date, top, height, isActive}) {
+    function getTime(date) {
+        return `${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`;
+    }
+
     return (
-        <div style={{
-            top : top + 'px',
-            position: 'absolute',
-            height: height + 'px'
-        }}>
-            <p>{name}</p>
-            <p>{teacher}</p>
-            <p>{`${room}, ${location}`}</p>
+        <div
+            className="event"
+            style={{
+                top : top + 'px',
+                height: height + 'px'
+            }}
+        >
+            <p className="additional">
+                {`${getTime(date)} ${room}, ${location}`}
+            </p>
+            <p className="name">{name}</p>
+            <p className="additional">{teacher}</p>
         </div>
     )
 }
@@ -20,6 +28,7 @@ Event.propTypes = {
     name: PropTypes.string.isRequired,
     room: PropTypes.string.isRequired,
     teacher: PropTypes.string.isRequired,
+    date: PropTypes.object.isRequired,
     top: PropTypes.number.isRequired,
     isActive: PropTypes.bool.isRequired
 };
