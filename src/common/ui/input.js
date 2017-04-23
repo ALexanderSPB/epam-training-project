@@ -28,7 +28,7 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
                     placeholder={placeholder}
                     onChange={handleChange}
                     type={type}
-                    value={value ? value : null}
+                    value={value ? value : ''}
                 />
             </div>
             {errorMessage(error, classes.error)}
