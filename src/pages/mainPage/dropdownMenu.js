@@ -19,7 +19,7 @@ class DropdownMenu extends Component {
 
     render() {
         return (
-            <Select options={this.props.institutions} valueChanged={console.log}/>
+            <Select options={this.props.institutions} valueChanged={console.log} classes={{}} multiple={false} labelText=""/>
         )
     }
 }

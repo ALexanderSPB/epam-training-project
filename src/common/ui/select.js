@@ -1,7 +1,7 @@
-import React from "react";
-import classNames from "classnames";
+import React, {PropTypes} from 'react';
+import classNames from 'classnames';
 
-export default function Select({classes = [], labelText, valueChanged, options = [], selectId, multiple}) {
+export default function Select({classes, labelText, valueChanged, options, selectId, multiple}) {
     function handleChange(event) {
         valueChanged(event.target.value);
     }
@@ -25,8 +25,8 @@ export default function Select({classes = [], labelText, valueChanged, options =
 }
 
 Select.propTypes = {
-    // classes: PropTypes.object.isRequired,
-    // labelText: PropTypes.string.isRequired,
-    // options: PropTypes.array.isRequired,
-    // multiple: PropTypes.bool.isRequired
+    classes: PropTypes.object.isRequired,
+    labelText: PropTypes.string.isRequired,
+    options: PropTypes.array.isRequired,
+    multiple: PropTypes.bool.isRequired
 };
