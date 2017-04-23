@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import DropdownMenu from "./dropdownMenu";
 
 export default class MainPage extends Component {
 
@@ -29,6 +30,7 @@ export default class MainPage extends Component {
                             Воспользуйся нашим сайтом, выбери учебное заведение ниже и узнай расписание. Все просто!
                         </p>
                         {/* --- There must be a component with dropdown list and schedule --- */}
+                        <DropdownMenu {...this.props}/>
                     </section>
                 </div>
             </section>

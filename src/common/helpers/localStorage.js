@@ -2,7 +2,7 @@ export default class LocalStorage {
 
     get(key) {
         try{
-            JSON.parse(localStorage.getItem(key);
+            JSON.parse(localStorage.getItem(key));
         }
         catch(e) {
             return localStorage.getItem(key);
