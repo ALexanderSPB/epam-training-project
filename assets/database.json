@@ -5,6 +5,21 @@
       "name" : "Vasiliy Vasilyev",
       "password" : "qwe",
       "role" : 0
+    },
+    {
+      "email" : "asdf@gmail.com",
+      "name" : "Vasilisa Andreeva",
+      "password" : "asdf",
+      "role" : 2,
+      "skills" : [0, 1, 2],
+      "institution" : "inst0"
+    },
+    {
+      "email" : "zxc@gmail.com",
+      "name" : "Innokentiy Baranov",
+      "password" : "zxc",
+      "role": 1,
+      "institution": "inst0"
     }
   ],
   "institutions": [
@@ -72,7 +87,8 @@
     "inst0": [
       {
         "uuid": "group0x1x42",
-        "name": "Group 42"
+        "name": "Group 42",
+        "studentsNumber": 15
       }
     ],
     "inst1": []
@@ -96,6 +112,5 @@
     ],
     "inst1": []
   },
-  "skills": ["JS", "Java SE", "programming"],
-  "roles": ["root", "manager", "teacher", "user"]
+  "skills": ["JS", "Java SE", "programming"]
 }
