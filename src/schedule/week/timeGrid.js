@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-export default function Background({cellHeight, numOfCells}) {
+export default function TimeGrid({cellHeight, numOfCells}) {
     let rows = [];
     for (let i = 0; i < numOfCells; i++) {
         rows[i] = i;
@@ -19,7 +19,7 @@ export default function Background({cellHeight, numOfCells}) {
     )
 }
 
-Background.propTypes = {
+TimeGrid.propTypes = {
     cellHeight: PropTypes.number.isRequired,
     numOfCells: PropTypes.number.isRequired
 };

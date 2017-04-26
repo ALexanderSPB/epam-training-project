@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
-import Background from './background';
-import Event from './event/event';
+import TimeGrid from './timeGrid';
+import ScheduledEvent from './scheduledEvent/scheduledEvent';
 import { daysOfWeek, scheduleCellHeight } from './../../constants';
 
-export default function Row({officeHours, events}) {
+export default function Week({officeHours, events}) {
     const tableHeight = scheduleCellHeight * (officeHours.closing - officeHours.opening);
 
     let eventsByDay = [];
@@ -16,21 +16,19 @@ export default function Row({officeHours, events}) {
     });
 
     function eventsOfDay(events, openingHour, cellHeight) {
-        if (events.length > 0) {
-            return events.map(event =>
-                <Event
-                    key={event.uuid}
-                    name={event.name}
-                    teacher={event.teacher}
-                    location={event.location}
-                    room={event.room}
-                    date={event.timing.beginning}
-                    top={(event.timing.beginning.getHours() - openingHour) * cellHeight}
-                    height={event.timing.duration * cellHeight}
-                    isActive={true}
-                />
-            )
-        }
+       return events.map(event =>
+           <ScheduledEvent
+               key={event.uuid}
+               name={event.name}
+               teacher={event.teacher}
+               location={event.location}
+               room={event.room}
+               date={event.timing.beginning}
+               top={(event.timing.beginning.getHours() - openingHour) * cellHeight}
+               height={event.timing.duration * cellHeight}
+               isActive={true}
+           />
+       )
     }
 
     function timeColumn(opening, closing, cellHeight) {
@@ -65,7 +63,7 @@ export default function Row({officeHours, events}) {
                         className="week-col"
                         style={{height: tableHeight + 'px'}}
                     >
-                        <Background
+                        <TimeGrid
                             cellHeight={scheduleCellHeight}
                             numOfCells={officeHours.closing - officeHours.opening}
                         />
@@ -77,7 +75,7 @@ export default function Row({officeHours, events}) {
     )
 }
 
-Row.propTypes = {
+Week.propTypes = {
     events: PropTypes.array.isRequired,
     officeHours: PropTypes.object.isRequired
 };

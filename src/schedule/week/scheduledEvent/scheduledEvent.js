@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
+import moment from 'moment';
 
-export default function Event({name, teacher, location, room, date, top, height, isActive}) {
+export default function ScheduledEvent({name, teacher, location, room, date, top, height, isActive}) {
     function getTime(date) {
-        return `${date.getHours()}:${('0' + date.getMinutes()).slice(-2)}`;
+        return moment(date).format('HH:mm');
     }
 
     return (
@@ -22,7 +23,7 @@ export default function Event({name, teacher, location, room, date, top, height,
     )
 }
 
-Event.propTypes = {
+ScheduledEvent.propTypes = {
     height: PropTypes.number.isRequired,
     location: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { daysOfWeek } from './../constants';
-import Row from './row/row';
+import Week from './week/week';
 import './schedule.css';
 
 export default function Schedule(props) {
@@ -18,7 +18,7 @@ export default function Schedule(props) {
                     )}
                 </tr>
             </thead>
-            <Row
+            <Week
                 {...props}
             />
         </table>
