@@ -1,0 +1,25 @@
+.app_header {
+    height: 60px;
+    position: relative;
+    text-align: center;
+}
+
+.app_header_logo_wrapper {
+    height: 60px;
+}
+
+.app_header_logo_wrapper img {
+    height: 100%;
+}
+
+.app_header_buttons {
+    position: absolute;
+    top: 20%;
+    font-size: 12px;
+}
+
+.app_header_buttons button {
+    display: inline-block;
+    margin-left: 10px;
+    height: 50%;
+}

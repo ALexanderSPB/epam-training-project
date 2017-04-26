@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router } from 'react-router';
-//import Header from '../common/parts/header'; //we don't have this component in repo, do we?
-//import Footer from '../common/parts/footer'; //same
+import Header from '../common/header';
+import Footer from '../common/footer';
 import { routes } from '../constants/routes';
 import { history } from '../index';
 
@@ -9,11 +9,11 @@ import { history } from '../index';
 const App = () => {
     return (
         <div className="container">
-            <div>Header</div>
+            < Header />
             <Router history={history}>
                 {routes}
             </Router>
-            <div>Footer</div>
+            < Footer />
         </div>
     );
 };
