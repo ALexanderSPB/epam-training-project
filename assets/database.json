@@ -1,27 +1,27 @@
 {
-  "users" : [
-    {
-      "email" : "qwe@gmail.com",
-      "name" : "Vasiliy Vasilyev",
-      "password" : "qwe",
-      "role" : 0
+  "users" : {
+    "abXXq5Jn5zZnT8FNVVpMKy7QpJz2": {
+      "email": "smb@gmail.com",
+      "name": "Vasiliy Vasilyev",
+      "password": "qwerty",
+      "role": 0
     },
-    {
-      "email" : "asdf@gmail.com",
-      "name" : "Vasilisa Andreeva",
-      "password" : "asdf",
-      "role" : 2,
-      "skills" : [0, 1, 2],
-      "institution" : "inst0"
+    "tyo1rhCCswTcPZvHMLhoEC0AbB02": {
+      "email": "va@gmail.com",
+      "name": "Vasilisa Andreeva",
+      "password" : "asdfgh",
+      "role": 2,
+      "skills": [0, 1, 2],
+      "institution": "inst0"
     },
-    {
-      "email" : "zxc@gmail.com",
-      "name" : "Innokentiy Baranov",
-      "password" : "zxc",
+    "AoKuuzZ4saNyXTO4tmZIsaJg90x2": {
+      "email": "zxc@gmail.com",
+      "name": "Innokentiy Baranov",
+      "password": "zxcvbn",
       "role": 1,
       "institution": "inst0"
     }
-  ],
+  },
   "institutions": [
     {
       "uuid" : "inst0",
