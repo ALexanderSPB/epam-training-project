@@ -8,14 +8,11 @@ import App from './pages/app';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import './index.css';
-import initFirebase from './firebase/initFirebase';
-import signIn from './firebase/signIn';
-import signUp from './firebase/signUp';
+import Firebase from './common/helpers/firebase';
 
 const store = configureStore();
 
-initFirebase(); //TMP
-signUp('hthtrhth@gmail.com', 'zxcththyhyhyyhvbn', 'asasasasasasa');
+Firebase.initialize();
 
 export const history = syncHistoryWithStore(browserHistory, store);
 
