@@ -9,11 +9,11 @@ import { history } from '../index';
 const App = () => {
     return (
         <div className="container">
-            < Header />
+            <Header />
             <Router history={history}>
                 {routes}
             </Router>
-            < Footer />
+            <Footer />
         </div>
     );
 };
