@@ -28,5 +28,5 @@ Select.propTypes = {
     classes: PropTypes.object.isRequired,
     labelText: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
-    multiple: PropTypes.bool.isRequired
+    multiple: PropTypes.bool
 };

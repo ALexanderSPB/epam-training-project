@@ -1,4 +1,4 @@
-import * as actionTypes from "../constants/fetchActionsTypes";
+import * as actionTypes from "../../../constants/fetchActionsTypes";
 
 class Institution {
     constructor(name, uuid) {
@@ -11,8 +11,8 @@ class Institution {
 const initialState = [];
 
 export default function institutions(state = initialState, action) {
-    const {payload} = action;
-    switch (action.type) {
+    const {payload, type} = action;
+    switch (type) {
         case actionTypes.receive:
             return payload.map(inst => new Institution(inst.name, inst.uuid));
 

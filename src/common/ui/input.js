@@ -10,7 +10,7 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
         if (error) {
             return (
                 <span className={classNames(errorClasses)}>
-                {error}
+                    {error}
                 </span>
             )
         }
@@ -37,10 +37,10 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
 }
 
 Input.propTypes = {
-    classes: PropTypes.object,
-    placeholder: PropTypes.string.isRequired,
-    error: PropTypes.string,
     labelText: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
+    placeholder: PropTypes.string.isRequired,
+    classes: PropTypes.object,
+    error: PropTypes.string,
     value: PropTypes.string
 };
