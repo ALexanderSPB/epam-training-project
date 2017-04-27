@@ -1,5 +1,5 @@
 import React from 'react';
-import { daysOfWeek } from './../constants';
+import { daysOfWeek } from '../constants/scheduleOptions';
 import Week from './week/week';
 import './schedule.css';
 

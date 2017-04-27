@@ -1,17 +1,17 @@
 import React, { PropTypes } from 'react';
 import TimeGrid from './timeGrid';
 import ScheduledEvent from './scheduledEvent/scheduledEvent';
-import { daysOfWeek, scheduleCellHeight } from './../../constants';
+import { daysOfWeek, scheduleCellHeight } from '../../constants/scheduleOptions';
 
 export default function Week({officeHours, events}) {
     const tableHeight = scheduleCellHeight * (officeHours.closing - officeHours.opening);
 
     let eventsByDay = [];
-    daysOfWeek.forEach(function (event, i) {
+    daysOfWeek.forEach((event, i) => {
         eventsByDay[i] = [];
     });
 
-    events.forEach(function (event) {
+    events.forEach(event => {
         eventsByDay[event.timing.beginning.getDay()].push(event);
     });
 

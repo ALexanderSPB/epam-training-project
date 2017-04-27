@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import moment from 'moment';
+import * as formats from '../../../constants/dateTimeFormats';
 
 export default function ScheduledEvent({name, teacher, location, room, date, top, height, isActive}) {
     function getTime(date) {
-        return moment(date).format('HH:mm');
+        return moment(date).format(formats.hoursAndMinutes);
     }
 
     return (
