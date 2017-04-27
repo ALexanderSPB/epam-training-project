@@ -1,0 +1,62 @@
+$color-grid: #ddd;
+$color-event: #eee;
+
+.schedule {
+  .bg-table {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    .bg-row{
+      border-bottom: 1px solid $color-grid;
+      &:last-of-type {
+        border: none;
+      }
+    }
+  }
+
+  .event {
+    position: absolute;
+    width: 99%;
+    padding: 0.4em;
+    margin: 1px;
+    border-radius: 4px;
+    background-color: $color-event;
+    text-align: left;
+
+    .additional {
+      font-size: .9em;
+      margin: 0;
+    }
+    .name {
+      margin: 0;
+    }
+  }
+
+  .text-center {
+    margin: 0;
+  }
+
+  .time-col {
+    padding: 0;
+  }
+
+  .time-cell {
+    width: 100%;
+    border-bottom: 1px solid $color-grid;
+
+    &:first-of-type {
+      margin-top: 1px;
+    }
+
+    &:last-of-type {
+      border: none;
+    }
+  }
+
+  .week-col {
+    position: relative;
+    padding: 0;
+    width: 14%;
+  }
+}
