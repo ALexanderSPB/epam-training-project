@@ -13,10 +13,10 @@ const initialState = [];
 export default function institutions(state = initialState, action) {
     const {payload, type} = action;
     switch (type) {
-        case actionTypes.receive:
+        case actionTypes.RECEIVE:
             return payload.map(inst => new Institution(inst.name, inst.uuid));
 
-        case actionTypes.reject:
+        case actionTypes.REJECT:
             return `Institutions can't be loaded due to: ${payload}`;
 
         default:

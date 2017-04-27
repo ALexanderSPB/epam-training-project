@@ -3,12 +3,12 @@ import * as actionTypes from '../../../constants/fetchActionsTypes';
 const INSTITUTIONS_URL = 'https://myschedule-1affb.firebaseio.com/institutions.json';
 
 const receiveInstitutions = json => ({
-    type: actionTypes.receive,
+    type: actionTypes.RECEIVE,
     payload: json,
 });
 
 const rejectInstitutions = error => ({
-    type: actionTypes.reject,
+    type: actionTypes.REJECT,
     payload: error,
 });
 
