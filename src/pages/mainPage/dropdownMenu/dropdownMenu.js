@@ -21,10 +21,9 @@ class DropdownMenu extends Component {
         return (
             <Select
                 options={this.props.institutions}
-                valueChanged={}
+                valueChanged={console.log}
                 classes={{}}
                 multiple={false}
-                labelText=""
             />
         )
     }

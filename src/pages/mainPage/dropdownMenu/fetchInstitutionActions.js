@@ -1,4 +1,5 @@
 import * as actionTypes from '../../../constants/fetchActionsTypes';
+import {OK_STATUS_CODE} from "../../../constants/constants";
 
 const INSTITUTIONS_URL = 'https://myschedule-1affb.firebaseio.com/institutions.json';
 
@@ -15,7 +16,6 @@ const rejectInstitutions = error => ({
 export const fetchInstitutions = () => dispatch => {
     return fetch(INSTITUTIONS_URL)
         .then(rawResponse => {
-            const OK_STATUS_CODE = 200;
             if (rawResponse.status !== OK_STATUS_CODE) {
                 throw new Error(rawResponse.status + ':' + rawResponse.statusText);
             }

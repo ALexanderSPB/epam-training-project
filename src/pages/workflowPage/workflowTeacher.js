@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 });
 
-export default class workflowTeacher extends Component {
+export default class WorkflowTeacher extends Component {
     render() {
         return (
             <div>
