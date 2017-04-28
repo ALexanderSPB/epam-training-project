@@ -6,7 +6,7 @@ const databasePath = {
     locations: 'locations/'
 };
 
-export default class LocalStorage {
+export default class Firebase {
     static initialize() {
         let config = {
             apiKey: "AIzaSyCc4oN8ZR7wz4JB6nm44-LXNN8KT7QkEU8",
