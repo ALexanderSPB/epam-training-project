@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import favicon from '../../public/favicon.ico';
+import favicon from '../../../public/favicon.ico';
 import './headerStyle.css';
 
 class Header extends Component {
