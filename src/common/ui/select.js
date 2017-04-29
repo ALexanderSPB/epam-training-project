@@ -1,13 +1,13 @@
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 
-export default function Select({classes, labelText, valueChanged, options, selectId, multiple}) {
+export default function Select({classes, labelText = "", valueChanged, options, selectId, multiple}) {
     function handleChange(event) {
         valueChanged(event.target.value);
     }
 
     return (
-        <div className={classNames( classes.wrapper)}>
+        <div className={classNames(classes.wrapper)}>
             <label className={classNames(classes.label)} htmlFor={selectId}>
                 {labelText}
             </label>
@@ -17,7 +17,7 @@ export default function Select({classes, labelText, valueChanged, options, selec
                     onChange={handleChange}
                     multiple={multiple}
                 >
-                    {options.map(option => <option key={option} value={option}>{option}</option>)}
+                    {options.map(option => <option key={option.uuid} value={option.name}>{option.name}</option>)}
                 </select>
             </div>
         </div>
@@ -26,7 +26,7 @@ export default function Select({classes, labelText, valueChanged, options, selec
 
 Select.propTypes = {
     classes: PropTypes.object.isRequired,
-    labelText: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
-    multiple: PropTypes.bool.isRequired
+    multiple: PropTypes.bool,
+    labelText: PropTypes.string
 };

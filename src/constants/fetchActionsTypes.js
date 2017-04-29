@@ -1,0 +1,3 @@
+export const RECEIVE = 'RECEIVE_INSTITUTIONS';
+
+export const  REJECT = 'REJECT_INSTITUTIONS';
