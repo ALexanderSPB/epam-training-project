@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import DropdownMenu from './dropdownMenu/dropdownMenu';
+import DropdownMenu from '../../common/ui/selectLocation/selectLocation';
 
 export default class MainPage extends Component {
 
