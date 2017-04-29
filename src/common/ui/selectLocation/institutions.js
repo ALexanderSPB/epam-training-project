@@ -1,4 +1,4 @@
-import * as actionTypes from "../../../constants/fetchActionsTypes";
+import * as actionTypes from '../../../constants/fetchActionsTypes';
 
 class Institution {
     constructor(name, uuid) {
@@ -17,7 +17,7 @@ export default function institutions(state = initialState, action) {
             return payload.map(inst => new Institution(inst.name, inst.uuid));
 
         case actionTypes.REJECT:
-            return `Institutions can't be loaded due to: ${payload}`;
+            return `Institutions can't be loaded due to error: ${payload.type}${payload.message}`;
 
         default:
             return state;

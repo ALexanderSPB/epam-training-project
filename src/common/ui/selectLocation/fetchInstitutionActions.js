@@ -1,11 +1,10 @@
 import * as actionTypes from '../../../constants/fetchActionsTypes';
-import {OK_STATUS_CODE} from "../../../constants/constants";
+import Firebase from '../../helpers/firebase';
+import { PATHS } from '../../../constants/database';
 
-const INSTITUTIONS_URL = 'https://myschedule-1affb.firebaseio.com/institutions.json';
-
-const receiveInstitutions = json => ({
+const receiveInstitutions = list => ({
     type: actionTypes.RECEIVE,
-    payload: json,
+    payload: list,
 });
 
 const rejectInstitutions = error => ({
@@ -14,13 +13,7 @@ const rejectInstitutions = error => ({
 });
 
 export const fetchInstitutions = () => dispatch => {
-    return fetch(INSTITUTIONS_URL)
-        .then(rawResponse => {
-            if (rawResponse.status !== OK_STATUS_CODE) {
-                throw new Error(rawResponse.status + ':' + rawResponse.statusText);
-            }
-            return rawResponse.json();
-        })
-        .then(json => dispatch(receiveInstitutions(json)))
+    return Firebase.get(PATHS.institutions)
+        .then(institutionList => dispatch(receiveInstitutions(institutionList)))
         .catch(error => dispatch(rejectInstitutions(error)));
 };
