@@ -7,7 +7,7 @@ class Footer extends Component {
 
     render() {
         return(
-            <div className="app_footer">
+            <footer className="app_footer">
                 <ul className="app_footer_content">
                     <li>
                         <Link to="/">
@@ -20,7 +20,7 @@ class Footer extends Component {
                         </Link>
                     </li>
                 </ul>
-            </div>
+            </footer>
         )
     }
 }

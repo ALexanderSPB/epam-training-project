@@ -7,7 +7,7 @@ class Header extends Component {
 
     render() {
         return(
-            <div className="app_header row">
+            <header className="app_header row">
                 <div className="app_header_logo_wrapper col-xs-3">
                     <Link to="/">
                         <img src={favicon} alt="logo"/>
@@ -28,7 +28,7 @@ class Header extends Component {
                         </Link>
                     </button>
                 </div>
-            </div>
+            </header>
         )
     }
 }
