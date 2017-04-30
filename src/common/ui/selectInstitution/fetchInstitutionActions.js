@@ -1,14 +1,14 @@
-import * as actionTypes from '../../../constants/fetchActionsTypes';
+import {REJECT_INSTITUTIONS, RECEIVE_INSTITUTIONS} from '../../../constants/fetchActionsTypes';
 import Firebase from '../../helpers/firebase';
 import { PATHS } from '../../../constants/database';
 
-const receiveInstitutions = list => ({
-    type: actionTypes.RECEIVE,
-    payload: list,
+const receiveInstitutions = json => ({
+    type: RECEIVE_INSTITUTIONS,
+    payload: json,
 });
 
 const rejectInstitutions = error => ({
-    type: actionTypes.REJECT,
+    type: REJECT_INSTITUTIONS,
     payload: error,
 });
 
