@@ -7,13 +7,13 @@ import {fetchInstitutions} from './fetchInstitutionActions';
 const mapStateToProps = state => ({'institutions': state.institutions});
 
 const mapDispatchToProps = dispatch => ({
-    fetchInstitutionActions: bindActionCreators(fetchInstitutions, dispatch),
+    fetchInstitutions: bindActionCreators(fetchInstitutions, dispatch),
     dispatch,
 });
 
 class SelectInstitution extends Component {
     componentDidMount() {
-        fetchInstitutions();
+        this.props.fetchInstitutions();
     }
 
     render() {
