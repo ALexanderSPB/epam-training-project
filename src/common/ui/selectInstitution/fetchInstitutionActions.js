@@ -1,15 +1,15 @@
-import * as actionTypes from '../../../constants/fetchActionsTypes';
-import {OK_STATUS_CODE} from "../../../constants/constants";
+import {REJECT_INSTITUTIONS, RECEIVE_INSTITUTIONS} from '../../../constants/fetchActionsTypes';
+import {OK_STATUS_CODE} from '../../../constants/constants';
 
 const INSTITUTIONS_URL = 'https://myschedule-1affb.firebaseio.com/institutions.json';
 
 const receiveInstitutions = json => ({
-    type: actionTypes.RECEIVE,
+    type: RECEIVE_INSTITUTIONS,
     payload: json,
 });
 
 const rejectInstitutions = error => ({
-    type: actionTypes.REJECT,
+    type: REJECT_INSTITUTIONS,
     payload: error,
 });
 
