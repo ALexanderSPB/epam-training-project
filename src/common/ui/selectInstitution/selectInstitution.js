@@ -2,19 +2,18 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Select from '../select';
-import * as fetchInstitutionActions from './fetchInstitutionActions';
+import {fetchInstitutions} from './fetchInstitutionActions';
 
 const mapStateToProps = state => ({'institutions': state.institutions});
 
 const mapDispatchToProps = dispatch => ({
-    fetchInstitutionActions: bindActionCreators(fetchInstitutionActions, dispatch),
+    fetchInstitutionActions: bindActionCreators(fetchInstitutions, dispatch),
     dispatch,
 });
 
-class DropdownMenu extends Component {
+class SelectInstitution extends Component {
     componentDidMount() {
-        const {fetchInstitutionActions} = this.props;
-        fetchInstitutionActions.fetchInstitutions();
+        fetchInstitutions();
     }
 
     render() {
@@ -29,4 +28,4 @@ class DropdownMenu extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DropdownMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectInstitution);
