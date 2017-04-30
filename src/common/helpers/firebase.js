@@ -1,10 +1,5 @@
 import * as firebase from 'firebase';
-
-const databasePath = {
-    users: 'users/',
-    events: 'events/',
-    locations: 'locations/'
-};
+import { PATHS } from '../../constants/database';
 
 export default class Firebase {
     static initialize() {
@@ -24,7 +19,7 @@ export default class Firebase {
             .signInWithEmailAndPassword(email, password)
             .then(result => {
                 //Get data about user from database
-                this.get(databasePath.users + result.uid)
+                this.get(PATHS.users + result.uid)
                     .then(userData => {
                         let username = userData.name;
                         return {
@@ -43,7 +38,7 @@ export default class Firebase {
             .then(result => {
                 //Write rest of user data into DB
                 let userUid = result.uid;
-                this.set(databasePath.users + userUid, {
+                this.set(PATHS.users + userUid, {
                     name: name,
                     role: userDefaultRole
                 });
@@ -52,9 +47,10 @@ export default class Firebase {
 
     static getEventsByGroup(institutionUid, groupUid) {
         let eventList = [];
-        return this.get(databasePath.events + institutionUid)
+        return this.get(PATHS.events + institutionUid)
             .then(result => {
                 //Sort events by groupUid
+                // eslint-disable-next-line
                 result.map(obj => {
                     if (obj.group === groupUid) {
                         eventList.push(obj);
@@ -63,12 +59,13 @@ export default class Firebase {
             })
             .then(() => {
                 //Get additional information about event from other objects of database
+                // eslint-disable-next-line
                 eventList.map((event, i) => {
-                    this.get(databasePath.users + event.teacher)
+                    this.get(PATHS.users + event.teacher)
                         .then(snapshot => {
                             eventList[i]['teacherName'] = snapshot.name;
                         });
-                    this.get(`${databasePath.locations}${institutionUid}/${event.location}`)
+                    this.get(`${PATHS.locations}${institutionUid}/${event.location}`)
                         .then(snapshot => {
                             eventList[i]['locationName'] = snapshot.name;
                         });

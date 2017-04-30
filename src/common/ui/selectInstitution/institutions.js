@@ -15,7 +15,8 @@ export default function institutions(state = initialState, action) {
             return payload.map(inst => new Institution(inst));
 
         case REJECT_INSTITUTIONS:
-            return `Institutions can't be loaded due to: ${payload}`;
+            console.error(`Institutions can't be loaded due to: ${payload}`);
+            return state;
 
         default:
             return state;

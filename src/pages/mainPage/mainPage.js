@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import SelectInstitution from '../../common/ui/selectInstitution/selectInstitution';
+import SelectGroup from '../../common/ui/selectGroup/selectGroup';
 
 export default class MainPage extends Component {
 
@@ -31,6 +32,7 @@ export default class MainPage extends Component {
                         </p>
                         {/* --- There must be a component with dropdown list and schedule --- */}
                         <SelectInstitution {...this.props}/>
+                        <SelectGroup {...this.props}/>
                     </section>
                 </div>
             </section>
