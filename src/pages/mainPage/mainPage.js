@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './mainPage.css';
+import SelectInstitution from '../../common/ui/selectInstitution/selectInstitution';
 
 export default class MainPage extends Component {
     render() {
