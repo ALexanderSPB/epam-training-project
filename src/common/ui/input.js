@@ -18,7 +18,7 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
 
     return (
         <div className={classNames('form-group', classes.wrapper)}>
-            <label className={classNames('label-control', classes.label)} htmlFor={inputId}>
+            <label className={classNames('control-label', classes.label)} htmlFor={inputId}>
                 {labelText}
             </label>
             <div className={classNames(classes.inputWrapper)}>
