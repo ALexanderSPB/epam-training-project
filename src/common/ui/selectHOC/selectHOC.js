@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Select from '../select';
-import {fetchGroups} from './selectGroup/fetchGroupActions';
-import {fetchInstitutions} from './selectInstitution/fetchInstitutionActions';
+import {fetchEntity} from './fetchEntityActions';
+import {PATHS} from '../../../constants/database';
+import * as fetchActions from '../../../constants/fetchActionsTypes';
+
 
 const mapStateToProps = state => ({
     'institutions': state.institutions,
@@ -11,8 +13,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchGroups: bindActionCreators(fetchGroups, dispatch),
-    fetchInstitutions: bindActionCreators(fetchInstitutions, dispatch),
+    fetchEntity: bindActionCreators(fetchEntity, dispatch),
     dispatch,
 });
 
@@ -29,21 +30,23 @@ class SelectHOC extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchInstitutions();
-        this.props.fetchGroups();
+        const {INSTITUTIONS, GROUPS} = fetchActions;
+        this.props.fetchEntity(PATHS.institutions, INSTITUTIONS);
+        this.props.fetchEntity(PATHS.groups, GROUPS);
     }
 
     handleSelectInstitution(selected) {
-        this.setState(Object.assign(this.state, {selectedInstitution: selected}))
+        this.setState({selectedInstitution: selected});
     }
 
     handleSelectGroup(selected) {
-        this.setState(Object.assign(this.state, {selectedGroup: selected}))
+        this.setState({selectedGroup: selected});
     }
 
     render() {
         const {selectedInstitution} = this.state;
         const {institutions, groups} = this.props;
+        console.log(Date.now(), this.props);
         return (
             <div>
                 <Select
