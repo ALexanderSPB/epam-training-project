@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Select from '../select';
-import {fetchEntity} from './fetchEntityActions';
+import {fetchEntities} from './fetchEntityActions';
 import {PATHS} from '../../../constants/database';
-import * as fetchActions from '../../../constants/fetchActionsTypes';
-
+import {INSTITUTIONS, GROUPS} from '../../../constants/fetchActionsTypes';
 
 const mapStateToProps = state => ({
     'institutions': state.institutions,
@@ -13,11 +12,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchEntity: bindActionCreators(fetchEntity, dispatch),
+    fetchEntities: bindActionCreators(fetchEntities, dispatch),
     dispatch,
 });
 
-class SelectHOC extends Component {
+class InstitutionAndGroupScheduleSelector extends Component {
     constructor(props) {
         super(props);
         this.handleSelectInstitution = this.handleSelectInstitution.bind(this);
@@ -27,12 +26,9 @@ class SelectHOC extends Component {
             selectedInstitution: '',
             selectedGroup: '',
         };
-    }
-
-    componentDidMount() {
-        const {INSTITUTIONS, GROUPS} = fetchActions;
-        this.props.fetchEntity(PATHS.institutions, INSTITUTIONS);
-        this.props.fetchEntity(PATHS.groups, GROUPS);
+        const {institutions, groups} = PATHS;
+        props.fetchEntities(institutions, INSTITUTIONS);
+        props.fetchEntities(groups, GROUPS);
     }
 
     handleSelectInstitution(selected) {
@@ -46,7 +42,6 @@ class SelectHOC extends Component {
     render() {
         const {selectedInstitution} = this.state;
         const {institutions, groups} = this.props;
-        console.log(Date.now(), this.props);
         return (
             <div>
                 <Select
@@ -66,4 +61,4 @@ class SelectHOC extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SelectHOC)
+export default connect(mapStateToProps, mapDispatchToProps)(InstitutionAndGroupScheduleSelector)

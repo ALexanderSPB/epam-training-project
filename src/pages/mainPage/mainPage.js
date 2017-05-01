@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import SelectHOC from '../../common/ui/selectHOC/selectHOC';
+import InstitutionAndGroupScheduleSelector from '../../common/ui/institutionAndGroupScheduleSelector/institutionAndGroupScheduleSelector';
 
 export default class MainPage extends Component {
 
@@ -30,7 +30,7 @@ export default class MainPage extends Component {
                             Воспользуйся нашим сайтом, выбери учебное заведение ниже и узнай расписание. Все просто!
                         </p>
                         {/* --- There must be a component with dropdown list and schedule --- */}
-                        <SelectHOC {...this.props}/>
+                        <InstitutionAndGroupScheduleSelector {...this.props}/>
                     </section>
                 </div>
             </section>
