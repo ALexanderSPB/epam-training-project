@@ -58,6 +58,7 @@ export default class MainPage extends Component {
                                 </p>
                             </div>
                             {/* --- There must be a component with dropdown list and schedule --- */}
+                            <SelectInstitution {...this.props} />
                         </section>
                     </section>
                 </div>

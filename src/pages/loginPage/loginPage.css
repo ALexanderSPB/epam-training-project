@@ -25,10 +25,9 @@
   background-color: #7F993A;
   border-radius: 0 !important;
   color: white; }
-
-.loginForm__submitBtn:hover, .loginForm__submitBtn:focus {
-  background-color: #A3C644;
-  color: white !important; }
+  .loginForm__submitBtn:hover, .loginForm__submitBtn:focus {
+    background-color: #A3C644;
+    color: white !important; }
 
 .loginForm__registrationComment {
   color: #FFF;

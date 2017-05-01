@@ -10,8 +10,6 @@ import './style.css';
 const App = () => {
     return (
         <div className="container-fluid">
-            <div>Header</div>
-        <div className="container">
             <Header />
             <Router history={history}>
                 {routes}
