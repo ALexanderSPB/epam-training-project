@@ -1,10 +1,4 @@
-import {RECEIVE_GROUPS, REJECT_GROUPS} from '../../../constants/fetchActionsTypes';
-
-class Group {
-    constructor(group) {
-        Object.assign(this, group)
-    }
-}
+import {RECEIVE_GROUPS, REJECT_GROUPS} from '../../../../constants/fetchActionsTypes';
 
 const initialState = {};
 

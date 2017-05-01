@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
-import institutions from '../common/ui/selectInstitution/institutions';
-import groups from '../common/ui/selectGroup/groups';
+import institutions from '../common/ui/selectHOC/selectInstitution/institutions';
+import groups from '../common/ui/selectHOC/selectGroup/groups';
 
 export const rootReducer = combineReducers({
     routing: routerReducer,

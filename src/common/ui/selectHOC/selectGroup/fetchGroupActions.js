@@ -1,6 +1,6 @@
-import {REJECT_GROUPS, RECEIVE_GROUPS} from '../../../constants/fetchActionsTypes';
-import Firebase from '../../helpers/firebase';
-import {PATHS} from '../../../constants/database';
+import {REJECT_GROUPS, RECEIVE_GROUPS} from '../../../../constants/fetchActionsTypes';
+import Firebase from '../../../helpers/firebase';
+import {PATHS} from '../../../../constants/database';
 
 const receiveGroups = json => ({
     type: RECEIVE_GROUPS,

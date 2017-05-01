@@ -17,8 +17,8 @@ export default function Select({classes, labelText = "", valueChanged, options, 
                     onChange={handleChange}
                     multiple={multiple}
                 >
-                    <option disabled={true} selected={true} hidden={true}></option>
-                    {options.map(option => <option key={option.uuid} value={option.name}>{option.name}</option>)}
+                    <option hidden={true}/>
+                    {options.map(option => <option key={option.uuid} value={option.uuid}>{option.name}</option>)}
                 </select>
             </div>
         </div>

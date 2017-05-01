@@ -1,4 +1,4 @@
-import {RECEIVE_INSTITUTIONS, REJECT_INSTITUTIONS} from '../../../constants/fetchActionsTypes';
+import {RECEIVE_INSTITUTIONS, REJECT_INSTITUTIONS} from '../../../../constants/fetchActionsTypes';
 
 class Institution {
     constructor(institution) {

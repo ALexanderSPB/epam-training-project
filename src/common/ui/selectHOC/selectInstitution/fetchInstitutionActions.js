@@ -1,6 +1,6 @@
-import {REJECT_INSTITUTIONS, RECEIVE_INSTITUTIONS} from '../../../constants/fetchActionsTypes';
-import Firebase from '../../helpers/firebase';
-import {PATHS} from '../../../constants/database';
+import {REJECT_INSTITUTIONS, RECEIVE_INSTITUTIONS} from '../../../../constants/fetchActionsTypes';
+import Firebase from '../../../helpers/firebase';
+import {PATHS} from '../../../../constants/database';
 
 const receiveInstitutions = json => ({
     type: RECEIVE_INSTITUTIONS,
