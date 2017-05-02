@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 
-export default function Select({classes, labelText = "", valueChanged, options, selectId, multiple}) {
+export default function Select({classes={}, labelText = "", valueChanged, options, selectId, multiple=false}) {
     function handleChange(event) {
         valueChanged(event.target.value);
     }
@@ -26,8 +26,8 @@ export default function Select({classes, labelText = "", valueChanged, options, 
 }
 
 Select.propTypes = {
-    classes: PropTypes.object.isRequired,
     options: PropTypes.array.isRequired,
+    classes: PropTypes.object,
     multiple: PropTypes.bool,
     labelText: PropTypes.string
 };

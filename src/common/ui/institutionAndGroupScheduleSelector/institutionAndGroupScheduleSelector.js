@@ -47,14 +47,10 @@ class InstitutionAndGroupScheduleSelector extends Component {
                 <Select
                     options={institutions}
                     valueChanged={this.handleSelectInstitution}
-                    classes={{}}
-                    multiple={false}
                 />
                 <Select
                     options={groups[selectedInstitution] || []}
                     valueChanged={this.handleSelectGroup}
-                    classes={{}}
-                    multiple={false}
                 />
             </div>
         )
