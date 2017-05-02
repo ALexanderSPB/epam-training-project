@@ -23,11 +23,12 @@ class LoginPage extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.loginAttempt(this.email, this.password);
+        this.props.loginAttempt(this.state.email, this.state.password);
     }
 
-    setState(value, field) {
-        this[field] = value;
+    set(value, field) {
+        this.setState({ [field]: value });
+        console.log(this.state);
     }
 
     render() {
@@ -72,7 +73,7 @@ class LoginPage extends Component {
                             placeholder={loginFormData[0].placeholder}
                             labelText={loginFormData[0].labelText}
                             type={loginFormData[0].type}
-                            valueChanged={(value) => this.setState(value, 'email')}
+                            valueChanged={(value) => this.set(value, 'email')}
                             error={this.props.loginData.error ? this.props.loginData.error.email : null}
                         />
                         <Input
@@ -81,7 +82,7 @@ class LoginPage extends Component {
                             placeholder={loginFormData[1].placeholder}
                             labelText={loginFormData[1].labelText}
                             type={loginFormData[1].type}
-                            valueChanged={(value) => this.setState(value, 'password')}
+                            valueChanged={(value) => this.set(value, 'password')}
                             error={this.props.loginData.error ? this.props.loginData.error.password : null}
                         />
                         <button className="btn btn-success">Войти</button>
