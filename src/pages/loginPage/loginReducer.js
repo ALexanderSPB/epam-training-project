@@ -18,7 +18,6 @@ export default function loginData(state = initialState, action) {
             };
 
         case actionTypes.LOGIN_ERROR:
-            console.log(payload);
             return {
                 error: {
                     ...state.error,
