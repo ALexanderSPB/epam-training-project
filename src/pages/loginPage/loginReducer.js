@@ -17,19 +17,12 @@ export default function loginData(state = initialState, action) {
                 user: new LoginData(payload.name, payload.uid)
             };
 
-        case actionTypes.LOGIN_ERROR_EMAIL:
+        case actionTypes.LOGIN_ERROR:
+            console.log(payload);
             return {
                 error: {
                     ...state.error,
-                    email: `Mistake in email: ${payload}`
-                }
-            };
-
-        case actionTypes.LOGIN_ERROR_PASSWORD:
-            return {
-                error: {
-                    ...state.error,
-                    password: `Mistake in password: ${payload}`
+                    [payload.field]: payload.error
                 }
             };
 

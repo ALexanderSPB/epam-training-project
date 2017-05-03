@@ -17,18 +17,16 @@ const mapDispatchToProps = dispatch => ({
 class LoginPage extends Component {
     constructor() {
         super();
-        this.email = '';
-        this.password = '';
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.loginAttempt(this.state.email, this.state.password);
+        if (this.state)
+            this.props.loginAttempt(this.state.email, this.state.password);
     }
 
     set(value, field) {
         this.setState({ [field]: value });
-        console.log(this.state);
     }
 
     render() {
