@@ -1,6 +1,15 @@
 import * as firebase from 'firebase';
 import { PATHS } from '../../constants/database';
 
+export const errorCodes = {
+    auth: {
+        invalidEmail: 'auth/invalid-email',
+        userDisabled: 'auth/user-disabled',
+        userNotFound: 'auth/user-not-found',
+        wrongPassword: 'auth/wrong-password'
+    }
+};
+
 export default class Firebase {
     static initialize() {
         let config = {
@@ -19,7 +28,7 @@ export default class Firebase {
             .signInWithEmailAndPassword(email, password)
             .then(result => {
                 //Get data about user from database
-                this.get(PATHS.users + result.uid)
+                return this.get(PATHS.users + result.uid)
                     .then(userData => {
                         let username = userData.name;
                         return {
@@ -27,7 +36,7 @@ export default class Firebase {
                             name: username
                         };
                     });
-            })
+            });
     }
 
     static signUp(email, password, name) {
