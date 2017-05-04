@@ -1,4 +1,4 @@
-import {RECEIVE_INSTITUTIONS, REJECT_INSTITUTIONS} from '../../../constants/fetchActionsTypes';
+import {INSTITUTIONS} from '../../../constants/fetchActionsTypes';
 
 class Institution {
     constructor(institution) {
@@ -11,11 +11,12 @@ const initialState = [];
 export default function institutions(state = initialState, action) {
     const {payload, type} = action;
     switch (type) {
-        case RECEIVE_INSTITUTIONS:
+        case INSTITUTIONS.RECEIVE:
             return payload.map(inst => new Institution(inst));
 
-        case REJECT_INSTITUTIONS:
-            return `Institutions can't be loaded due to: ${payload}`;
+        case INSTITUTIONS.REJECT:
+            console.error(`Institutions can't be loaded due to: ${payload}`);
+            return state;
 
         default:
             return state;

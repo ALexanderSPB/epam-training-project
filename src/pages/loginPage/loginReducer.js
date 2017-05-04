@@ -7,7 +7,7 @@ class LoginData {
     }
 }
 
-const initialState = [];
+const initialState = {};
 
 export default function loginData(state = initialState, action) {
     const {payload, type} = action;

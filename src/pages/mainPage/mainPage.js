@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './mainPage.css';
-import SelectInstitution from '../../common/ui/selectInstitution/selectInstitution';
+import InstitutionAndGroupScheduleSelector from '../../common/ui/institutionAndGroupScheduleSelector/institutionAndGroupScheduleSelector';
 
 export default class MainPage extends Component {
+
     render() {
         return (
             <section className="row siteBody">
@@ -63,7 +64,7 @@ export default class MainPage extends Component {
                         <div className="col-xs-10 col-xs-offset-1">
                             <div className="row searchSchedulePart__selectionPart">
                                 <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                                    <SelectInstitution {...this.props} />
+                                    <InstitutionAndGroupScheduleSelector {...this.props}/>
                                 </div>
                             </div>
                             <div className="row searchSchedulePart__schedulePart">
