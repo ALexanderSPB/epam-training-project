@@ -57,9 +57,21 @@ export default class MainPage extends Component {
                                     Воспользуйся нашим сайтом, выбери учебное заведение ниже, найди свою группу и узнай расписание. Все просто! Регистрироваться нет необходимости!
                                 </p>
                             </div>
-                            {/* --- There must be a component with dropdown list and schedule --- */}
-                            <SelectInstitution {...this.props} />
                         </section>
+                    </section>
+                    <section className="row siteBody__searchSchedulePart">
+                        <div className="col-xs-10 col-xs-offset-1">
+                            <div className="row searchSchedulePart__selectionPart">
+                                <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                                    <SelectInstitution {...this.props} />
+                                </div>
+                            </div>
+                            <div className="row searchSchedulePart__schedulePart">
+                                <div className="col-xs-12">
+                                    {/* Schedule component expected */}
+                                </div>
+                            </div>
+                        </div>
                     </section>
                 </div>
             </section>
