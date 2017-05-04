@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import favicon from '../../../public/favicon.ico';
 import './headerStyle.css';
+import { ROUTE_PATHS } from '../../constants/routes';
 
 class Header extends Component {
 
@@ -9,7 +10,7 @@ class Header extends Component {
         return(
             <header className="app_header row">
                 <div className="app_header_logo_wrapper col-xs-3">
-                    <Link to="/">
+                    <Link to={ROUTE_PATHS.root}>
                         <img src={favicon} alt="logo"/>
                     </Link>
                 </div>
@@ -18,7 +19,7 @@ class Header extends Component {
                 </div>
                 <div className="app_header_buttons col-xs-3">
                     <button>
-                        <Link to="/">
+                        <Link to={ROUTE_PATHS.login}>
                             Войти
                         </Link>
                     </button>

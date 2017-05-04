@@ -1,9 +1,34 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Input from '../../common/ui/input';
+import { loginAttempt } from './loginActions';
 import './loginPage.css';
 
-export default class LoginPage extends Component {
+const mapStateToProps = state => ({
+    loginData: state.loginData
+});
+
+const mapDispatchToProps = dispatch => ({
+    loginAttempt: bindActionCreators(loginAttempt, dispatch),
+    dispatch,
+});
+
+class LoginPage extends Component {
+    constructor() {
+        super();
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        if (this.state)
+            this.props.loginAttempt(this.state.email, this.state.password);
+    }
+
+    set(value, field) {
+        this.setState({ [field]: value });
+    }
 
     render() {
 
@@ -35,14 +60,18 @@ export default class LoginPage extends Component {
         return (
             <section className="siteBody siteBody--loginPage row">
                 <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                    <form className="siteBody__loginForm form-horizontal">
+                    <form
+                        className="siteBody__loginForm form-horizontal"
+                        onSubmit={this.handleSubmit.bind(this)}
+                    >
                         <Input
                             inputId={loginFormData[0].inputId}
                             classes={loginFormData[0].classes}
                             placeholder={loginFormData[0].placeholder}
                             labelText={loginFormData[0].labelText}
                             type={loginFormData[0].type}
-                            value={loginFormData[0].value}
+                            valueChanged={(value) => this.set(value, 'email')}
+                            error={this.props.loginData.error ? this.props.loginData.error.email : null}
                         />
                         <Input
                             inputId={loginFormData[1].inputId}
@@ -50,7 +79,8 @@ export default class LoginPage extends Component {
                             placeholder={loginFormData[1].placeholder}
                             labelText={loginFormData[1].labelText}
                             type={loginFormData[1].type}
-                            value={loginFormData[1].value}
+                            valueChanged={(value) => this.set(value, 'password')}
+                            error={this.props.loginData.error ? this.props.loginData.error.password : null}
                         />
                         <div className="row">
                             <div className="col-xs-4">
@@ -70,3 +100,5 @@ export default class LoginPage extends Component {
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
