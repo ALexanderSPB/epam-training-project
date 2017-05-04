@@ -1,5 +1,7 @@
 import Firebase, { errorCodes } from '../../common/helpers/firebase';
+import { browserHistory } from 'react-router';
 
+export const LOGIN_ATTEMPT = 'LOGIN_ATTEMPT';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_ERROR_TYPES = {
@@ -21,16 +23,19 @@ const loginError = (error, field) => ({
 });
 
 export const loginAttempt = (email, password) => dispatch => {
-    if (!email.trim()) {
+
+    if (!email || !email.trim()) {
         dispatch(loginError('please, enter valid email', LOGIN_ERROR_TYPES.email));
     }
-    if (!password.trim()) {
+    if (!password || !password.trim()) {
         dispatch(loginError('password is required', LOGIN_ERROR_TYPES.password));
     }
     else
-        return Firebase.signIn(email, password)
+        Firebase.signIn(email, password)
             .then(userData => {
-                dispatch(loginSuccess(userData))})
+                browserHistory.push('/');
+                dispatch(loginSuccess(userData));
+            })
             .catch(error => {
                 if (error.code === errorCodes.auth.wrongPassword) {
                     dispatch(loginError(error.message, LOGIN_ERROR_TYPES.password));

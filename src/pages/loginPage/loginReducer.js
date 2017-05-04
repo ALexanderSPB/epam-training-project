@@ -7,11 +7,13 @@ class LoginData {
     }
 }
 
-const initialState = [];
+const initialState = {};
 
 export default function loginData(state = initialState, action) {
     const {payload, type} = action;
     switch (type) {
+        case actionTypes.LOGIN_ATTEMPT:
+            return {};
         case actionTypes.LOGIN_SUCCESS:
             return {
                 user: new LoginData(payload.name, payload.uid)
