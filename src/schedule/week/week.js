@@ -16,20 +16,18 @@ export default function Week({officeHours, events}) {
     });
 
     function eventsOfDay(events, openingHour, cellHeight) {
-        return events.map(event => {
-            return (
-                <ScheduledEvent
-                    key={event.uuid}
-                    name={event.name}
-                    teacher={event.teacher.name}
-                    location={'' + event.location.name}
-                    room={event.room}
-                    date={new Date(event.timing.beginning)}
-                    top={(new Date(event.timing.beginning).getHours() - openingHour) * cellHeight}
-                    height={event.timing.duration * cellHeight}
-                    isActive={true}
-                />)
-            }
+        return events.map(event =>
+            <ScheduledEvent
+                key={event.uuid}
+                name={event.name}
+                teacher={event.teacher.name}
+                location={'' + event.location.name}
+                room={event.room}
+                date={new Date(event.timing.beginning)}
+                top={(new Date(event.timing.beginning).getHours() - openingHour) * cellHeight}
+                height={event.timing.duration * cellHeight}
+                isActive={true}
+            />
         );
     }
 
