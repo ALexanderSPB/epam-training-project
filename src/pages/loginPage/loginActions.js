@@ -1,7 +1,6 @@
 import Firebase, { errorCodes } from '../../common/helpers/firebase';
 import { browserHistory } from 'react-router';
 
-export const LOGIN_ATTEMPT = 'LOGIN_ATTEMPT';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_ERROR_TYPES = {
