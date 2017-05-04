@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Select from '../select';
+import Shedule from '../../../schedule/schedule';
 import {fetchEntities} from './fetchEntityActions';
 import {PATHS} from '../../../constants/database';
 import {INSTITUTIONS, GROUPS} from '../../../constants/fetchActionsTypes';
+import Firebase from '../../helpers/firebase';
 
 const mapStateToProps = state => ({
     'institutions': state.institutions,
@@ -36,11 +38,19 @@ class InstitutionAndGroupScheduleSelector extends Component {
     }
 
     handleSelectGroup(selected) {
-        this.setState({selectedGroup: selected});
+        this.setState({selectedGroup: selected},
+            this.getEvents.bind(this)
+        );
+    }
+
+    getEvents() {
+        const {selectedInstitution, selectedGroup} = this.state;
+        Firebase.getEventsByGroup(selectedInstitution, selectedGroup)
+            .then(events => this.setState({events}));
     }
 
     render() {
-        const {selectedInstitution} = this.state;
+        const {selectedInstitution, events} = this.state;
         const {institutions, groups} = this.props;
         return (
             <div>
@@ -52,9 +62,16 @@ class InstitutionAndGroupScheduleSelector extends Component {
                     options={groups[selectedInstitution] || []}
                     valueChanged={this.handleSelectGroup}
                 />
+                { events !== undefined
+                    ? <Shedule
+                        events={events}
+                        officeHours={{opening: 8, closing: 23}}
+                    />
+                    : null
+                }
             </div>
-        )
+        );
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InstitutionAndGroupScheduleSelector)
+export default connect(mapStateToProps, mapDispatchToProps)(InstitutionAndGroupScheduleSelector);

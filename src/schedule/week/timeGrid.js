@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, {PropTypes} from 'react';
 
 export default function TimeGrid({cellHeight, numOfCells}) {
     let rows = [];
@@ -9,14 +9,14 @@ export default function TimeGrid({cellHeight, numOfCells}) {
     return (
         <table className="bg-table">
             <tbody>
-            {rows.map((row) =>
-                <tr className="bg-row" style={{height: cellHeight + 'px'}}>
+            {rows.map((row, id) =>
+                <tr key={id} className="bg-row" style={{height: cellHeight + 'px'}}>
                     <td/>
                 </tr>
             )}
             </tbody>
         </table>
-    )
+    );
 }
 
 TimeGrid.propTypes = {
