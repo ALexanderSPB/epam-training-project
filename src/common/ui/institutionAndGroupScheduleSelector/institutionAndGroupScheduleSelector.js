@@ -52,6 +52,16 @@ class InstitutionAndGroupScheduleSelector extends Component {
     render() {
         const {selectedInstitution, events} = this.state;
         const {institutions, groups} = this.props;
+
+        let timing = {};
+
+        for (let inst of institutions) {
+            if (inst.uuid === selectedInstitution) {
+                timing = inst.timing;
+                break;
+            }
+        }
+
         return (
             <div>
                 <Select
@@ -65,7 +75,7 @@ class InstitutionAndGroupScheduleSelector extends Component {
                 { events !== undefined
                     ? <Shedule
                         events={events}
-                        officeHours={{opening: 8, closing: 23}}
+                        officeHours={timing}
                     />
                     : null
                 }
