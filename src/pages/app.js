@@ -4,11 +4,12 @@ import Header from '../common/parts/header';
 import Footer from '../common/parts/footer';
 import { routes } from '../constants/routes';
 import { history } from '../index';
+import './style.css';
 
 
 const App = () => {
     return (
-        <div className="container">
+        <div className="container-fluid">
             <Header />
             <Router history={history}>
                 {routes}

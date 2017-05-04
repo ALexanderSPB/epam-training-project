@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Input from '../../common/ui/input';
 import { loginAttempt } from './loginActions';
+import './loginPage.css';
 
 const mapStateToProps = state => ({
     loginData: state.loginData
@@ -34,10 +35,9 @@ class LoginPage extends Component {
             {
                 inputId: 'loginForm__email',
                 classes: {
-                    wrapper: '',
-                    label: 'col-xs-2',
-                    inputWrapper: 'col-xs-10',
-                    input: ''
+                    label: 'col-xs-3 col-sm-2 loginForm__label',
+                    inputWrapper: 'col-xs-9 col-sm-10',
+                    input: 'loginForm__input'
                 },
                 placeholder: 'email@smth.com',
                 labelText: 'Email: ',
@@ -46,10 +46,9 @@ class LoginPage extends Component {
             {
                 inputId: 'loginForm__password',
                 classes: {
-                    wrapper: '',
-                    label: 'col-xs-2',
-                    inputWrapper: 'col-xs-10',
-                    input: ''
+                    label: 'col-xs-3 col-sm-2 loginForm__label',
+                    inputWrapper: 'col-xs-9 col-sm-10',
+                    input: 'loginForm__input'
                 },
                 placeholder: 'Type password',
                 labelText: 'Пароль: ',
@@ -58,10 +57,10 @@ class LoginPage extends Component {
         ];
 
         return (
-            <section className="row">
+            <section className="siteBody siteBody--loginPage row">
                 <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <form
-                        className="form-horizontal"
+                        className="siteBody__loginForm form-horizontal"
                         onSubmit={this.handleSubmit.bind(this)}
                     >
                         <Input
@@ -82,13 +81,19 @@ class LoginPage extends Component {
                             valueChanged={(value) => this.set(value, 'password')}
                             error={this.props.loginData.error ? this.props.loginData.error.password : null}
                         />
-                        <button className="btn btn-success">Войти</button>
+                        <div className="row">
+                            <div className="col-xs-4">
+                                <button className="btn loginForm__submitBtn">
+                                    Войти
+                                </button>
+                            </div>
+                            <div className="col-xs-8 text-right">
+                                <p className="loginForm__registrationComment">
+                                    Нет аккаунта? <Link to="/">Зарегистрируйся</Link>
+                                </p>
+                            </div>
+                        </div>
                     </form>
-                    <p>Нет аккаунта?
-                        <button className="btn btn-link">
-                            <Link to="/">Зарегистрируйся</Link>
-                        </button>
-                    </p>
                 </div>
             </section>
         );
