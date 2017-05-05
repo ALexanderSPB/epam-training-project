@@ -36,7 +36,7 @@
       "name" : "Another Institution",
       "timing": {
         "opening": 8,
-        "closing": 23
+        "closing": 20
       }
     }
   ],
@@ -45,6 +45,10 @@
       {
         "name" : "Office 1",
         "address": "Some address",
+        "timing": {
+          "opening": 8,
+          "closing": 22
+        },
         "rooms": [
           {
             "name": "1",
@@ -59,6 +63,10 @@
       {
         "name" : "Office 2",
         "address": "Some address",
+        "timing": {
+          "opening": 8,
+          "closing": 23
+        },
         "rooms": [
           {
             "name": "1",
@@ -75,6 +83,10 @@
       {
         "name" : "The only one office",
         "address": "Some address",
+        "timing": {
+          "opening": 8,
+          "closing": 20
+        },
         "rooms": [
           {
             "name": "1",
