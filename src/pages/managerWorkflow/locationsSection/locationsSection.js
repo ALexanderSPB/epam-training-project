@@ -5,10 +5,10 @@ import OfficeHoursBlock from './officeHoursBlock';
 import * as formats from '../../../constants/dateTimeFormats';
 
 const UI_TEXT = {
-    rooms: "Комнаты",
-    add: "Добавить",
-    remove: "Удалить",
-    location: "Здание"
+    rooms: 'Комнаты',
+    add: 'Добавить',
+    remove: 'Удалить',
+    location: 'Здание'
 };
 
 class LocationsSection extends Component {
