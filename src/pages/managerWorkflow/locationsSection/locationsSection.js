@@ -13,42 +13,42 @@ const UI_TEXT = {
 
 class LocationsSection extends Component {
     locationInfo() {
-        if (this.props.location) {
-            const { name, address, timing, rooms } = this.props.location;
-            const { isTimeEditing, startEditingTime, handleTimeChanged, handleRoomClick } = this.props;
+        if (!this.props.location) return;
 
-            const formattedTime = {
-                opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
-                closing: moment(timing.closing, 'h').format(formats.hoursAndMinutes)
-            };
+        const { name, address, timing, rooms } = this.props.location;
+        const { isTimeEditing, startEditingTime, handleTimeChanged, handleRoomClick } = this.props;
 
-            return (
-                <section>
-                    <header>{name}</header>
-                    <p>{address}</p>
-                    <OfficeHoursBlock
-                        formattedTime={formattedTime}
-                        isEditing={isTimeEditing}
-                        startEditing={startEditingTime}
-                        changeTime={handleTimeChanged}
-                    />
-                    <div>
-                        <p>{UI_TEXT.rooms}</p>
-                        <button>{UI_TEXT.add}</button>
-                        <ul>
-                            {rooms.map(room =>
-                                <li
-                                    key={room.uuid}
-                                    onClick={() => handleRoomClick(room.uuid)}
-                                >
+        const formattedTime = {
+            opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
+            closing: moment(timing.closing, 'h').format(formats.hoursAndMinutes)
+        };
+
+        return (
+            <section>
+                <header>{name}</header>
+                <p>{address}</p>
+                <OfficeHoursBlock
+                    formattedTime={formattedTime}
+                    isEditing={isTimeEditing}
+                    startEditing={startEditingTime}
+                    changeTime={handleTimeChanged}
+                />
+                <div>
+                    <p>{UI_TEXT.rooms}</p>
+                    <button>{UI_TEXT.add}</button>
+                    <ul>
+                        {rooms.map(room =>
+                            <li
+                                key={room.uuid}
+                                onClick={() => handleRoomClick(room.uuid)}
+                            >
                                 {room.name}
-                                </li>)}
-                        </ul>
-                    </div>
-                    <button onClick={this.props}>{UI_TEXT.remove}</button>
-                </section>
-            )
-        }
+                            </li>)}
+                    </ul>
+                </div>
+                <button onClick={this.props}>{UI_TEXT.remove}</button>
+            </section>
+        )
     }
 
     render() {
