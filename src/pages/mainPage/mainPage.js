@@ -61,18 +61,7 @@ export default class MainPage extends Component {
                         </section>
                     </section>
                     <section className="row siteBody__searchSchedulePart">
-                        <div className="col-xs-10 col-xs-offset-1">
-                            <div className="row searchSchedulePart__selectionPart">
-                                <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-                                    <InstitutionAndGroupScheduleSelector {...this.props}/>
-                                </div>
-                            </div>
-                            <div className="row searchSchedulePart__schedulePart">
-                                <div className="col-xs-12">
-                                    {/* Schedule component expected */}
-                                </div>
-                            </div>
-                        </div>
+                        <InstitutionAndGroupScheduleSelector {...this.props}/>
                     </section>
                 </div>
             </section>
