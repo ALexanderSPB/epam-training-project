@@ -21,7 +21,7 @@ export default function Week({officeHours, events}) {
                 key={event.uuid}
                 name={event.name}
                 teacher={event.teacher.name}
-                location={'' + event.location.name}
+                location={event.location.name}
                 room={event.room}
                 date={new Date(event.timing.beginning)}
                 top={(new Date(event.timing.beginning).getHours() - openingHour) * cellHeight}
