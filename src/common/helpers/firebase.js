@@ -74,20 +74,6 @@ export default class Firebase {
                 });
             })
             .then(() => {
-                //Get additional information about event from other objects of database
-                // eslint-disable-next-line
-                eventList.map((event, i) => {
-                    this.get(PATHS.users + event.teacher)
-                        .then(snapshot => {
-                            eventList[i]['teacherName'] = snapshot.name;
-                        });
-                    this.get(`${PATHS.locations}${institutionUid}/${event.location}`)
-                        .then(snapshot => {
-                            eventList[i]['locationName'] = snapshot.name;
-                        });
-                });
-            })
-            .then(() => {
                 return eventList;
             });
     }
