@@ -39,7 +39,7 @@ export default class Firebase {
             });
     }
 
-    static signUp(email, password, name) {
+    static signUp(email, password, name, location) {
         const userDefaultRole = 3;
 
         return firebase.auth()
@@ -49,8 +49,15 @@ export default class Firebase {
                 let userUid = result.uid;
                 this.set(PATHS.users + userUid, {
                     name: name,
-                    role: userDefaultRole
+                    role: userDefaultRole,
+                    location
                 });
+                return {
+                    uuid: userUid,
+                    name: name,
+                    role: userDefaultRole,
+                    location
+                }
             });
     }
 
