@@ -1,0 +1,81 @@
+@import "../../../assets/fonts/SourceSansPro/SemiBold/font.css";
+@import "../../../assets/fonts/Oswald/Regular/font.css";
+
+.app_header {
+  height: 60px;
+  position: relative;
+  text-align: center;
+  @media(min-width: 992px) {
+    padding-left: 3.35% !important;
+  }
+
+  .my-schedule--header {
+    margin: auto;
+    font-family: OswaldRegular, sans-serif;
+    line-height: 6rem;
+    letter-spacing: -0.15rem;
+    text: {
+      transform: uppercase;
+      align: left;
+    }
+  }
+
+  &_logo_wrapper {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    a {
+      position: relative;
+      margin-right: auto;
+      padding: 0;
+      @media (min-width: 768px), (max-width: 768px) {
+        margin-right: 0;
+        margin-left: auto;
+      }
+    }
+    img {
+      height: 50px;
+    }
+  }
+
+  &_buttons {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6rem;
+
+    button {
+      &:not(:first-child) {
+        margin-left: 15px;
+      }
+
+      display: inline-block;
+      background-color: white;
+      border: 2px solid #A3C644;
+      text-transform: uppercase;
+      font: {
+        family: SourceSansProSemibold, sans-serif;
+        size: 16px;
+      }
+      padding: {
+        top: 4px;
+        bottom: 4px;
+      }
+
+      a {
+        color: #A3C644;
+
+      }
+    }
+
+    .sign-up--button {
+      background-color: #A3C644;
+      a {
+        color: white;
+      }
+    }
+  }
+}
+

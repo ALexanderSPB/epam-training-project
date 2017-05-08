@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, {Component} from 'react';
+import {Link} from 'react-router';
+import './footer.css';
 
 // !! прописать правильные ссылки, когда будут их адреса
 
 class Footer extends Component {
 
     render() {
-        return(
-            <footer className="app_footer">
-                <ul className="app_footer_content">
+        return (
+            <footer className="app_footer row">
+                <ul className="app_footer_content ">
                     <li>
                         <Link to="/">
                             Главная
@@ -21,7 +22,7 @@ class Footer extends Component {
                     </li>
                 </ul>
             </footer>
-        )
+        );
     }
 }
 

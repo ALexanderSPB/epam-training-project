@@ -1,0 +1,40 @@
+@import "../../../assets/fonts/SourceSansPro/SemiBold/font.css";
+@import "../../../assets/fonts/Oswald/Regular/font.css";
+
+.app_footer {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #666666;
+  @media(min-width: 992px) {
+    padding-left: 2.85% !important;
+  }
+
+  a {
+    color: #CCCCCC;
+    cursor: pointer;
+    padding: 5px;
+    &:link, &:visited, &:hover, &:active {
+      color: #CCCCCC;
+    }
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  li {
+    display: inline;
+
+    &:not(:last-child) {
+      padding-right: 10px;
+    }
+
+    &:not(:first-child)::before {
+      position: relative;
+      padding-right: 10px;
+      content: "•";
+      color: #CCCCCC;
+    }
+  }
+}

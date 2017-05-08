@@ -1,55 +1,9 @@
-@font-face {
-  font-family: "Oswald Regular";
-  src: url("../../public/fonts/Oswald/Oswald-Regular.ttf") format("ttf");
-  font-weight: 500;
-  font-style: normal;
-}
+@import "../assets/fonts/SourceSansPro/SemiBold/font.css";
+@import "../assets/fonts/SourceSansPro/Bold/font.css";
+@import "../assets/fonts/SourceSansPro/Regular/font.css";
+@import "../assets/fonts/SourceSansPro/Light/font.css";
+@import "../assets/fonts/SourceSansPro/ExtraLight/font.css";
 
-@font-face {
-  font-family: "Oswald Bold";
-  src: url("../../public/fonts/Oswald/Oswald-Bold.ttf") format("ttf");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Oswald Light";
-  src: url("../../public/fonts/Oswald/Oswald-Light.ttf") format("ttf");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Sans Pro Regular";
-  src: url("../../public/fonts/Source Sans Pro/SourceSansPro-Regular.otf") format("otf");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Sans Pro Bold";
-  src: url("../../public/fonts/Source Sans Pro/SourceSansPro-Bold.otf") format("otf");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Sans Pro Semibold";
-  src: url("../../public/fonts/Source Sans Pro/SourceSansPro-Semibold.otf") format("otf");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Sans Pro Light";
-  src: url("../../public/fonts/Source Sans Pro/SourceSansPro-Light.otf") format("otf");
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Sans Pro ExtraLight";
-  src: url("../../public/fonts/Source Sans Pro/SourceSansPro-ExtraLight.otf") format("otf");
-  font-weight: 100;
-  font-style: normal;
-}
+@import "../assets/fonts/Oswald/Bold/font.css";
+@import "../assets/fonts/Oswald/Regular/font.css";
+@import "../assets/fonts/Oswald/Light/font.css";
