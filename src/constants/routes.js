@@ -8,13 +8,14 @@ import RegistrationPage from '../pages/registrationPage/registrationPage';
 
 export const ROUTE_PATHS = {
     root: '/',
-    login: 'login'
+    login: 'login',
+    registration: 'registration'
 };
 
 export const routes = (
     <Route path="/" component={ App }>
         <IndexRoute component={ MainPage } />
         <Route path={ROUTE_PATHS.login} component={ LoginPage } />
-        <Route path="registration" component={ RegistrationPage } />
+        <Route path={ROUTE_PATHS.registration} component={ RegistrationPage } />
     </Route>
 );

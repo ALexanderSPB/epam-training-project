@@ -1,27 +1,34 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-
-// !! прописать правильные ссылки, когда будут их адреса
+import { browserHistory } from 'react-router';
+import { ROUTE_PATHS } from '../../../constants/routes';
 
 class Footer extends Component {
+
+    linkToHomepage() {
+        browserHistory.push(ROUTE_PATHS.root);
+    }
+
+    linkToFAQ() {
+        browserHistory.push(ROUTE_PATHS.faq);
+    }
 
     render() {
         return(
             <footer className="app_footer">
                 <ul className="app_footer_content">
                     <li>
-                        <Link to="/">
+                        <a onClick={this.linkToHomepage}>
                             Главная
-                        </Link>
+                        </a>
                     </li>
                     <li>
-                        <Link to="/">
+                        <a onClick={this.linkToFAQ}>
                             FAQ
-                        </Link>
+                        </a>
                     </li>
                 </ul>
             </footer>
-        )
+        );
     }
 }
 
