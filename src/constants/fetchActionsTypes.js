@@ -12,4 +12,3 @@ export const EVENTS = {
     RECEIVE: 'RECEIVE_EVENTS',
     REJECT: 'REJECT_EVENTS',
 };
-

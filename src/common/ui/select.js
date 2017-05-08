@@ -1,7 +1,8 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function Select({classes={}, labelText = "", valueChanged, options, selectId, multiple=false}) {
+export default function Select({classes = {}, labelText = '', valueChanged, options, selectId, multiple = false}) {
     function handleChange(event) {
         valueChanged(event.target.value);
     }
@@ -22,11 +23,13 @@ export default function Select({classes={}, labelText = "", valueChanged, option
                 </select>
             </div>
         </div>
-    )
+    );
 }
 
 Select.propTypes = {
     options: PropTypes.array.isRequired,
+    valueChanged: PropTypes.func.isRequired,
+    selectId: PropTypes.number,
     classes: PropTypes.object,
     multiple: PropTypes.bool,
     labelText: PropTypes.string

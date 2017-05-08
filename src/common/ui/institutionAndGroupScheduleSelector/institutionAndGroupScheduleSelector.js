@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Select from '../select';
@@ -76,5 +77,11 @@ class InstitutionAndGroupScheduleSelector extends Component {
         );
     }
 }
+
+InstitutionAndGroupScheduleSelector.propTypes = {
+    fetchEntities: PropTypes.func.isRequired,
+    institutions: PropTypes.array,
+    groups: PropTypes.object
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(InstitutionAndGroupScheduleSelector);

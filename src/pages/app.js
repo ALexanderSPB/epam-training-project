@@ -1,9 +1,9 @@
 import React from 'react';
-import { Router } from 'react-router';
+import {Router} from 'react-router';
 import Header from '../common/parts/header';
 import Footer from '../common/parts/footer';
-import { routes } from '../constants/routes';
-import { history } from '../index';
+import {routes} from '../constants/routes';
+import {history} from '../index';
 import './style.css';
 
 
