@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import moment from 'moment';
 import Select from '../../../common/ui/select';
 import OfficeHoursBlock from './officeHoursBlock';
@@ -25,7 +25,7 @@ class LocationsSection extends Component {
 
         return (
             <section>
-                <header>{name}</header>
+                <h2>{name}</h2>
                 <p>{address}</p>
                 <OfficeHoursBlock
                     formattedTime={formattedTime}
@@ -57,6 +57,7 @@ class LocationsSection extends Component {
                 <Select
                     options={this.props.locations}
                     labelText={UI_TEXT.location}
+                    valueChanged={this.props.changeLocation}
                 />
                 {this.locationInfo()}
             </section>
