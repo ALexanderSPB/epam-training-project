@@ -37,15 +37,15 @@ export default class Modal extends Component {
 
 
     render() {
-        let modalClass = this.state.visible ? "modal fade in" : "modal fade";
-        let modalStyles = this.state.visible ? {display: "block"} : {};
+        let modalClass = this.state.visible ? 'modal fade in' : 'modal fade';
+        let modalStyles = this.state.visible ? {display: 'block'} : {};
         let backdrop = this.state.visible ? (
-                <div className="modal-backdrop fade in" data-backdrop="static"/>
+                <div className='modal-backdrop fade in' data-backdrop='static'/>
             ) : null;
 
         let title = this.state.title ? (
-                <div className="modal-header">
-                    <h4 className="modal-title">{this.state.title}</h4>
+                <div className='modal-header'>
+                    <h4 className='modal-title'>{this.state.title}</h4>
                 </div>
             ) : null;
 
@@ -55,16 +55,16 @@ export default class Modal extends Component {
 
                 <div className={modalClass} style={modalStyles}>
 
-                    <div className="modal-dialog">
-                        <div className="modal-content">
+                    <div className='modal-dialog'>
+                        <div className='modal-content'>
                             {title}
-                            <div className="modal-body">
+                            <div className='modal-body'>
                                 <p>{this.state.text}</p>
                             </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-default"
+                            <div className='modal-footer'>
+                                <button type='button' className='btn btn-default'
                                         onClick={this.toggleModal.bind(this)}>{this.state.cancelButtonTitle}</button>
-                                <button type="button" className="btn btn-primary"
+                                <button type='button' className='btn btn-primary'
                                         onClick={this.actionModal.bind(this)}>{this.state.actionButtonTitle}</button>
                             </div>
                         </div>
