@@ -4,13 +4,11 @@ import institutions from '../common/ui/institutionAndGroupScheduleSelector/insti
 import groups from '../common/ui/institutionAndGroupScheduleSelector/groups';
 import loginData from '../pages/loginPage/loginReducer';
 import registrationSubmit from '../pages/registrationPage/registrationPageReducers';
-import registrationGetLocations from '../pages/registrationPage/registrationPageReducers';
 
 export const rootReducer = combineReducers({
     routing: routerReducer,
     institutions,
     groups,
     loginData,
-    registrationSubmit,
-    registrationGetLocations
+    registrationSubmit
 });

@@ -16,11 +16,7 @@ export default function registrationSubmit(state = {isLoading: true}, action) {
         case REGISTRATION_SUBMIT:
             return {
                 ...state,
-                isLoading: false,
-                usersName: action.value.name,
-                userId: action.value.uuid,
-                role: action.value.role,
-                location: action.value.location
+                isLoading: false
             };
 
         case REGISTRATION_GET_LOCATIONS:

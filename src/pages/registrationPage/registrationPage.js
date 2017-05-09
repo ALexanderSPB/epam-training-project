@@ -4,8 +4,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Input from '../../common/ui/input';
 import Select from '../../common/ui/select';
-// import Loader from '../../common/ui/loader/loader';
-//import Firebase from '../../common/helpers/firebase';
 import './registrationPage.css';
 import * as registrationActions from './registrationPageActions';
 
@@ -157,8 +155,8 @@ class RegistrationPage extends Component {
 }
 
 const mapStateToProps = state => ({
-    isLoading: state.registrationGetLocations.isLoading,
-    locations: state.registrationGetLocations.locations
+    isLoading: state.registrationSubmit.isLoading,
+    locations: state.registrationSubmit.locations
 });
 
 const mapDispatchToProps = dispatch => ({
