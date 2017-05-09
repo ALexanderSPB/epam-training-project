@@ -13,12 +13,12 @@ export const errorCodes = {
 export default class Firebase {
     static initialize() {
         let config = {
-            apiKey: "AIzaSyCc4oN8ZR7wz4JB6nm44-LXNN8KT7QkEU8",
-            authDomain: "myschedule-1affb.firebaseapp.com",
-            databaseURL: "https://myschedule-1affb.firebaseio.com",
-            projectId: "myschedule-1affb",
-            storageBucket: "myschedule-1affb.appspot.com",
-            messagingSenderId: "209231286969"
+            apiKey: 'AIzaSyCc4oN8ZR7wz4JB6nm44-LXNN8KT7QkEU8',
+            authDomain: 'myschedule-1affb.firebaseapp.com',
+            databaseURL: 'https://myschedule-1affb.firebaseio.com',
+            projectId: 'myschedule-1affb',
+            storageBucket: 'myschedule-1affb.appspot.com',
+            messagingSenderId: '209231286969'
         };
         firebase.initializeApp(config);
     }
@@ -39,7 +39,7 @@ export default class Firebase {
             });
     }
 
-    static signUp(email, password, name) {
+    static signUp(email, password, name, location) {
         const userDefaultRole = 3;
 
         return firebase.auth()
@@ -49,8 +49,15 @@ export default class Firebase {
                 let userUid = result.uid;
                 this.set(PATHS.users + userUid, {
                     name: name,
-                    role: userDefaultRole
+                    role: userDefaultRole,
+                    location
                 });
+                return {
+                    uuid: userUid,
+                    name: name,
+                    role: userDefaultRole,
+                    location
+                };
             });
     }
 
@@ -64,20 +71,6 @@ export default class Firebase {
                     if (obj.group === groupUid) {
                         eventList.push(obj);
                     }
-                });
-            })
-            .then(() => {
-                //Get additional information about event from other objects of database
-                // eslint-disable-next-line
-                eventList.map((event, i) => {
-                    this.get(PATHS.users + event.teacher)
-                        .then(snapshot => {
-                            eventList[i]['teacherName'] = snapshot.name;
-                        });
-                    this.get(`${PATHS.locations}${institutionUid}/${event.location}`)
-                        .then(snapshot => {
-                            eventList[i]['locationName'] = snapshot.name;
-                        });
                 });
             })
             .then(() => {

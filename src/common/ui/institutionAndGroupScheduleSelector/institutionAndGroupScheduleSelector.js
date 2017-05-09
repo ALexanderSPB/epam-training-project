@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Select from '../select';
@@ -49,29 +50,57 @@ class InstitutionAndGroupScheduleSelector extends Component {
             .then(events => this.setState({events}));
     }
 
+    componentDidUpdate() {
+        window.scrollTo(0 , document.body.offsetHeight);
+    }
+
     render() {
         const {selectedInstitution, events} = this.state;
         const {institutions, groups} = this.props;
+
+        let institutionInfo = institutions.find(x => x.uuid === selectedInstitution);
+
         return (
             <div>
-                <Select
-                    options={institutions}
-                    valueChanged={this.handleSelectInstitution}
-                />
-                <Select
-                    options={groups[selectedInstitution] || []}
-                    valueChanged={this.handleSelectGroup}
-                />
+                <div className="col-xs-10 col-xs-offset-1">
+                    <div className="row searchSchedulePart__selectionPart">
+                        <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                            <Select
+                                options={institutions}
+                                valueChanged={this.handleSelectInstitution}
+                                labelText="Выберите заведение"
+                            />
+                            { selectedInstitution
+                                ? <Select
+                                    options={groups[selectedInstitution] || []}
+                                    valueChanged={this.handleSelectGroup}
+                                    labelText="Выберите группу"
+                                />
+                                : null
+                            }
+                        </div>
+                    </div>
+                </div>
                 { events !== undefined
-                    ? <Shedule
-                        events={events}
-                        officeHours={{opening: 8, closing: 23}}
-                    />
+                    ? <div className="row searchSchedulePart__schedulePart">
+                        <div className="col-xs-12">
+                            <Shedule
+                                events={events}
+                                officeHours={institutionInfo.timing}
+                            />
+                        </div>
+                    </div>
                     : null
                 }
             </div>
         );
     }
 }
+
+InstitutionAndGroupScheduleSelector.propTypes = {
+    fetchEntities: PropTypes.func.isRequired,
+    institutions: PropTypes.array,
+    groups: PropTypes.object
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(InstitutionAndGroupScheduleSelector);

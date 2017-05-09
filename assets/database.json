@@ -25,11 +25,19 @@
   "institutions": [
     {
       "uuid" : "inst0",
-      "name" : "MyInstitution"
+      "name" : "MyInstitution",
+      "timing": {
+        "opening": 8,
+        "closing": 23
+      }
     },
     {
       "uuid" : "inst1",
-      "name" : "Another Institution"
+      "name" : "Another Institution",
+      "timing": {
+        "opening": 8,
+        "closing": 20
+      }
     }
   ],
   "locations" : {
@@ -37,7 +45,10 @@
       {
         "name" : "Office 1",
         "address": "Some address",
-        "timing": {},
+        "timing": {
+          "opening": 8,
+          "closing": 22
+        },
         "rooms": [
           {
             "name": "1",
@@ -52,7 +63,10 @@
       {
         "name" : "Office 2",
         "address": "Some address",
-        "timing": {},
+        "timing": {
+          "opening": 8,
+          "closing": 23
+        },
         "rooms": [
           {
             "name": "1",
@@ -69,7 +83,10 @@
       {
         "name" : "The only one office",
         "address": "Some address",
-        "timing": {},
+        "timing": {
+          "opening": 8,
+          "closing": 20
+        },
         "rooms": [
           {
             "name": "1",
@@ -104,8 +121,14 @@
           "beginning": "Thu Apr 20 2017 16:13:02 GMT+0300 (E. Africa Standard Time)"
         },
         "type": "",
-        "teacher": "tyo1rhCCswTcPZvHMLhoEC0AbB02",
-        "location": 0,
+        "teacher": {
+          "uuid": "tyo1rhCCswTcPZvHMLhoEC0AbB02",
+          "name": "Vasilisa Andreeva"
+        },
+        "location": {
+          "uuid": 0,
+          "name": "Office 1"
+        },
         "room": "12a",
         "group": "group0x1x42"
       },
@@ -118,8 +141,14 @@
           "beginning": "Fri Apr 21 2017 14:03:04 GMT+0300 (E. Africa Standard Time)"
         },
         "type": "",
-        "teacher": "tyo1rhCCswTcPZvHMLhoEC0AbB02",
-        "location": 1,
+        "teacher": {
+          "uuid": "tyo1rhCCswTcPZvHMLhoEC0AbB02",
+          "name": "Vasilisa Andreeva"
+        },
+        "location": {
+          "uuid": 1,
+          "name": "Office 2"
+        },
         "room": "1",
         "group": "group0x1x42"
       }

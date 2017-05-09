@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 export default function Input({inputId, classes, placeholder, labelText, type, valueChanged, error}) {
@@ -12,7 +13,7 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
                 <span className={classNames(errorClasses)}>
                     {error}
                 </span>
-            )
+            );
         }
     }
 
@@ -32,13 +33,15 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
             </div>
             {errorMessage(error, classes.error)}
         </div>
-    )
+    );
 }
 
 Input.propTypes = {
+    inputId: PropTypes.number.isRequired,
     labelText: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     placeholder: PropTypes.string.isRequired,
+    valueChanged: PropTypes.func.isRequired,
     classes: PropTypes.object,
     error: PropTypes.string,
     value: PropTypes.string
