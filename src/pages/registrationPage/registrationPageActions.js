@@ -1,4 +1,5 @@
 import Firebase from '../../common/helpers/firebase';
+import {loginSuccess} from '../loginPage/loginActions';
 import {browserHistory} from 'react-router';
 import {
     REGISTRATION_SUBMIT,
@@ -21,6 +22,13 @@ export const registrationSubmit = (data) => {
                     type: REGISTRATION_SUBMIT,
                     value: result
                 });
+                const { name, role, location } = result;
+                dispatch(loginSuccess({
+                    uid: result.uuid,
+                    name,
+                    role,
+                    location
+                }));
             })
             // eslint-disable-next-line no-console
             .catch(error => console.log(error));

@@ -8,7 +8,7 @@ export const LOGIN_ERROR_TYPES = {
     password: 'password'
 };
 
-const loginSuccess = userData => ({
+export const loginSuccess = userData => ({
     type: LOGIN_SUCCESS,
     payload: userData
 });
