@@ -10,7 +10,8 @@
     "prop-types": "^15.5.8",
     "react-scripts": "0.8.5",
     "redux-logger": "^2.7.4",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+      "prop-types": "latest"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
