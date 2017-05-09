@@ -4,6 +4,8 @@ import favicon from '../../../public/favicon.ico';
 import './headerStyle.css';
 import { ROUTE_PATHS } from '../../constants/routes';
 
+// TODO:!! прописать правильные ссылки, когда будут их адреса
+
 class Header extends Component {
 
     render() {
@@ -30,7 +32,7 @@ class Header extends Component {
                     </button>
                 </div>
             </header>
-        )
+        );
     }
 }
 

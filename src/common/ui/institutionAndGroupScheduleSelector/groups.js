@@ -9,6 +9,7 @@ export default function institutions(state = initialState, action) {
             return Object.assign(state, payload);
 
         case GROUPS.REJECT:
+            // eslint-disable-next-line no-console
             console.error(`Groups can't be loaded due to: ${payload}`);
             return state;
 
