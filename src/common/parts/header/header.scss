@@ -1,38 +1,50 @@
+$epam-green: #A3C644;
+
 .app_header {
   height: 60px;
-  position: relative;
-  text-align: center;
   @media(min-width: 992px) {
-    padding-left: 3.35% !important;
+    padding-left: 5.35% !important;
   }
 
   .my-schedule--header {
     margin: auto;
     font-family: OswaldRegular, sans-serif;
+    font-size: 4rem;
     line-height: 6rem;
     letter-spacing: -0.15rem;
     text: {
       transform: uppercase;
       align: left;
     }
+    @media (max-width: 768px) {
+      font-size: 3rem;
+    }
   }
 
   &_logo_wrapper {
     height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+
     a {
-      position: relative;
+      display: block;
+      width: 100%;
+      margin-left: auto;
       margin-right: auto;
+
+      position: relative;
       padding: 0;
-      @media (min-width: 768px), (max-width: 768px) {
-        margin-right: 0;
-        margin-left: auto;
+      @media (max-width: 768px) {
+        top: 10%;
+      }
+      @media (min-width: 768px) {
+        top: 5%;
       }
     }
     img {
       height: 50px;
+      margin-left: auto;
+      @media (max-width: 768px) {
+        height: 40px;
+      }
     }
   }
 
@@ -47,10 +59,9 @@
       &:not(:first-child) {
         margin-left: 15px;
       }
-
-      display: inline-block;
       background-color: white;
-      border: 2px solid #A3C644;
+      border: 2px solid $epam-green;
+      box-sizing: border-box;
       text-transform: uppercase;
       font: {
         family: SourceSansProSemibold, sans-serif;
@@ -61,18 +72,35 @@
         bottom: 4px;
       }
 
-      a {
-        color: #A3C644;
+      .button-text, .button-glyph {
+        color: $epam-green;
+      }
 
+      @media not (min-width: 768px) {
+        .button-glyph {
+          display: none;
+        }
+        .button-text {
+          display: inline-block;
+        }
+      }
+
+      @media (max-width: 767px) {
+        background-color: transparent;
+        .button-glyph {
+          display: inline-block;
+        }
+        .button-text {
+          display: none;
+        }
       }
     }
 
     .sign-up--button {
-      background-color: #A3C644;
-      a {
+      background-color: $epam-green;
+      .button-text, .button-glyph {
         color: white;
       }
     }
   }
 }
-

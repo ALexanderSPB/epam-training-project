@@ -1,37 +1,39 @@
+$epam-light-gray: #CCCCCC;
+$epam-dark-gray: #666666;
+
 .app_footer {
   height: 60px;
   display: flex;
   align-items: center;
-  background-color: #666666;
-  @media(min-width: 992px) {
-    padding-left: 2.85% !important;
-  }
+  background-color: $epam-dark-gray;
+  padding-left: 7.35% !important;
 
-  a {
-    color: #CCCCCC;
-    cursor: pointer;
-    padding: 5px;
-    &:link, &:visited, &:hover, &:active {
-      color: #CCCCCC;
-    }
-  }
-
-  ul {
+  .app_footer_content {
     margin-bottom: 0;
-  }
+    padding-left: 0;
 
-  li {
-    display: inline;
+    .list-item {
+      font-size: 18px;
+      display: inline;
 
-    &:not(:last-child) {
-      padding-right: 10px;
-    }
+      &:not(:last-child) {
+        padding-right: 10px;
+      }
 
-    &:not(:first-child)::before {
-      position: relative;
-      padding-right: 10px;
-      content: "•";
-      color: #CCCCCC;
+      &:not(:first-child)::before {
+        position: relative;
+        padding-right: 10px;
+        content: "•";
+        color: $epam-light-gray;
+      }
+      a {
+        color: $epam-light-gray;
+        cursor: pointer;
+        padding: 5px;
+        &:link, &:visited, &:hover, &:active {
+          color: $epam-light-gray;
+        }
+      }
     }
   }
 }
