@@ -4,7 +4,7 @@
     background-image: url("../../../public/img/line.png");
     background-repeat: no-repeat;
     background-position: 95%;
-    padding: 11.5% 0;
+    padding: calc(45vh - 120px) 0;
   }
 
   &__loginForm {
