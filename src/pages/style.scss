@@ -8,7 +8,7 @@ body {
 .siteBody {
   & p {
     font: {
-      family: Source Sans Pro Light;
+      family: SourceSansProLight, sans-serif;
       size: 1.5em;
     }
   }
@@ -19,21 +19,6 @@ body {
     &:hover, &:focus {
       text-decoration: none;
       color: #7F993A;
-    }
-  }
-
-  &__header {
-    &--second {
-      font: {
-        family: "Oswald Bold";
-        size: 2.5em;
-      }
-    }
-    &--third {
-      font: {
-        family: "Oswald Regular";
-        size: 2em;
-      }
     }
   }
 }
