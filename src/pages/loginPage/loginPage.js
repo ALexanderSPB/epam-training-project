@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {Link} from 'react-router';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import Input from '../../common/ui/input';
-import { loginAttempt } from './loginActions';
+import {loginAttempt} from './loginActions';
 import './loginPage.css';
 
 const mapStateToProps = state => ({
@@ -26,7 +27,7 @@ class LoginPage extends Component {
     }
 
     set(value, field) {
-        this.setState({ [field]: value });
+        this.setState({[field]: value});
     }
 
     render() {
@@ -100,4 +101,8 @@ class LoginPage extends Component {
     }
 }
 
+LoginPage.propTypes = {
+    loginAttempt: PropTypes.func.isRequired,
+    loginData: PropTypes.object,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

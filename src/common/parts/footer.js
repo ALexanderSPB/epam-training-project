@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-// !! прописать правильные ссылки, когда будут их адреса
+// TODO:!! прописать правильные ссылки, когда будут их адреса
 
 class Footer extends Component {
 
@@ -21,7 +21,7 @@ class Footer extends Component {
                     </li>
                 </ul>
             </footer>
-        )
+        );
     }
 }
 

@@ -1,5 +1,5 @@
-import Firebase, { errorCodes } from '../../common/helpers/firebase';
-import { browserHistory } from 'react-router';
+import Firebase, {errorCodes} from '../../common/helpers/firebase';
+import {browserHistory} from 'react-router';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
@@ -8,7 +8,7 @@ export const LOGIN_ERROR_TYPES = {
     password: 'password'
 };
 
-const loginSuccess = userData => ({
+export const loginSuccess = userData => ({
     type: LOGIN_SUCCESS,
     payload: userData
 });
