@@ -7,7 +7,7 @@ export default class MainPage extends Component {
 
     render() {
         return (
-            <section className="row siteBody">
+            <section className="row siteBody siteBody--mainPage">
                 <div className="col-xs-12">
                     <section className="row siteBody__introduction">
                         <div className="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-center">
