@@ -1,18 +1,18 @@
 $epam-light-gray: #CCCCCC;
 $epam-dark-gray: #666666;
 
-.app_footer {
+.app-footer {
   height: 60px;
   display: flex;
   align-items: center;
   background-color: $epam-dark-gray;
   padding-left: 7.35% !important;
 
-  .app_footer_content {
+  .app-footer__navigate-list {
     margin-bottom: 0;
     padding-left: 0;
 
-    .list-item {
+    .navigate-list__list-item {
       font-size: 18px;
       display: inline;
 

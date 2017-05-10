@@ -8,14 +8,14 @@ class Footer extends Component {
 
     render() {
         return (
-            <footer className="app_footer row">
-                <ul className="app_footer_content">
-                    <li className="list-item">
+            <footer className="app-footer row">
+                <ul className="app-footer__navigate-list">
+                    <li className="navigate-list__list-item">
                         <Link to="/">
                             Главная
                         </Link>
                     </li>
-                    <li className="list-item">
+                    <li className="navigate-list__list-item">
                         <Link to="/">
                             FAQ
                         </Link>

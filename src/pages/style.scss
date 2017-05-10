@@ -21,33 +21,4 @@ body {
       color: #7F993A;
     }
   }
-
-  &__header {
-    &--second {
-      font: {
-        family: OswaldBold, sans-serif;
-        size: 2.5em;
-      }
-    }
-    &--third {
-      font: {
-        family: OswaldRegular, sans-serif;
-        size: 2em;
-      }
-    }
-  }
-  &__footer {
-    &--second {
-      font: {
-        family: OswaldBold, sans-serif;
-        size: 2.5em;
-      }
-    }
-    &--third {
-      font: {
-        family: OswaldRegular, sans-serif;
-        size: 2em;
-      }
-    }
-  }
 }

@@ -1,12 +1,12 @@
 $epam-green: #A3C644;
 
-.app_header {
+.app-header {
   height: 60px;
   @media(min-width: 992px) {
     padding-left: 5.35% !important;
   }
 
-  .my-schedule--header {
+  .my-schedule__header {
     margin: auto;
     font-family: OswaldRegular, sans-serif;
     font-size: 4rem;
@@ -21,7 +21,7 @@ $epam-green: #A3C644;
     }
   }
 
-  &_logo_wrapper {
+  &__logo-wrapper {
     height: 60px;
 
     a {
@@ -48,7 +48,7 @@ $epam-green: #A3C644;
     }
   }
 
-  &_buttons {
+  &__buttons {
     font-size: 12px;
     display: flex;
     align-items: center;
@@ -72,33 +72,33 @@ $epam-green: #A3C644;
         bottom: 4px;
       }
 
-      .button-text, .button-glyph {
+      .button__text, .button__glyph {
         color: $epam-green;
       }
 
       @media not (min-width: 768px) {
-        .button-glyph {
+        .button__glyph {
           display: none;
         }
-        .button-text {
+        .button__text {
           display: inline-block;
         }
       }
 
       @media (max-width: 767px) {
         background-color: transparent;
-        .button-glyph {
+        .button__glyph {
           display: inline-block;
         }
-        .button-text {
+        .button__text {
           display: none;
         }
       }
     }
 
-    .sign-up--button {
+    .sign-up__button {
       background-color: $epam-green;
-      .button-text, .button-glyph {
+      .button__text, .button__glyph {
         color: white;
       }
     }
