@@ -18,7 +18,7 @@ class RegistrationPage extends Component {
             password: '',
             location: '',
             emailError: '',
-            nameeEror: '',
+            nameError: '',
             passwordError: ''
         };
 
