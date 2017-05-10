@@ -60,9 +60,7 @@ export default class MainPage extends Component {
                             </div>
                         </section>
                     </section>
-                    <section className="row siteBody__searchSchedulePart">
                         <InstitutionAndGroupScheduleSelector {...this.props}/>
-                    </section>
                 </div>
             </section>
         );

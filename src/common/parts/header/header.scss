@@ -1,0 +1,111 @@
+$epam-green: #A3C644;
+
+.app-header {
+  height: 60px;
+
+  @media(min-width: 992px) {
+    padding-left: 5.35% !important;
+  }
+
+  .my-schedule__header {
+    margin: auto;
+    font-family: OswaldRegular, sans-serif;
+    font-size: 4rem;
+    line-height: 6rem;
+    letter-spacing: -0.15rem;
+    text: {
+      transform: uppercase;
+      align: left;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 3rem;
+    }
+  }
+
+  &__logo-wrapper {
+    height: 60px;
+
+    a {
+      display: block;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+
+      position: relative;
+      padding: 0;
+
+      @media (max-width: 768px) {
+        top: 10%;
+      }
+
+      @media (min-width: 768px) {
+        top: 5%;
+      }
+    }
+    img {
+      height: 50px;
+      margin-left: auto;
+
+      @media (max-width: 768px) {
+        height: 40px;
+      }
+    }
+  }
+
+  &__buttons {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 6rem;
+
+    button {
+      &:not(:first-child) {
+        margin-left: 15px;
+      }
+      background-color: white;
+      border: 2px solid $epam-green;
+      box-sizing: border-box;
+      text-transform: uppercase;
+      font: {
+        family: SourceSansProSemibold, sans-serif;
+        size: 16px;
+      }
+      padding: {
+        top: 4px;
+        bottom: 4px;
+      }
+
+      .button__text, .button__glyph {
+        color: $epam-green;
+      }
+
+      @media not (min-width: 768px) {
+        .button__glyph {
+          display: none;
+        }
+        .button__text {
+          display: inline-block;
+        }
+      }
+
+      @media (max-width: 767px) {
+        background-color: transparent;
+        .button__glyph {
+          display: inline-block;
+        }
+        .button__text {
+          display: none;
+        }
+      }
+    }
+
+    .sign-up__button {
+      background-color: $epam-green;
+      .button__text, .button__glyph {
+        color: white;
+      }
+    }
+  }
+}
