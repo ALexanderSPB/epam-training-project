@@ -18,7 +18,7 @@ class RegistrationPage extends Component {
             password: '',
             location: '',
             emailError: '',
-            nameeEror: '',
+            nameError: '',
             passwordError: ''
         };
 
@@ -89,6 +89,7 @@ class RegistrationPage extends Component {
                             }}
                             valueChanged={ v => this.handleChange(v, 'email') }
                             inputId="registrationPageInput0"
+                            placeholder="email@smth.com"
                             labelText="Электорнная почта"
                             type="text"
                             error={this.state.emailError}
@@ -101,6 +102,7 @@ class RegistrationPage extends Component {
                             }}
                             valueChanged={ v => this.handleChange(v, 'password') }
                             inputId="registrationPageInput1"
+                            placeholder="Type password"
                             labelText="Пароль"
                             type="password"
                             error={this.state.passwordError}
@@ -113,6 +115,7 @@ class RegistrationPage extends Component {
                             }}
                             valueChanged={ v => this.handleChange(v, 'name') }
                             inputId="registrationPageInput2"
+                            placeholder="Ivan"
                             labelText="Имя"
                             type="text"
                             error={this.state.nameError}
@@ -125,6 +128,7 @@ class RegistrationPage extends Component {
                             }}
                             valueChanged={ v => this.handleChange(v, 'surname') }
                             inputId="registrationPageInput3"
+                            placeholder="Ivanov"
                             labelText="Фамилия"
                             type="text"
                         />

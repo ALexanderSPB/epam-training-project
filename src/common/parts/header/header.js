@@ -1,28 +1,20 @@
-import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
+import React, {Component} from 'react';
+import {browserHistory} from 'react-router';
 import favicon from '../../../../public/favicon.ico';
 import './headerStyle.css';
-import { ROUTE_PATHS } from '../../../constants/routes';
+import {ROUTE_PATHS} from '../../../constants/routes';
 
 class Header extends Component {
 
-    linkToHomepage() {
-        browserHistory.push(ROUTE_PATHS.root);
-    }
-
-    linkToLogin() {
-        browserHistory.push(ROUTE_PATHS.login);
-    }
-
-    linkToRegistration() {
-        browserHistory.push(ROUTE_PATHS.registration);
+    goToPage(page) {
+        browserHistory.push(page);
     }
 
     render() {
         return(
             <header className="app_header row">
                 <div className="app_header_logo_wrapper col-xs-3">
-                    <a onClick={this.linkToHomepage}>
+                    <a onClick={() => this.goToPage(ROUTE_PATHS.root)}>
                         <img src={favicon} alt="logo"/>
                     </a>
                 </div>
@@ -30,15 +22,15 @@ class Header extends Component {
                     <h1>MySchedule</h1>
                 </div>
                 <div className="app_header_buttons col-xs-3">
-                    <button onClick={this.linkToLogin} className="btn">
+                    <button onClick={() => this.goToPage(ROUTE_PATHS.login)} className="btn">
                         Войти
                     </button>
-                    <button onClick={this.linkToRegistration} className="btn">
+                    <button onClick={() => this.goToPage(ROUTE_PATHS.registration)} className="btn">
                         Зарегистрироваться
                     </button>
                 </div>
             </header>
-        )
+        );
     }
 }
 

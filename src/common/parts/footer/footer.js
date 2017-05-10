@@ -4,12 +4,8 @@ import {ROUTE_PATHS} from '../../../constants/routes';
 
 class Footer extends Component {
 
-    linkToHomepage() {
-        browserHistory.push(ROUTE_PATHS.root);
-    }
-
-    linkToFAQ() {
-        browserHistory.push(ROUTE_PATHS.faq);
+    goToPage(page) {
+        browserHistory.push(page);
     }
 
     render() {
@@ -17,18 +13,18 @@ class Footer extends Component {
             <footer className="app_footer">
                 <ul className="app_footer_content">
                     <li>
-                        <a onClick={this.linkToHomepage}>
+                        <a onClick={() => this.goToPage(ROUTE_PATHS.root)}>
                             Главная
                         </a>
                     </li>
                     <li>
-                        <a onClick={this.linkToFAQ}>
+                        <a onClick={() => this.goToPage(ROUTE_PATHS.faq)}>
                             FAQ
                         </a>
                     </li>
                 </ul>
             </footer>
-        );
+        )
     }
 }
 
