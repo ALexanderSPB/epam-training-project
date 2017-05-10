@@ -16,7 +16,7 @@ export const registrationSubmit = (data) => {
         });
         Firebase.signUp(data.email, data.password, data.name, data.location)
             .then(result => {
-                alert('Регистрация прошла успешно');
+                alert('Registration success');
                 browserHistory.push('/');
                 dispatch({
                     type: REGISTRATION_SUBMIT,
@@ -31,7 +31,11 @@ export const registrationSubmit = (data) => {
                 }));
             })
             // eslint-disable-next-line no-console
-            .catch(error => console.log(error));
+            .catch(error => {
+                alert('Something went wrong! \n' + error);
+                browserHistory.push('/');
+                browserHistory.push('/registration');
+            });
     };
 };
 export const registrationGetLocations = () => {
