@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Input from '../../common/ui/input';
 import Select from '../../common/ui/select';
+import Loader from '../../common/ui/loader/loader'
 import './registrationPage.css';
 import * as registrationActions from './registrationPageActions';
 
@@ -76,7 +77,7 @@ class RegistrationPage extends Component {
     render() {
         return (
             this.props.isLoading
-                ? null
+                ? <Loader/>
                 : <section className="registration row">
                 <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <form className="registration__form form-horizontal">
