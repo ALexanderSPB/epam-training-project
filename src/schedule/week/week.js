@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import TimeGrid from './timeGrid';
 import ScheduledEvent from './scheduledEvent/scheduledEvent';
 import {daysOfWeek, scheduleCellHeight} from '../../constants/scheduleOptions';
@@ -52,15 +53,15 @@ export default function Week({officeHours, events}) {
         <tbody>
         <tr>
             <th
-                scope="row"
-                className="time-col"
+                scope='row'
+                className='time-col'
             >
                 {timeColumn(officeHours.opening, officeHours.closing, scheduleCellHeight)}
             </th>
             {eventsByDay.map((events, i) => //columns for each day of week
                 <td
                     key={`${i}day`}
-                    className="week-col"
+                    className='week-col'
                     style={{height: tableHeight + 'px'}}
                 >
                     <TimeGrid

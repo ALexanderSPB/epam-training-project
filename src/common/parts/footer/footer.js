@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
-import { ROUTE_PATHS } from '../../../constants/routes';
+import React, {Component} from 'react';
+import {browserHistory} from 'react-router';
+import {ROUTE_PATHS} from '../../../constants/routes';
 
 class Footer extends Component {
 

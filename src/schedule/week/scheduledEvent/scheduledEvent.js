@@ -1,7 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import * as formats from '../../../constants/dateTimeFormats';
 
+// eslint-disable-next-line no-unused-vars
 export default function ScheduledEvent({name, teacher, location, room, date, top, height, isActive}) {
     function getTime(date) {
         return moment(date).format(formats.hoursAndMinutes);
@@ -11,7 +13,7 @@ export default function ScheduledEvent({name, teacher, location, room, date, top
         <div
             className="event"
             style={{
-                top : top + 'px',
+                top: top + 'px',
                 height: height + 'px'
             }}
         >
