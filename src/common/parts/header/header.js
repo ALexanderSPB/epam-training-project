@@ -4,8 +4,11 @@ import logo from '../../../../public/img/logo.png';
 import './header.css';
 import {ROUTE_PATHS} from '../../../constants/routes';
 
+// TODO:!! прописать правильные ссылки, когда будут их адреса
+
 class Header extends Component {
 
+    //noinspection JSMethodCanBeStatic
     render() {
         return (
             <header className="app-header row">

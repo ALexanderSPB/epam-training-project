@@ -6,6 +6,7 @@ import './footer.css';
 
 class Footer extends Component {
 
+    //noinspection JSMethodCanBeStatic
     render() {
         return (
             <footer className="app-footer row">
