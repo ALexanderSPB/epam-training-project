@@ -5,20 +5,15 @@ body {
     padding: 0;
 }
 
-.siteBody {
-    & p {
-        font: {
-            family: SourceSansProLight, sans-serif;
-            size: 1.5em;
-        }
-    }
+p {
+    font-family: SourceSansProLight, sans-serif;
+}
 
-    & a {
-        color: #1A9CB0;
+a {
+    color: #1A9CB0;
 
-        &:hover, &:focus {
-            text-decoration: none;
-            color: #7F993A;
-        }
+    &:hover, &:focus {
+        text-decoration: none;
+        color: #7F993A;
     }
 }

@@ -61,25 +61,26 @@ class TeacherWorkflow extends Component {
         const {events, officeHours} = this.state;
         return (
             <section className="siteBody siteBody--teacherPage row">
-                <div className="col-xs-12">
-                    <section className="siteBody siteBody__description row">
-                        <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-center">
-                            <p>Вы перешли в раздел просмотра и редактирования своего расписания.</p>
-                            <p>Для просмотра подробностей занятия нажмите на нужную Вам ячейку в таблице.
-                                В появившемся окне отобразится подробная информация о выбранном занятии. Для отмены
-                                занятия нажмите кнопку "Отмена".</p>
-                        </div>
-                    </section>
-                    <section className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 ">
-                        { events !== undefined && officeHours !== undefined
-                            ? <Schedule
-                                events={events}
-                                officeHours={officeHours}
-                            />
-                            : null
-                        }
-                    </section>
-                </div>
+                <section className="siteBody siteBody__description col-xs-12">
+                    <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                        <p className="text-center">Now you are in section where you can check and edit your schedule.</p>
+                        <ul className="text-left instructions">
+                            <li>If you want to get more detail information about class, just click at corresponding
+                                cell. Desired information appears in a pop-up window.
+                            </li>
+                            <li>To cancel your class click on 'Cancel' button.</li>
+                        </ul>
+                    </div>
+                </section>
+                <section className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                    { events !== undefined && officeHours !== undefined
+                        ? <Schedule
+                            events={events}
+                            officeHours={officeHours}
+                        />
+                        : null
+                    }
+                </section>
             </section>
         );
     }
