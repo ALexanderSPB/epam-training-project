@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Select from '../../../common/ui/select';
 import Shedule from '../../../schedule/schedule';
-import {fetchEntities} from './fetchEntityActions';
+import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {PATHS} from '../../../constants/database';
 import {INSTITUTIONS, GROUPS} from '../../../constants/fetchActionsTypes';
 import Firebase from '../../../common/helpers/firebase';
