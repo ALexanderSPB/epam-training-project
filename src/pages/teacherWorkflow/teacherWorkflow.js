@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import Schedule from '../../schedule/schedule';
-import {fetchEntities} from '../mainPage/institutionAndGroupScheduleSelector/fetchEntityActions';
+import {fetchEntities} from '../../constants/fetchEntityActions';
 import {PATHS} from '../../constants/database';
 import {TEACHERS} from '../../constants/fetchActionsTypes';
 import Firebase from '../../common/helpers/firebase';

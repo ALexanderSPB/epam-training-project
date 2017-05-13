@@ -1,4 +1,4 @@
-import Firebase from '../../../common/helpers/firebase';
+import Firebase from '../common/helpers/firebase';
 
 const receiveEntity = (type, json) => ({
     type,
