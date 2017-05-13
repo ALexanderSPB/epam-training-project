@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './mainPage.css';
-import InstitutionAndGroupScheduleSelector from '../../common/ui/institutionAndGroupScheduleSelector/institutionAndGroupScheduleSelector';
+import InstitutionAndGroupScheduleSelector from './institutionAndGroupScheduleSelector/institutionAndGroupScheduleSelector';
 
 export default class MainPage extends Component {
 
@@ -22,7 +22,7 @@ export default class MainPage extends Component {
                     <section className="row siteBody__instruction">
                         <section className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0 instruction__contentCol text-center">
                             <div className="contentCol__icon">
-                                <span className="glyphicon glyphicon-briefcase"></span>
+                                <span className="glyphicon glyphicon-briefcase"/>
                             </div>
                             <div className="contentCol__text">
                                 <h3 className="siteBody__header siteBody__header--third">
@@ -35,7 +35,7 @@ export default class MainPage extends Component {
                         </section>
                         <section className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0 instruction__contentCol text-center">
                             <div className="contentCol__icon">
-                                <span className="glyphicon glyphicon-sunglasses"></span>
+                                <span className="glyphicon glyphicon-sunglasses"/>
                             </div>
                             <div className="contentCol__text">
                                 <h3 className="siteBody__header siteBody__header--third">
@@ -48,7 +48,7 @@ export default class MainPage extends Component {
                         </section>
                         <section className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0 instruction__contentCol text-center">
                             <div className="contentCol__icon">
-                                <span className="glyphicon glyphicon-education"></span>
+                                <span className="glyphicon glyphicon-education"/>
                             </div>
                             <div className="contentCol__text">
                                 <h3 className="siteBody__header siteBody__header--third">

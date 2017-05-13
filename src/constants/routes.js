@@ -5,16 +5,15 @@ import App from '../pages/app';
 import MainPage from '../pages/mainPage/mainPage';
 import LoginPage from '../pages/loginPage/loginPage';
 import RegistrationPage from '../pages/registrationPage/registrationPage';
+import TeacherWorkflow from '../pages/teacherWorkflow/teacherWorkflow';
 import NotFound from '../pages/notFound/notFound';
-import WorkflowTeacher from '../pages/workflowTeacher/workflowTeacher';
 
 export const ROUTE_PATHS = {
     root: '/',
     login: 'login',
     registration: 'registration',
+    teacher: 'teacher',
     notFound: '*'
-    login: 'login',
-    teacher: 'teacher'
 };
 
 export const routes = (
@@ -22,8 +21,7 @@ export const routes = (
         <IndexRoute component={ MainPage } />
         <Route path={ROUTE_PATHS.login} component={ LoginPage } />
         <Route path={ROUTE_PATHS.registration} component={ RegistrationPage } />
+        <Route path={ROUTE_PATHS.teacher} component={ TeacherWorkflow } />
         <Route path={ROUTE_PATHS.notFound} component={ NotFound } />
-        <Route path="registration" component={ RegistrationPage } />
-        <Route path={ROUTE_PATHS.teacher} component={ WorkflowTeacher } />
     </Route>
 );

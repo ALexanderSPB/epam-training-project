@@ -8,11 +8,6 @@ export const GROUPS = {
     REJECT: 'REJECT_GROUPS',
 };
 
-export const EVENTS = {
-    RECEIVE: 'RECEIVE_EVENTS',
-    REJECT: 'REJECT_EVENTS',
-};
-
 export const TEACHERS = {
     RECEIVE: 'RECEIVE_TEACHERS',
     REJECT: 'REJECT_TEACHERS',
