@@ -5,12 +5,14 @@ import App from '../pages/app';
 import MainPage from '../pages/mainPage/mainPage';
 import LoginPage from '../pages/loginPage/loginPage';
 import RegistrationPage from '../pages/registrationPage/registrationPage';
+import FaqPage from '../pages/faqPage/faqPage';
 import NotFound from '../pages/notFound/notFound';
 
 export const ROUTE_PATHS = {
     root: '/',
     login: 'login',
     registration: 'registration',
+    faq: 'faq',
     notFound: '*'
 };
 
@@ -19,6 +21,7 @@ export const routes = (
         <IndexRoute component={ MainPage } />
         <Route path={ROUTE_PATHS.login} component={ LoginPage } />
         <Route path={ROUTE_PATHS.registration} component={ RegistrationPage } />
+        <Route path={ROUTE_PATHS.faq} component={ FaqPage } />
         <Route path={ROUTE_PATHS.notFound} component={ NotFound } />
     </Route>
 );

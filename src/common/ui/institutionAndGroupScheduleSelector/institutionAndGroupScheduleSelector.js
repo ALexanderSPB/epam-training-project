@@ -61,7 +61,7 @@ class InstitutionAndGroupScheduleSelector extends Component {
         let institutionInfo = institutions.find(x => x.uuid === selectedInstitution);
 
         return (
-            <div>
+            <section className="row siteBody__searchSchedulePart">
                 <div className="col-xs-10 col-xs-offset-1">
                     <div className="row searchSchedulePart__selectionPart">
                         <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
@@ -92,7 +92,7 @@ class InstitutionAndGroupScheduleSelector extends Component {
                     </div>
                     : null
                 }
-            </div>
+            </section>
         );
     }
 }
