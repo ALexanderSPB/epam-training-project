@@ -68,7 +68,7 @@ export default class Firebase {
                 //Sort events by groupUid
                 // eslint-disable-next-line
                 result.map(obj => {
-                    if (obj.group === groupUid) {
+                    if (obj.group.uuid === groupUid) {
                         eventList.push(obj);
                     }
                 });

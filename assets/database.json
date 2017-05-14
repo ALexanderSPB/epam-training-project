@@ -130,7 +130,10 @@
           "name": "Office 1"
         },
         "room": "12a",
-        "group": "group0x1x42"
+        "group": {
+            "uuid": "group0x1x42",
+            "name": "Group 42"
+        }
       },
       {
         "uuid": "ev0x132",
@@ -150,7 +153,10 @@
           "name": "Office 2"
         },
         "room": "1",
-        "group": "group0x1x42"
+        "group": {
+            "uuid": "group0x1x42",
+            "name": "Group 42"
+        }
       }
     ],
     "inst1": []
