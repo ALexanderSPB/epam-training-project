@@ -6,7 +6,6 @@ export default function schedule(state = initialState, action) {
     const {payload, type} = action;
     switch (type) {
         case actionTypes.NEW_SORT_OPTIONS:
-            console.log(payload);
             return {
                 ...state,
                 sortType: payload.sortType,

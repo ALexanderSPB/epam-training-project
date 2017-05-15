@@ -46,7 +46,7 @@ class ScheduleSection extends Component {
 
     render() {
         const { sortType, sortOptions, events } = this.props.schedule;
-        const {changeSortType, getEvents, editEventRequest, createEvent} = this.props;
+        const { changeSortType, getEvents, editEventRequest, createEvent } = this.props;
 
         return (
             <section>
