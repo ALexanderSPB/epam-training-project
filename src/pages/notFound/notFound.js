@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import {ROUTE_PATHS} from '../../constants/routes';
 import notFoundErrorImg from '../../../public/img/404.png';
-import './notFound.css'
+import './notFound.css';
 
 const NotFound = () => {
 
@@ -18,6 +18,6 @@ const NotFound = () => {
             </div>
         </div>
     );
-}
+};
 
 export default NotFound;
