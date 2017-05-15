@@ -2,12 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
-import {fetchEntities} from '../../../common/ui/institutionAndGroupScheduleSelector/fetchEntityActions';
+import {fetchEntities} from '../../../constants/fetchEntityActions';
 import TeacherCard from '../../managerWorkflow/teacherSection/teacherCard/teacherCard';
 import {TEACHERS} from '../../../constants/fetchActionsTypes';
 import {PATHS} from '../../../constants/database';
 import Firebase from '../../../common/helpers/firebase';
-
 
 const mapStateToProps = state => ({
     teachers: state.teachers,
@@ -21,10 +20,10 @@ const mapDispatchToProps = dispatch => ({
 class TeacherSection extends Component {
     constructor(props) {
         super(props);
-        const {users} = PATHS;
+        const {users, skills} = PATHS;
         props.fetchEntities(users, TEACHERS);
         this.state = {};
-        Firebase.get(PATHS.skills)
+        Firebase.get(skills)
             .then(skills => this.setState({skills}));
     }
 

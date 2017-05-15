@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const TeacherCard = (teacher) => {
-    const {name, institution, location, email, skills} = teacher;
+const TeacherCard = ({name, institution, location, email, skills}) => {
     return (
         <div className="col-xs-5 col-xs-offset-4 card-wrapper">
             <div className="panel panel-info teacherCard">
@@ -20,4 +20,13 @@ const TeacherCard = (teacher) => {
         </div>
     );
 };
+
+TeacherCard.propTypes = {
+    name: PropTypes.string.isRequired,
+    institution: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    skills: PropTypes.array.isRequired,
+    location: PropTypes.object,
+};
+
 export default TeacherCard;
