@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function Input({inputId, classes, placeholder, labelText, type, valueChanged, error}) {
+export default function Input({inputId, classes, placeholder, labelText, type, valueChanged, defaultValue, error}) {
     function handleChange(event) {
         valueChanged(event.target.value);
     }
@@ -25,6 +25,7 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
             <div className={classNames(classes.inputWrapper)}>
                 <input
                     id={inputId}
+                    defaultValue={defaultValue}
                     className={classNames('form-control', classes.input, classes.hasError)}
                     placeholder={placeholder}
                     onChange={handleChange}
@@ -44,5 +45,6 @@ Input.propTypes = {
     valueChanged: PropTypes.func.isRequired,
     classes: PropTypes.object,
     error: PropTypes.string,
-    value: PropTypes.string
+    value: PropTypes.string,
+    defaultValue: PropTypes.string
 };

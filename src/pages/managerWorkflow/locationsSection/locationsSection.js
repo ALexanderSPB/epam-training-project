@@ -1,22 +1,42 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import Select from '../../../common/ui/select';
 import OfficeHoursBlock from './officeHoursBlock';
 import * as formats from '../../../constants/dateTimeFormats';
+import {locationsRequest} from './locationsActions';
 
 const UI_TEXT = {
-    rooms: 'Комнаты',
-    add: 'Добавить',
-    remove: 'Удалить',
-    location: 'Здание'
+    rooms: 'Rooms',
+    add: 'Add',
+    remove: 'Remove',
+    location: 'Location'
 };
 
+const institutionId = 'inst0'; //TODO: replace this temporary constant after institution info is stored somewhere
+
+const mapStateToProps = state => ({
+    locations: state.locationsSection.locations
+});
+
+const mapDispatchToProps = dispatch => ({
+    locationsRequest: bindActionCreators(locationsRequest, dispatch),
+    dispatch,
+});
+
 class LocationsSection extends Component {
+
+    componentWillMount() {
+        this.props.locationsRequest(institutionId);
+    }
+
     locationInfo() {
         if (!this.props.location) return;
 
         const { name, address, timing, rooms } = this.props.location;
-        const { isTimeEditing, startEditingTime, handleTimeChanged, handleRoomClick } = this.props;
+        const { handleTimeChanged, handleRoomClick } = this.props;
 
         const formattedTime = {
             opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
@@ -29,8 +49,6 @@ class LocationsSection extends Component {
                 <p>{address}</p>
                 <OfficeHoursBlock
                     formattedTime={formattedTime}
-                    isEditing={isTimeEditing}
-                    startEditing={startEditingTime}
                     changeTime={handleTimeChanged}
                 />
                 <div>
@@ -46,9 +64,10 @@ class LocationsSection extends Component {
                             </li>)}
                     </ul>
                 </div>
+                <button onClick={this.props}>{UI_TEXT.add}</button>
                 <button onClick={this.props}>{UI_TEXT.remove}</button>
             </section>
-        )
+        );
     }
 
     render() {
@@ -64,3 +83,14 @@ class LocationsSection extends Component {
         );
     }
 }
+
+LocationsSection.propTypes = {
+    locationsRequest: PropTypes.func.isRequired,
+    changeLocation: PropTypes.func,
+    handleTimeChanged: PropTypes.func,
+    handleRoomClick:  PropTypes.func,
+    location: PropTypes.object,
+    locations: PropTypes.array
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationsSection);

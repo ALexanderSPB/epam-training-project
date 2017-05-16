@@ -1,7 +1,15 @@
 import React, {PropTypes} from 'react';
 import Input from '../../../common/ui/input';
 
-export default function OfficeHoursBlock({isEditing, formattedTime, error, changeTime, startEditing}) {
+const UI_TEXT = {
+    opening: 'Opening',
+    closing: 'Closing',
+    formatOfTime: 'Format: HH:MM',
+    officeHours: 'Office hours:',
+    save: 'Save'
+};
+
+export default function OfficeHoursBlock({formattedTime, error, changeTime}) {
     const timeNames = {
         opening: 'opening',
         closing: 'closing'
@@ -14,42 +22,31 @@ export default function OfficeHoursBlock({isEditing, formattedTime, error, chang
         });
     }
 
-    if (isEditing) {
-        return (
-            <div>
-                <p>Время работы:</p>
-                <time dateTime={formattedTime.opening}>{formattedTime.opening}</time>
-                <time dateTime={formattedTime.closing}>{formattedTime.closing}</time>
-                <button onClick={startEditing}>Редактировать</button>
-            </div>
-        )
-    }
-    else {
-        return (
-            <div>
-                <p>Время работы:</p>
-                {error ? <p>{error}</p> : null}
-                <Input
-                    labelText="Начало"
-                    placeholder="Время в формате HH:MM"
-                    type="text"
-                    valueChanged={(value) => handleChange(value, timeNames.opening)}
-                />
-                <Input
-                    labelText="Окончание"
-                    placeholder="Время в формате HH:MM"
-                    type="text"
-                    valueChanged={(value) => handleChange(value, timeNames.closing)}
-                />
-            </div>
-        )
-    }
+    return (
+        <div>
+            <p>{UI_TEXT.officeHours}</p>
+            {error ? <p>{error}</p> : null}
+            <Input
+                labelText={UI_TEXT.opening}
+                placeholder={UI_TEXT.formatOfTime}
+                type="text"
+                defaultValue={formattedTime.opening}
+                valueChanged={(value) => handleChange(value, timeNames.opening)}
+            />
+            <Input
+                labelText={UI_TEXT.closing}
+                placeholder={UI_TEXT.formatOfTime}
+                type="text"
+                defaultValue={formattedTime.closing}
+                valueChanged={(value) => handleChange(value, timeNames.closing)}
+            />
+            <button>{UI_TEXT.save}</button>
+        </div>
+    );
 }
 
 OfficeHoursBlock.propTypes = {
     formattedTime: PropTypes.object.isRequired,
-    isEditing: PropTypes.bool,
     error: PropTypes.string,
-    changeTime: PropTypes.func,
-    startEditing: PropTypes.func
+    changeTime: PropTypes.func
 };

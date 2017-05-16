@@ -4,6 +4,7 @@ import institutions from '../pages/mainPage/institutionAndGroupScheduleSelector/
 import groups from '../pages/mainPage/institutionAndGroupScheduleSelector/groups';
 import teachers from '../pages/teacherWorkflow/teachers';
 import loginData from '../pages/loginPage/loginReducer';
+import locationsSection from '../pages/managerWorkflow/locationsSection/locationsReducer';
 import registrationSubmit from '../pages/registrationPage/registrationPageReducers';
 
 export const rootReducer = combineReducers({
@@ -12,5 +13,6 @@ export const rootReducer = combineReducers({
     groups,
     teachers,
     loginData,
+    locationsSection,
     registrationSubmit
 });
