@@ -2,12 +2,12 @@ import React from 'react';
 import {Link} from 'react-router';
 import {ROUTE_PATHS} from '../../constants/routes';
 import notFoundErrorImg from '../../../public/img/404.png';
-import './notFound.css'
+import './notFound.css';
 
 const NotFound = () => {
 
     return (
-        <div className="row siteBody siteBody__notFound text-center">
+        <div className="row siteBody siteBody--notFound text-center">
             <div className="col-xs-12">
                 <img className="notFound__mainImg img-responsive center-block" src={notFoundErrorImg} alt="Page not found" />
                 <h2>Page not found</h2>
@@ -18,6 +18,6 @@ const NotFound = () => {
             </div>
         </div>
     );
-}
+};
 
 export default NotFound;

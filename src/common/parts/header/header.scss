@@ -2,6 +2,7 @@ $epam-green: #A3C644;
 
 .app-header {
   height: 60px;
+
   @media(min-width: 992px) {
     padding-left: 5.35% !important;
   }
@@ -16,6 +17,7 @@ $epam-green: #A3C644;
       transform: uppercase;
       align: left;
     }
+
     @media (max-width: 768px) {
       font-size: 3rem;
     }
@@ -32,9 +34,11 @@ $epam-green: #A3C644;
 
       position: relative;
       padding: 0;
+
       @media (max-width: 768px) {
         top: 10%;
       }
+
       @media (min-width: 768px) {
         top: 5%;
       }
@@ -42,6 +46,7 @@ $epam-green: #A3C644;
     img {
       height: 50px;
       margin-left: auto;
+
       @media (max-width: 768px) {
         height: 40px;
       }

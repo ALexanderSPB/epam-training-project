@@ -1,30 +1,33 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router';
+import React from 'react';
+import {browserHistory} from 'react-router';
+import {ROUTE_PATHS} from '../../../constants/routes';
 import './footer.css';
 
-// TODO:!! прописать правильные ссылки, когда будут их адреса
+const Footer = () => {
 
-class Footer extends Component {
+    function goToPage(page) {
+        browserHistory.push(page);
+    }
 
     //noinspection JSMethodCanBeStatic
-    render() {
-        return (
-            <footer className="app-footer row">
+    return (
+        <footer className="app-footer row">
+            <div className="col-xs-12">
                 <ul className="app-footer__navigate-list">
                     <li className="navigate-list__list-item">
-                        <Link to="/">
+                        <a onClick={() => goToPage(ROUTE_PATHS.root)}>
                             Главная
-                        </Link>
+                        </a>
                     </li>
                     <li className="navigate-list__list-item">
-                        <Link to="/">
+                        <a onClick={() => goToPage(ROUTE_PATHS.faq)}>
                             FAQ
-                        </Link>
+                        </a>
                     </li>
                 </ul>
-            </footer>
-        );
-    }
+            </div>
+        </footer>
+    );
 }
 
 export default Footer;

@@ -1,24 +1,19 @@
 @import "../common/_fonts";
 
 body {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
-.siteBody {
-  & p {
-    font: {
-      family: SourceSansProLight, sans-serif;
-      size: 1.5em;
-    }
-  }
+p {
+    font-family: SourceSansProLight, sans-serif;
+}
 
-  & a {
+a {
     color: #1A9CB0;
 
     &:hover, &:focus {
-      text-decoration: none;
-      color: #7F993A;
+        text-decoration: none;
+        color: #7F993A;
     }
-  }
 }

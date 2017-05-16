@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import Select from '../select';
+import Select from '../../../common/ui/select';
 import Shedule from '../../../schedule/schedule';
-import {fetchEntities} from './fetchEntityActions';
+import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {PATHS} from '../../../constants/database';
 import {INSTITUTIONS, GROUPS} from '../../../constants/fetchActionsTypes';
-import Firebase from '../../helpers/firebase';
+import Firebase from '../../../common/helpers/firebase';
 import {scheduleCellHeight} from '../../../constants/scheduleOptions';
 
 const mapStateToProps = state => ({
@@ -52,6 +52,7 @@ class InstitutionAndGroupScheduleSelector extends Component {
             .then(events => this.setState({events}));
     }
 
+    //noinspection JSMethodCanBeStatic
     componentDidUpdate() {
         if (this.state.events === undefined)
             return;
@@ -65,7 +66,7 @@ class InstitutionAndGroupScheduleSelector extends Component {
         const {institutions, groups} = this.props;
 
         return (
-            <div>
+            <section className="row siteBody__searchSchedulePart">
                 <div className="col-xs-10 col-xs-offset-1">
                     <div className="row searchSchedulePart__selectionPart">
                         <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
@@ -96,7 +97,7 @@ class InstitutionAndGroupScheduleSelector extends Component {
                     </div>
                     : null
                 }
-            </div>
+            </section>
         );
     }
 }
