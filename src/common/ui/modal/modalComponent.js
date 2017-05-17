@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 export default class Modal extends Component {
 
     static defaultProps = {
         visible: false,
-        openButtonTitle: 'Открыть модальное окно',
+        openButtonTitle: 'Open Modal window',
         title: '',
         text: '',
         footerButtons: []
@@ -28,7 +29,10 @@ export default class Modal extends Component {
 
 
     render() {
-        let modalClass = this.state.visible ? 'modal fade in' : 'modal fade';
+        let modalClass = classNames({
+            'modal fade in': this.state.visible,
+            'modal fade': !this.state.visible
+        });
         let modalStyles = this.state.visible ? {display: 'block'} : {};
         let backdrop = this.state.visible ? (
                 <div className="modal-backdrop fade in" data-backdrop="static"/>
@@ -66,7 +70,7 @@ export default class Modal extends Component {
                                             <button
                                                 key={id}
                                                 type="button"
-                                                className={item.type}
+                                                className={classNames(item.type)}
                                                 onClick={item.onClick}>
                                             {item.text}
                                             </button>
