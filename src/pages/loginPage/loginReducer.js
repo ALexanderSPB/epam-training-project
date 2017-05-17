@@ -15,6 +15,7 @@ export default function loginData(state = initialState, action) {
     switch (type) {
         case headerActionTypes.LOG_OUT:
             return initialState;
+        
         case actionTypes.LOGIN_SUCCESS:
             return {
                 user: new LoginData(payload)
