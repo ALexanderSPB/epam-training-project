@@ -1,10 +1,11 @@
 import * as actionTypes from './loginActions';
 
 class LoginData {
-    constructor({ name, uid, role }) {
+    constructor({name, uid, role, institution}) {
         this.name = name;
         this.uuid = uid;
         this.role = role;
+        this.institution = institution;
     }
 }
 
@@ -14,9 +15,7 @@ export default function loginData(state = initialState, action) {
     const {payload, type} = action;
     switch (type) {
         case actionTypes.LOGIN_SUCCESS:
-            return {
-                user: new LoginData(payload)
-            };
+            return new LoginData(payload);
 
         case actionTypes.LOGIN_ERROR:
             return {

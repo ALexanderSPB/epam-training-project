@@ -1,6 +1,6 @@
 import {TEACHERS} from '../../constants/fetchActionsTypes';
+import {ROLE_TEACHER} from '../../constants/roles';
 
-const ROLE_TEACHER = 2;
 const initialState = [];
 
 export default function teachers(state = initialState, action) {

@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
-import { PATHS } from '../../constants/database';
+import {PATHS} from '../../constants/database';
+import {ROLE_USER} from '../../constants/roles';
 
 export const errorCodes = {
     auth: {
@@ -30,33 +31,34 @@ export default class Firebase {
                 //Get data about user from database
                 return this.get(PATHS.users + result.uid)
                     .then(userData => {
-                        let username = userData.name;
+                        const {name, role, institution} = userData;
                         return {
                             uid: result.uid,
-                            name: username
+                            name,
+                            role,
+                            institution
                         };
                     });
             });
     }
 
     static signUp(email, password, name, location) {
-        const userDefaultRole = 3;
-
         return firebase.auth()
             .createUserWithEmailAndPassword(email, password)
             .then(result => {
                 //Write rest of user data into DB
-                let userUid = result.uid;
-                this.set(PATHS.users + userUid, {
-                    name: name,
-                    role: userDefaultRole,
+                const userUid = result.uid;
+
+                const user = {
+                    name,
+                    role: ROLE_USER,
                     location
-                });
+                };
+
+                this.set(PATHS.users + userUid, user);
                 return {
                     uuid: userUid,
-                    name: name,
-                    role: userDefaultRole,
-                    location
+                    ...user
                 };
             });
     }
