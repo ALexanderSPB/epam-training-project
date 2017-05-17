@@ -100,7 +100,9 @@ $epam-green: #A3C644;
         }
       }
     }
-
+      .log-out__button {
+          margin-right: 5%;
+      }
     .sign-up__button {
       background-color: $epam-green;
       .button__text, .button__glyph {
