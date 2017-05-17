@@ -5,9 +5,9 @@ export default class Modal extends Component {
     static defaultProps = {
         visible: false,
         openButtonTitle: 'Открыть модальное окно',
-        cancelButtonTitle: 'Закрыть',
         title: '',
-        text: ''
+        text: '',
+        footerButtons: []
     };
 
     constructor(props) {
@@ -15,9 +15,9 @@ export default class Modal extends Component {
         this.state = {
             visible: this.props.visible,
             openButtonTitle: this.props.openButtonTitle,
-            cancelButtonTitle: this.props.cancelButtonTitle,
             title: this.props.title,
-            text: this.props.text
+            text: this.props.text,
+            footerButtons: this.props.footerButtons
         };
     }
 
@@ -47,13 +47,29 @@ export default class Modal extends Component {
 
                     <div className="modal-dialog">
                         <div className="modal-content">
+                            <div className="modal-header">
+                                <button type="button"
+                                        className="close"
+                                        aria-label="Close"
+                                        onClick={this.toggleModal.bind(this)}>
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                             {title}
                             <div className="modal-body">
                                 <p>{this.state.text}</p>
                             </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-default"
-                                        onClick={this.toggleModal.bind(this)}>{this.state.cancelButtonTitle}</button>
+                            <div className="modal-body">
+                                {this.state.footerButtons.map(
+                                    (item, id) =>
+                                            <button
+                                                key={id}
+                                                type="button"
+                                                className={item.type}
+                                                onClick={item.onClick}>
+                                            {item.text}
+                                            </button>
+                                )}
                             </div>
                         </div>
                     </div>
