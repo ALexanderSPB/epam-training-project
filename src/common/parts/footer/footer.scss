@@ -1,0 +1,39 @@
+$epam-light-gray: #CCCCCC;
+$epam-dark-gray: #666666;
+
+.app-footer {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: $epam-dark-gray;
+  padding-left: 7.35% !important;
+
+  .app-footer__navigate-list {
+    margin-bottom: 0;
+    padding-left: 0;
+
+    .navigate-list__list-item {
+      font-size: 18px;
+      display: inline;
+
+      &:not(:last-child) {
+        padding-right: 10px;
+      }
+
+      &:not(:first-child)::before {
+        position: relative;
+        padding-right: 10px;
+        content: "•";
+        color: $epam-light-gray;
+      }
+      a {
+        color: $epam-light-gray;
+        cursor: pointer;
+        padding: 5px;
+        &:link, &:visited, &:hover, &:active {
+          color: $epam-light-gray;
+        }
+      }
+    }
+  }
+}

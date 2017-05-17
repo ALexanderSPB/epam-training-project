@@ -1,0 +1,19 @@
+.siteBody {
+    font-family: SourceSansProLight, sans-serif;
+
+    &__description {
+        padding: 3%;
+        background-color: #39C2D7;
+        box-shadow: 1px 1px 10px #CCC;
+        color: #FFFFFF;
+        font-size: 24px;
+        @media (max-width: 768px) {
+            font-size: 20px;
+        }
+    }
+
+    .instructions {
+        padding-left: 10%;
+        margin: 0 auto;
+    }
+}

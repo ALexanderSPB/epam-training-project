@@ -37,7 +37,7 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
 }
 
 Input.propTypes = {
-    inputId: PropTypes.number.isRequired,
+    inputId: PropTypes.string.isRequired,
     labelText: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     placeholder: PropTypes.string.isRequired,
