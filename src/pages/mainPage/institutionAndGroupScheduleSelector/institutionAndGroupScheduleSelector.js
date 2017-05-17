@@ -8,6 +8,7 @@ import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {PATHS} from '../../../constants/database';
 import {INSTITUTIONS, GROUPS} from '../../../constants/fetchActionsTypes';
 import Firebase from '../../../common/helpers/firebase';
+import {scheduleCellHeight} from '../../../constants/scheduleOptions';
 
 const mapStateToProps = state => ({
     'institutions': state.institutions,
@@ -36,6 +37,7 @@ class InstitutionAndGroupScheduleSelector extends Component {
 
     handleSelectInstitution(selected) {
         this.setState({selectedInstitution: selected});
+        this.setState({institutionInfo: this.props.institutions.find(x => x.uuid === selected)});
     }
 
     handleSelectGroup(selected) {
@@ -52,14 +54,16 @@ class InstitutionAndGroupScheduleSelector extends Component {
 
     //noinspection JSMethodCanBeStatic
     componentDidUpdate() {
-        window.scrollTo(0 , document.body.offsetHeight);
+        if (this.state.events === undefined)
+            return;
+        const {timing} = this.state.institutionInfo;
+        let scheduleHeight = (timing.closing - timing.opening + 5) * scheduleCellHeight;
+        window.scrollTo(0 , document.body.offsetHeight - scheduleHeight);
     }
 
     render() {
-        const {selectedInstitution, events} = this.state;
+        const {selectedInstitution, events, institutionInfo} = this.state;
         const {institutions, groups} = this.props;
-
-        let institutionInfo = institutions.find(x => x.uuid === selectedInstitution);
 
         return (
             <section className="row siteBody__searchSchedulePart">

@@ -6,6 +6,7 @@ import teachers from '../pages/teacherWorkflow/teachers';
 import loginData from '../pages/loginPage/loginReducer';
 import locationsSection from '../pages/managerWorkflow/locationsSection/locationsReducer';
 import registrationSubmit from '../pages/registrationPage/registrationPageReducers';
+import schedule from '../pages/managerWorkflow/scheduleSection/scheduleReducer';
 
 export const rootReducer = combineReducers({
     routing: routerReducer,
@@ -13,6 +14,7 @@ export const rootReducer = combineReducers({
     groups,
     teachers,
     loginData,
-    locationsSection,
-    registrationSubmit
+    registrationSubmit,
+    schedule,
+    locationsSection
 });

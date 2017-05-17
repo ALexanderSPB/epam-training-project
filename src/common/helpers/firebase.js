@@ -62,19 +62,12 @@ export default class Firebase {
     }
 
     static getEventsByGroup(institutionUid, groupUid) {
-        let eventList = [];
         return this.get(PATHS.events + institutionUid)
             .then(result => {
                 //Sort events by groupUid
-                // eslint-disable-next-line
-                result.map(obj => {
-                    if (obj.group === groupUid) {
-                        eventList.push(obj);
-                    }
+                return result.filter((event) => {
+                    return event.group.uuid === groupUid;
                 });
-            })
-            .then(() => {
-                return eventList;
             });
     }
 
