@@ -56,7 +56,7 @@ class InstitutionAndGroupScheduleSelector extends Component {
     componentDidUpdate() {
         if (this.state.events === undefined)
             return;
-        const timing = this.state.institutionInfo.timing;
+        const {timing} = this.state.institutionInfo;
         let scheduleHeight = (timing.closing - timing.opening + 5) * scheduleCellHeight;
         window.scrollTo(0 , document.body.offsetHeight - scheduleHeight);
     }
