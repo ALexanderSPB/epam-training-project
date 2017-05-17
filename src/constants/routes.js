@@ -20,7 +20,7 @@ export const ROUTE_PATHS = {
     teacher: 'teacher',
     manager: 'manager',
     managerLocation: 'location',
-    managerTeacher: 'edit-teacher',
+    managerTeacher: 'teacher',
     managerSchedule: 'schedule',
     notFound: '*'
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import RouteButton from './routeButton/routeButton';
 
 const Sidebar = () => {
-    const sideRoutes = ['location', 'edit-teacher', 'schedule'];
+    const sideRoutes = ['location', 'teacher', 'schedule'];
     return (
         <section className="col-xs-4 col-xs-offset-1">
             <ul>
