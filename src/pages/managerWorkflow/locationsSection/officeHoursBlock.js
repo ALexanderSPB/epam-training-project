@@ -24,7 +24,7 @@ export default function OfficeHoursBlock({formattedTime, error, changeTime}) {
 
     return (
         <div>
-            <p>{UI_TEXT.officeHours}</p>
+            <h3>{UI_TEXT.officeHours}</h3>
             {error ? <p>{error}</p> : null}
             <Input
                 labelText={UI_TEXT.opening}
