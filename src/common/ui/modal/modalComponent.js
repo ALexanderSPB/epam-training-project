@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Modal extends Component {
 
@@ -59,7 +60,7 @@ export default class Modal extends Component {
                             <div className="modal-body">
                                 <p>{this.state.text}</p>
                             </div>
-                            <div className="modal-body">
+                            <div className="modal-footer">
                                 {this.state.footerButtons.map(
                                     (item, id) =>
                                             <button
@@ -78,4 +79,10 @@ export default class Modal extends Component {
             </div>
         )
     }
+}
+
+Modal.PropTypes = {
+    text: PropTypes.string,
+    title: PropTypes.string,
+    footerButtons: PropTypes.array
 }
