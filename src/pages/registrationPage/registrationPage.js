@@ -28,19 +28,19 @@ class RegistrationPage extends Component {
             let emailError, nameError, passwordError;
             if (!this.isValidEmail(this.state.email)) {
                 error = true;
-                emailError = 'Неправильная почта';
+                emailError = 'Invalid E-Mail';
             } else {
                 emailError = '';
             }
             if (this.state.name.length === 0) {
                 error = true;
-                nameError = 'Введите имя';
+                nameError = 'Name is required';
             } else {
                 nameError = '';
             }
-            if (this.state.password.length < 6) {
+            if (this.state.password.length < 7) {
                 error = true;
-                passwordError = 'Пароль должен иметь > 6 символов';
+                passwordError = 'Need > 6 symbols';
             } else {
                 passwordError = '';
             }
@@ -83,63 +83,68 @@ class RegistrationPage extends Component {
                     <form className="registration__form form-horizontal">
                         <Input
                             classes={{
-                                label: 'col-xs-2',
+                                label: 'col-xs-2 registrationForm__label',
                                 inputWrapper: 'col-xs-7',
-                                error: 'col-xs-3 text-danger'
+                                error: 'col-xs-3 text-danger',
+                                input: 'registrationForm__input'
                             }}
                             valueChanged={ v => this.handleChange(v, 'email') }
                             inputId="registrationPageInput0"
                             placeholder="email@smth.com"
-                            labelText="Электорнная почта"
+                            labelText="E-mail"
                             type="text"
                             error={this.state.emailError}
                         />
                         <Input
                             classes={{
-                                label: 'col-xs-2',
+                                label: 'col-xs-2 registrationForm__label',
                                 inputWrapper: 'col-xs-7',
-                                error: 'col-xs-3 text-danger'
+                                error: 'col-xs-3 text-danger',
+                                input: 'registrationForm__input'
                             }}
                             valueChanged={ v => this.handleChange(v, 'password') }
                             inputId="registrationPageInput1"
                             placeholder="Type password"
-                            labelText="Пароль"
+                            labelText="Password"
                             type="password"
                             error={this.state.passwordError}
                         />
                         <Input
                             classes={{
-                                label: 'col-xs-2',
+                                label: 'col-xs-2 registrationForm__label',
                                 inputWrapper: 'col-xs-7',
-                                error: 'col-xs-3 text-danger'
+                                error: 'col-xs-3 text-danger',
+                                input: 'registrationForm__input'
                             }}
                             valueChanged={ v => this.handleChange(v, 'name') }
                             inputId="registrationPageInput2"
                             placeholder="Ivan"
-                            labelText="Имя"
+                            labelText="Name"
                             type="text"
                             error={this.state.nameError}
                         />
                         <Input
                             classes={{
-                                label: 'col-xs-2',
+                                label: 'col-xs-2 registrationForm__label',
                                 inputWrapper: 'col-xs-7',
-                                error: 'col-xs-3 text-danger'
+                                error: 'col-xs-3 text-danger',
+                                input: 'registrationForm__input'
                             }}
                             valueChanged={ v => this.handleChange(v, 'surname') }
                             inputId="registrationPageInput3"
                             placeholder="Ivanov"
-                            labelText="Фамилия"
+                            labelText="Surname"
                             type="text"
                         />
                         <Select
                             classes={{
-                                label: 'col-xs-2',
-                                inputWrapper: 'col-xs-7',
-                                error: 'col-xs-3 text-danger'
+                                label: 'col-xs-2 registrationForm__label',
+                                selectWrapper: 'col-xs-7',
+                                error: 'col-xs-3 text-danger',
+                                select: 'registrationForm__select'
                             }}
                             valueChanged={ v => this.handleChange(this.props.locations[v].name, 'location') }
-                            labelText="Здание"
+                            labelText="Location"
                             multiple={false}
                             options={this.props.locations}
                         />
@@ -147,9 +152,9 @@ class RegistrationPage extends Component {
                             <button
                                 ref="btn"
                                 disabled={ this.props.isLoading }
-                                className="btn btn-success"
+                                className="btn btn-success registrationForm__submitBtn"
                                 onClick={ this.handleClick }>
-                                Зарегистрироваться
+                                Submit
                             </button>
                         </div>
                     </form>
