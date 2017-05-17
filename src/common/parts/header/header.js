@@ -24,6 +24,7 @@ class Header extends Component {
         e.preventDefault();
         this.props.headerActions.logOut();
     }
+
     loggedIn() {
         return(
             <div
@@ -38,8 +39,9 @@ class Header extends Component {
             </div>
         )
     }
+
     loggedOut(){
-        return(
+        return (
             <div
                 className="app-header__buttons col-xs-4 col-xs-offset-2 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-4">
                 <button onClick={() => this.goToPage(ROUTE_PATHS.login)} className="button sign-in__button">
@@ -76,13 +78,14 @@ class Header extends Component {
 }
 function mapStatetoProps(state) {
     if (state.loginData.user === undefined) state.loginData.user = {name: ''};
-    return{
+    return {
         userName: state.loginData.user.name
     }
 }
 function mapDispatchtoProps(dispatch) {
-    return{
+    return {
         headerActions: bindActionCreators(headerActions, dispatch)
     }
 }
+
 export default connect(mapStatetoProps, mapDispatchtoProps)(Header);
