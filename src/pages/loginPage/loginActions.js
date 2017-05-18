@@ -1,5 +1,6 @@
 import Firebase, {errorCodes} from '../../common/helpers/firebase';
 import {browserHistory} from 'react-router';
+import {ROLE_MANAGER, ROLE_TEACHER} from '../../constants/roles';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
@@ -32,8 +33,22 @@ export const loginAttempt = (email, password) => dispatch => {
     else
         Firebase.signIn(email, password)
             .then(userData => {
-                browserHistory.push('/');
                 dispatch(loginSuccess(userData));
+                switch (userData.role) {
+                    case ROLE_MANAGER: {
+                        browserHistory.push('/manager/location');
+                        break;
+                    }
+                    case ROLE_TEACHER: {
+                        browserHistory.push('/teacher');
+                        break;
+                    }
+
+                    default: {
+                        browserHistory.push('/');
+                        break;
+                    }
+                }
             })
             .catch(error => {
                 if (error.code === errorCodes.auth.wrongPassword) {
