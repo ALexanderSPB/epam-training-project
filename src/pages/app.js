@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Header from '../common/parts/header/header';
 import Footer from '../common/parts/footer/footer';
-import {history} from '../index';
 import './style.css';
 
 

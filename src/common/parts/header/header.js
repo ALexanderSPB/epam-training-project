@@ -1,5 +1,4 @@
 import React from 'react';
-import {browserHistory} from 'react-router';
 import {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -14,10 +13,6 @@ class Header extends Component {
     constructor(props, context){
         super(props, context);
         this.handleClick = this.handleClick.bind(this);
-    }
-
-    goToPage(page) {
-        browserHistory.push(page);
     }
 
     handleClick(e) {
