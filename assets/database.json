@@ -1,12 +1,12 @@
 {
   "users" : {
-    "abXXq5Jn5zZnT8FNVVpMKy7QpJz2": {
+    "Z5aUAwGaTxZJPjWrCngITi3cZQo2": {
       "email": "smb@gmail.com",
       "name": "Vasiliy Vasilyev",
       "password": "qwerty",
       "role": 0
     },
-    "tyo1rhCCswTcPZvHMLhoEC0AbB02": {
+    "fyHa2LjckRTfuSfMRWAOdWAUAgG3": {
       "email": "va@gmail.com",
       "name": "Vasilisa Andreeva",
       "password" : "asdfgh",
@@ -122,7 +122,7 @@
         },
         "type": "",
         "teacher": {
-          "uuid": "tyo1rhCCswTcPZvHMLhoEC0AbB02",
+          "uuid": "fyHa2LjckRTfuSfMRWAOdWAUAgG3",
           "name": "Vasilisa Andreeva"
         },
         "location": {
