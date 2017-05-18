@@ -24,15 +24,15 @@ export default class Modal extends Component {
     }
 
     identifyClass(type) {
-        return({
-            'btn': true,
-            'btn-danger': (type === 'danger'),
-            'btn-primary': (type === 'primary'),
-            'btn-success': (type === 'success'),
-            'btn-warning': (type === 'warning'),
-            'btn-link': (type === 'link'),
-            'btn-default': (type === '')
-        })
+        const classes = {
+            danger: 'btn btn-danger',
+            primary: 'btn btn-primary',
+            success: 'btn btn-success',
+            warning: 'btn btn-warning',
+            link: 'btn btn-link',
+            default: 'btn btn-default'
+        }
+        return classes[type];
     }
 
     render() {
@@ -93,10 +93,10 @@ export default class Modal extends Component {
 
 Modal.PropTypes = {
     title: PropTypes.string,
-    openButtonTitle: PropTypes.string,
+    openButtonTitle: PropTypes.string.isRequired,
     footerButtons: PropTypes.arrayOf(PropTypes.shape({
         text: PropTypes.string.isRequired,
-        type: PropTypes.string,
+        type: PropTypes.string.isRequired,
         onClick: PropTypes.func.isRequired
     }))
 }
