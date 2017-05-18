@@ -1,22 +1,19 @@
-import React from 'react';
-import {Router} from 'react-router';
+import React, {Component} from 'react';
 import Header from '../common/parts/header/header';
 import Footer from '../common/parts/footer/footer';
-import {routes} from '../constants/routes';
-import {history} from '../index';
 import './style.css';
 
 
-const App = () => {
-    return (
-        <div className="container-fluid">
-            <Header />
-            <Router history={history}>
-                {routes}
-            </Router>
-            <Footer />
-        </div>
-    );
+class App extends Component {
+    render() {
+        return (
+            <div className="container-fluid">
+                <Header />
+                {this.props.children}
+                <Footer />
+            </div>
+        );
+    }
 };
 
 export default App;
