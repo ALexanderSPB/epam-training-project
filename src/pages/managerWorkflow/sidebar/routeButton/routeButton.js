@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router';
 import PropTypes from 'prop-types';
+import {ROUTE_PATHS} from '../../../../constants/routes';
 
 const RouteButton = ({name}) => (
     <button>
-        <Link to={'/manager/' + name}>{name}</Link>
+        <Link to={`/${ROUTE_PATHS.manager}/${name}`}>{name}</Link>
     </button>
 );
 
