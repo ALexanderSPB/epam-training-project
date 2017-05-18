@@ -1,5 +1,6 @@
 import React from 'react';
 import {Component} from 'react';
+import {browserHistory} from 'react-router';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
@@ -10,7 +11,7 @@ import './header.css';
 
 class Header extends Component {
 
-    constructor(props, context){
+    constructor(props, context) {
         super(props, context);
         this.handleClick = this.handleClick.bind(this);
     }
@@ -18,6 +19,7 @@ class Header extends Component {
     handleClick(e) {
         e.preventDefault();
         this.props.headerActions.logOut();
+        browserHistory.push('/');
     }
 
     loggedIn() {
@@ -35,7 +37,7 @@ class Header extends Component {
         )
     }
 
-    loggedOut(){
+    loggedOut() {
         return (
             <div className="app-header__buttons col-xs-4 col-xs-offset-2 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-4">
                 <Link className='link' to={ROUTE_PATHS.login}>
@@ -65,11 +67,14 @@ class Header extends Component {
                 </div>
                 <div className="col-xs-4 col-sm-4 col-md-3">
                     <h4 className="my-schedule__header">
-                        My&nbsp;Schedule
+                        <Link className="linkText" to={ROUTE_PATHS.root}>
+                            My&nbsp;Schedule
+                        </Link>
                     </h4>
                 </div>
-                { this.props.userName !== '' && this.loggedIn() }
-                { this.props.userName === '' && this.loggedOut() }
+                { this.props.userName !== ''
+                    ? this.loggedIn()
+                    : this.loggedOut() }
             </header>
         );
     }
