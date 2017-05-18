@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import './modalComponent.css'
 
 export default class Modal extends Component {
 
@@ -22,13 +23,24 @@ export default class Modal extends Component {
         this.setState({ visible: !this.state.visible });
     }
 
+    identifyClass(type) {
+        return({
+            'btn': true,
+            'btn-danger': (type === 'danger'),
+            'btn-primary': (type === 'primary'),
+            'btn-success': (type === 'success'),
+            'btn-warning': (type === 'warning'),
+            'btn-link': (type === 'link'),
+            'btn-default': (type === '')
+        })
+    }
+
     render() {
         let modalClass = classNames({
             'modal fade': true,
             'in': this.state.visible,
             'hide': !this.state.visible
         });
-        let modalStyles = {display: 'block'};
         let backdrop = this.state.visible ? (
                 <div className="modal-backdrop fade in"/>
             ) : null;
@@ -42,7 +54,7 @@ export default class Modal extends Component {
         return (
             <div>
                 <button onClick={this.toggleModal.bind(this)}>{this.props.openButtonTitle}</button>
-                <div className={modalClass} style={modalStyles}>
+                <div className={modalClass}>
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -63,15 +75,7 @@ export default class Modal extends Component {
                                         key={id}
                                         type="button"
                                         className={
-                                            classNames({
-                                                'btn': true,
-                                                'btn-danger': (item.type === 'danger'),
-                                                'btn-primary': (item.type === 'primary'),
-                                                'btn-success': (item.type === 'success'),
-                                                'btn-warning': (item.type === 'warning'),
-                                                'btn-link': (item.type === 'link'),
-                                                'btn-default': (item.type === '')
-                                            })
+                                            classNames(this.identifyClass(item.type))
                                         }
                                         onClick={item.onClick}>
                                     {item.text}
@@ -88,7 +92,6 @@ export default class Modal extends Component {
 }
 
 Modal.PropTypes = {
-    HTML: PropTypes.string,
     title: PropTypes.string,
     openButtonTitle: PropTypes.string,
     footerButtons: PropTypes.arrayOf(PropTypes.shape({
