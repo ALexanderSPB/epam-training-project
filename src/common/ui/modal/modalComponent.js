@@ -8,18 +8,14 @@ export default class Modal extends Component {
         visible: false,
         openButtonTitle: 'Open Modal window',
         title: '',
-        text: '',
+        HTML: '',
         footerButtons: []
     };
 
     constructor(props) {
         super(props);
         this.state = {
-            visible: this.props.visible,
-            openButtonTitle: this.props.openButtonTitle,
-            title: this.props.title,
-            text: this.props.text,
-            footerButtons: this.props.footerButtons
+            visible: this.props.visible
         };
     }
 
@@ -27,29 +23,27 @@ export default class Modal extends Component {
         this.setState({ visible: !this.state.visible });
     }
 
-
     render() {
         let modalClass = classNames({
-            'modal fade in': this.state.visible,
-            'modal fade': !this.state.visible
+            'modal fade': true,
+            'in': this.state.visible,
+            'hide': !this.state.visible
         });
-        let modalStyles = this.state.visible ? {display: 'block'} : {};
+        let modalStyles = {display: 'block'};
         let backdrop = this.state.visible ? (
-                <div className="modal-backdrop fade in" data-backdrop="static"/>
+                <div className="modal-backdrop fade in"/>
             ) : null;
 
-        let title = this.state.title ? (
+        let title = this.props.title ? (
                 <div className="modal-header">
-                    <h4 className="modal-title">{this.state.title}</h4>
+                    <h4 className="modal-title">{this.props.title}</h4>
                 </div>
             ) : null;
 
         return (
             <div>
-                <button onClick={this.toggleModal.bind(this)}>{this.state.openButtonTitle}</button>
-
+                <button onClick={this.toggleModal.bind(this)}>{this.props.openButtonTitle}</button>
                 <div className={modalClass} style={modalStyles}>
-
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -62,18 +56,27 @@ export default class Modal extends Component {
                             </div>
                             {title}
                             <div className="modal-body">
-                                <p>{this.state.text}</p>
+                                <p>{this.props.HTML}</p>
                             </div>
                             <div className="modal-footer">
-                                {this.state.footerButtons.map(
-                                    (item, id) =>
-                                            <button
-                                                key={id}
-                                                type="button"
-                                                className={classNames(item.type)}
-                                                onClick={item.onClick}>
-                                            {item.text}
-                                            </button>
+                                {this.props.footerButtons.map( (item, id) =>
+                                    <button
+                                        key={id}
+                                        type="button"
+                                        className={
+                                            classNames({
+                                                'btn': true,
+                                                'btn-danger': (item.type == 'danger'),
+                                                'btn-primary': (item.type == 'primary'),
+                                                'btn-success': (item.type == 'success'),
+                                                'btn-warning': (item.type == 'warning'),
+                                                'btn-link': (item.type == 'link'),
+                                                'btn-default': (item.type == '')
+                                            })
+                                        }
+                                        onClick={item.onClick}>
+                                    {item.text}
+                                    </button>
                                 )}
                             </div>
                         </div>
@@ -86,7 +89,13 @@ export default class Modal extends Component {
 }
 
 Modal.PropTypes = {
-    text: PropTypes.string,
+    HTML: PropTypes.string,
     title: PropTypes.string,
-    footerButtons: PropTypes.array
+    openButtonTitle: PropTypes.string,
+    footerButtons: PropTypes.arrayOf(PropTypes.shape({
+        text: PropTypes.string.isRequired,
+        type: PropTypes.string,
+        onClick: PropTypes.func.isRequired
+    }))
 }
+
