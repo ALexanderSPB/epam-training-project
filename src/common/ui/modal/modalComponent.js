@@ -8,7 +8,6 @@ export default class Modal extends Component {
         visible: false,
         openButtonTitle: 'Open Modal window',
         title: '',
-        HTML: '',
         footerButtons: []
     };
 
@@ -56,7 +55,7 @@ export default class Modal extends Component {
                             </div>
                             {title}
                             <div className="modal-body">
-                                <p>{this.props.HTML}</p>
+                                {this.props.children}
                             </div>
                             <div className="modal-footer">
                                 {this.props.footerButtons.map( (item, id) =>
@@ -66,12 +65,12 @@ export default class Modal extends Component {
                                         className={
                                             classNames({
                                                 'btn': true,
-                                                'btn-danger': (item.type == 'danger'),
-                                                'btn-primary': (item.type == 'primary'),
-                                                'btn-success': (item.type == 'success'),
-                                                'btn-warning': (item.type == 'warning'),
-                                                'btn-link': (item.type == 'link'),
-                                                'btn-default': (item.type == '')
+                                                'btn-danger': (item.type === 'danger'),
+                                                'btn-primary': (item.type === 'primary'),
+                                                'btn-success': (item.type === 'success'),
+                                                'btn-warning': (item.type === 'warning'),
+                                                'btn-link': (item.type === 'link'),
+                                                'btn-default': (item.type === '')
                                             })
                                         }
                                         onClick={item.onClick}>
