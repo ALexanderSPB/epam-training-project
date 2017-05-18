@@ -31,7 +31,7 @@ export default class Modal extends Component {
             warning: 'btn btn-warning',
             link: 'btn btn-link',
             default: 'btn btn-default'
-        }
+        };
         return classes[type];
     }
 
