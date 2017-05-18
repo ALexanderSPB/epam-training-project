@@ -29,7 +29,7 @@ class Header extends Component {
         return(
             <div
                 className="app-header__buttons">
-                <h4 onClick={() => this.goToPage(ROUTE_PATHS.root)} className="my-schedule__header">
+                <h4 className="my-schedule__header">
                     Greetings, {this.props.userName}
                 </h4>
                 <button className="button log-out__button" onClick={this.handleClick}>
@@ -42,15 +42,14 @@ class Header extends Component {
 
     loggedOut(){
         return (
-            <div
-                className="app-header__buttons col-xs-4 col-xs-offset-2 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-4">
-                <button onClick={() => this.goToPage(ROUTE_PATHS.login)} className="button sign-in__button">
+            <div className="app-header__buttons col-xs-4 col-xs-offset-2 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-4">
+                <button className="button sign-in__button">
                     <span className="glyphicon glyphicon-log-in button__glyph"/>
-                    <span className="button__text">Log in</span>
+                    <Link to={ROUTE_PATHS.login}><span className="button__text">Log in</span></Link>
                 </button>
-                <button onClick={() => this.goToPage(ROUTE_PATHS.registration)} className="button sign-up__button">
+                <button className="button sign-up__button">
                     <span className="glyphicon glyphicon-edit button__glyph"/>
-                    <span className="button__text">Sign up</span>
+                    <Link to={ROUTE_PATHS.registration}><span className="button__text">Sign up</span> </Link>
                 </button>
             </div>
         )
@@ -61,12 +60,12 @@ class Header extends Component {
             <header className="app-header row">
                 <div
                     className="app-header__logo-wrapper col-xs-2 col-sm-2 col-md-1 col-md-offset-0">
-                    <a onClick={() => this.goToPage(ROUTE_PATHS.root)} className="navbar-brand">
-                        <img src={logo} alt="logo"/>
-                    </a>
+                    <Link to={ROUTE_PATHS.root}>
+                        <img src={logo} alt="logo" />
+                    </Link>
                 </div>
                 <div className="col-xs-4 col-sm-4 col-md-3">
-                    <h4 onClick={() => this.goToPage(ROUTE_PATHS.root)} className="my-schedule__header">
+                    <h4 className="my-schedule__header">
                         My&nbsp;Schedule
                     </h4>
                 </div>
@@ -76,16 +75,18 @@ class Header extends Component {
         );
     }
 }
+
 function mapStatetoProps(state) {
     if (state.loginData.user === undefined) state.loginData.user = {name: ''};
     return {
         userName: state.loginData.user.name
-    }
+    };
 }
+
 function mapDispatchtoProps(dispatch) {
     return {
         headerActions: bindActionCreators(headerActions, dispatch)
-    }
+    };
 }
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(Header);
