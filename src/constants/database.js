@@ -4,5 +4,5 @@ export const PATHS = {
     locations: 'locations/',
     institutions: 'institutions/',
     groups: 'groups/',
-    skills: 'skills',
+    skills: 'skills/',
 };

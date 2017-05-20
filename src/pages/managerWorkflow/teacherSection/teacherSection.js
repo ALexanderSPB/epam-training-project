@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {fetchEntities} from '../../../constants/fetchEntityActions';
 import TeacherCard from '../../managerWorkflow/teacherSection/teacherCard/teacherCard';
-import {TEACHERS} from '../../../constants/fetchActionsTypes';
+import {SKILLS, TEACHERS} from '../../../constants/fetchActionsTypes';
 import {PATHS} from '../../../constants/database';
-import Firebase from '../../../common/helpers/firebase';
 
 const mapStateToProps = state => ({
     teachers: state.teachers,
+    skills: state.skills,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,20 +22,19 @@ class TeacherSection extends Component {
         super(props);
         const {users, skills} = PATHS;
         props.fetchEntities(users, TEACHERS);
-        this.state = {};
-        Firebase.get(skills)
-            .then(skills => this.setState({skills}));
+        props.fetchEntities(skills, SKILLS);
     }
 
     render() {
-        const {teachers} = this.props;
-        const {skills} = this.state;
+        const {teachers, skills} = this.props;
         return (
             <section className="row">
                 {
-                    (skills === undefined) ? null :
-                    teachers.map(teacher => ({...teacher, skills: teacher.skills.map(skillID => skills[skillID])}))
-                        .map(teacher => <TeacherCard key={teacher.uuid} {...teacher}/>)}
+                    (teachers === undefined || skills === undefined)
+                        ? null
+                        : teachers.map(teacher => ({...teacher, skills: teacher.skills.map(skillID => skills[skillID])}))
+                            .map(teacher => <TeacherCard key={teacher.uuid} {...teacher}/>)
+                }
             </section>
         );
     }
@@ -44,6 +43,7 @@ class TeacherSection extends Component {
 TeacherSection.propTypes = {
     fetchEntities: PropTypes.func,
     teachers: PropTypes.array,
+    skills: PropTypes.array,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeacherSection);
