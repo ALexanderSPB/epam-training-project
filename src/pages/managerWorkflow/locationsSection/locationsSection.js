@@ -6,7 +6,8 @@ import {connect} from 'react-redux';
 import Select from '../../../common/ui/select';
 import OfficeHoursBlock from './officeHoursBlock';
 import * as formats from '../../../constants/dateTimeFormats';
-import {locationsRequest} from './locationsActions';
+import {fetchEntities} from '../../../constants/fetchEntityActions';
+import {PATHS} from '../../../constants/database';
 
 const UI_TEXT = {
     rooms: 'Rooms',
@@ -18,21 +19,22 @@ const UI_TEXT = {
 const institutionId = 'inst0'; //TODO: replace this temporary constant after institution info is stored somewhere
 
 const mapStateToProps = state => ({
-    locations: state.locationsSection.locations
+    locations: state.locations
 });
 
 const mapDispatchToProps = dispatch => ({
-    locationsRequest: bindActionCreators(locationsRequest, dispatch),
+    fetchEntities: bindActionCreators(fetchEntities, dispatch),
     dispatch,
 });
 
 class LocationsSection extends Component {
 
     componentWillMount() {
-        this.props.locationsRequest(institutionId);
+        this.props.fetchEntities(`${PATHS.locations}/${institutionId}`);
     }
 
     locationInfo() {
+        console.log(this.props);
         if (!this.props.location) return;
 
         const { name, address, timing, rooms } = this.props.location;
@@ -85,7 +87,7 @@ class LocationsSection extends Component {
 }
 
 LocationsSection.propTypes = {
-    locationsRequest: PropTypes.func.isRequired,
+    fetchEntities: PropTypes.func.isRequired,
     changeLocation: PropTypes.func,
     handleTimeChanged: PropTypes.func,
     handleRoomClick:  PropTypes.func,
