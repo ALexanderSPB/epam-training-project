@@ -1,11 +1,13 @@
 @import "../common/_fonts";
 
 body {
+    position: relative;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
 }
 
-p {
+p, ul {
     font-family: SourceSansProLight, sans-serif;
 }
 

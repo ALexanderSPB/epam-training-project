@@ -1,0 +1,32 @@
+$epam-gray: #7B7B7B;
+$epam-soft-highlight: #EDFBFC;
+$epam-borders-color: #F4F4F4;
+
+.sidebar {
+    & ul {
+        padding: 0;
+
+        & li {
+            border-bottom: 1px solid $epam-borders-color;
+            list-style-type: none;
+
+            &:last-of-type {
+                border: 0;
+            }
+        }
+    }
+
+    &__link {
+        display: block;
+        padding: .5em 10%;
+        color: $epam-gray;
+        font-weight: bold;
+        text-transform: capitalize;
+
+        &:hover, &:focus {
+            color: $epam-gray;
+            text-decoration: none;
+            background-color: $epam-soft-highlight;
+        }
+    }
+}
