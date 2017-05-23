@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import {ROUTE_PATHS} from '../../../../constants/routes';
 
 const RouteButton = ({name}) => (
-    <button>
-        <Link to={`/${ROUTE_PATHS.manager}/${name}`}>{name}</Link>
-    </button>
+    <Link className="sidebar__link" to={`/${ROUTE_PATHS.manager}/${name}`}>{name}</Link>
 );
 
 RouteButton.propTypes = {
