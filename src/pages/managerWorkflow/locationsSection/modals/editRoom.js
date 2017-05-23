@@ -23,15 +23,15 @@ export default class EditRoomModal extends Component {
 
     modalButtons() {
         return [
-            this.createButton('save', 'success', this.saveRoom),
-            this.createButton('remove', 'danger', this.removeRoom),
+            EditRoomModal.createButton('save', 'success', this.saveRoom),
+            EditRoomModal.createButton('remove', 'danger', this.removeRoom),
         ];
     }
 
     saveRoom() {
         const {room, reference} = this.state;
         console.log(room, reference);
-        // Firebase.set(reference, room);
+        Firebase.set(reference, room);
     }
 
     removeRoom() {
