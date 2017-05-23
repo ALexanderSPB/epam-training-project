@@ -12,3 +12,8 @@ export const TEACHERS = {
     RECEIVE: 'RECEIVE_TEACHERS',
     REJECT: 'REJECT_TEACHERS',
 };
+
+export const SKILLS = {
+    RECEIVE: 'RECEIVE_SKILLS',
+    REJECT: 'REJECT_SKILLS',
+};
