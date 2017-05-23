@@ -81,9 +81,9 @@ class Header extends Component {
 }
 
 function mapStatetoProps(state) {
-    if (state.loginData.user === undefined) state.loginData.user = {name: ''};
+    if (state.loginData.name === undefined) state.loginData = {name: ''};
     return {
-        userName: state.loginData.user.name
+        userName: state.loginData.name
     };
 }
 
