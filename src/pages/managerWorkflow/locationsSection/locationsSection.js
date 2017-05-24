@@ -10,7 +10,6 @@ import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {PATHS} from '../../../constants/database';
 import {INSTITUTIONS, LOCATIONS} from '../../../constants/fetchActionsTypes';
 import EditRoomModal from './modals/editRoom';
-import Firebase from '../../../common/helpers/firebase';
 
 const UI_TEXT = {
     rooms: 'Rooms',
@@ -19,8 +18,6 @@ const UI_TEXT = {
     location: 'Location',
     institution: 'Institution'
 };
-
-// const institutionId = 'inst0'; //TODO: replace this temporary constant after institution info is stored somewhere
 
 const mapStateToProps = state => ({
     locations: state.locations,
@@ -37,16 +34,17 @@ class LocationsSection extends Component {
         super(props);
         this.changeInstitution = this.changeInstitution.bind(this);
         this.changeLocation = this.changeLocation.bind(this);
-        this.state = {};
+        this.state = {selectedInstitution: '', selectedLocation: ''};
     }
 
     componentWillMount() {
-        // Firebase.set('locations/inst0/0', JSON.parse(`{"address":"Some address","name":"Office 1","rooms":[{"capacity":"20","name":"1"},{"capacity":"10","name":"12a"}],"timing":{"closing":22,"opening":8}}`));
         this.props.fetchEntities(PATHS.institutions, INSTITUTIONS);
     }
 
     changeInstitution(selected) {
-        this.setState({selectedInstitution: selected}, () => this.props.fetchEntities(`${PATHS.locations}/${selected}`, LOCATIONS));
+        this.setState({selectedInstitution: selected, selectedLocation: ''}, () => {
+            this.props.fetchEntities(`${PATHS.locations}/${this.state.selectedInstitution}`, LOCATIONS);
+        });
     }
 
     changeLocation(selected) {
@@ -54,10 +52,9 @@ class LocationsSection extends Component {
     }
 
     locationInfo() {
-        console.log(this.state);
         const {locations} = this.props;
-        const {selectedLocation} = this.state;
-        if (!selectedLocation) return;
+        const {selectedLocation, selectedInstitution} = this.state;
+        if (selectedLocation === '') return;
 
         let locationId = '';
         const {name, address, timing, rooms} = locations.find((loc, id)=> {
@@ -84,8 +81,9 @@ class LocationsSection extends Component {
                     <button>{UI_TEXT.add}</button>
                     <ul>
                         {rooms.map((room, id) =>
-                            <li key={id}>
-                                {room.name}<EditRoomModal room={room} reference={`${PATHS.locations}${this.state.selectedInstitution}/${locationId}/rooms/${id}`}/>
+                            <li key={id} className="room">
+                                <span>name: {room.name}, capacity: {room.capacity}</span>
+                                <EditRoomModal room={room} institution={selectedInstitution} reference={`${PATHS.locations}${selectedInstitution}/${locationId}/rooms/${id}`}/>
                             </li>)}
 
                     </ul>
@@ -98,7 +96,7 @@ class LocationsSection extends Component {
 
     render() {
         return (
-            <section>
+            <section className="col-xs-6">
                 <Select
                     options={this.props.institutions}
                     labelText={UI_TEXT.institution}
