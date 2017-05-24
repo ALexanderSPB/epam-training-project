@@ -2,17 +2,12 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import './mainPage.css';
 import InstitutionAndGroupScheduleSelector from './institutionAndGroupScheduleSelector/institutionAndGroupScheduleSelector';
-import TestModal from '../../pages/managerWorkflow/locationsSection/modals/testModal';
-import LocationSection from '../../pages/managerWorkflow/locationsSection/locationsSection';
 
 export default class MainPage extends Component {
 
     render() {
         return (
             <section className="row siteBody siteBody--mainPage">
-
-                <LocationSection {...this.props} />
-                {/*<TestModal {...this.props}/>*/}
                 <div className="col-xs-12">
                     <section className="row siteBody__introduction">
                         <div className="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-center">

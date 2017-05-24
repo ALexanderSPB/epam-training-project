@@ -72,7 +72,10 @@ export default class Modal extends Component {
                                         className={
                                             classNames(Modal.identifyClass(item.type))
                                         }
-                                        onClick={item.onClick}>
+                                        onClick={() => {
+                                            item.onClick();
+                                            this.toggleModal();
+                                        }}>
                                         {item.text}
                                     </button>
                                 )}
@@ -90,7 +93,7 @@ Modal.propTypes = {
     title: PropTypes.string,
     visible: PropTypes.bool,
     children: PropTypes.object.isRequired,
-    openButtonTitle: PropTypes.string.isRequired,
+    openButtonTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
     footerButtons: PropTypes.arrayOf(PropTypes.shape({
         text: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,

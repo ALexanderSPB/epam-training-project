@@ -1,3 +1,19 @@
 .modal.fade.in {
     display: block;
 }
+.glyphicon-pencil {
+    position: absolute;
+    cursor: pointer;
+}
+
+.room {
+    height: 25px;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.room:not(:hover) > div{
+    display: none !important;
+}

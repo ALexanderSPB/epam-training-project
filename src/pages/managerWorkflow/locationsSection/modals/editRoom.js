@@ -2,8 +2,19 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../../../common/ui/modal/modalComponent';
 import Firebase from '../../../../common/helpers/firebase';
+import {bindActionCreators} from 'redux';
+import {fetchEntities} from '../../../../constants/fetchEntityActions';
+import {connect} from 'react-redux';
+import {LOCATIONS} from '../../../../constants/fetchActionsTypes';
+import {PATHS} from '../../../../constants/database';
 
-export default class EditRoomModal extends Component {
+
+const mapDispatchToProps = dispatch => ({
+    fetchEntities: bindActionCreators(fetchEntities, dispatch),
+    dispatch,
+});
+
+class EditRoomModal extends Component {
     constructor(props) {
         super(props);
         const {room, reference} = props;
@@ -30,14 +41,13 @@ export default class EditRoomModal extends Component {
 
     saveRoom() {
         const {room, reference} = this.state;
-        console.log(room, reference);
         Firebase.set(reference, room);
+        this.props.fetchEntities(`${PATHS.locations}/${this.props.institution}`, LOCATIONS);
     }
 
     removeRoom() {
         const {reference} = this.state;
-        // Firebase.set(reference, null);
-        console.log(reference);
+        Firebase.set(reference, null);
     }
 
     modalChild() {
@@ -46,7 +56,8 @@ export default class EditRoomModal extends Component {
             <div>
                 <label htmlFor="name">Name:
                     <input type="text" name="name" value={room.name}
-                           onChange={e => this.setState({room: {...room, name: e.target.value}})}/>
+                           onChange={e => this.setState({room: {...room, name: e.target.value}})}
+                    />
                 </label>
                 <label htmlFor="capacity">Capacity:
                     <input type="number" name="capacity" value={room.capacity}
@@ -60,7 +71,7 @@ export default class EditRoomModal extends Component {
         const {room} = this.state;
         return (
             <Modal
-                openButtonTitle='Edit'
+                openButtonTitle={<span className="glyphicon glyphicon-pencil"/>}
                 title={`Edit ${room.name}`}
                 children={this.modalChild()}
                 footerButtons={this.modalButtons()}
@@ -71,5 +82,9 @@ export default class EditRoomModal extends Component {
 
 EditRoomModal.propTypes = {
     room: PropTypes.object.isRequired,
-    reference: PropTypes.string.isRequired
+    reference: PropTypes.string.isRequired,
+    institution: PropTypes.string,
+    fetchEntities: PropTypes.func,
 };
+
+export default connect(null, mapDispatchToProps)(EditRoomModal);
