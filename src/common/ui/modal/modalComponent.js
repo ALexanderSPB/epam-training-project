@@ -46,9 +46,7 @@ export default class Modal extends Component {
             ) : null;
 
         let title = this.props.title ? (
-                <div className="modal-header">
                     <h4 className="modal-title">{this.props.title}</h4>
-                </div>
             ) : null;
 
         return (
@@ -64,8 +62,8 @@ export default class Modal extends Component {
                                         onClick={this.toggleModal.bind(this)}>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
+                                {title}
                             </div>
-                            {title}
                             <div className="modal-body">
                                 {this.props.children}
                             </div>
