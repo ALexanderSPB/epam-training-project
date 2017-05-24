@@ -90,18 +90,18 @@ class ScheduleSection extends Component {
                 />
                 { sortOptions
                     ? <Select
-                    labelText={UI_TEXT.select[sortType]}
-                    options={sortOptions}
-                    valueChanged={(uuid) => getEvents(institutionId, sortType, uuid)}
-                />
+                        labelText={UI_TEXT.select[sortType]}
+                        options={sortOptions}
+                        valueChanged={(uuid) => getEvents(institutionId, sortType, uuid)}
+                    />
                     : null
                 }
                 { events !== undefined
                     ? <Schedule
-                    events={events}
-                    officeHours={institutionTiming}
-                    onEventClick={editEventRequest}
-                />
+                        events={events}
+                        officeHours={institutionTiming}
+                        onEventClick={editEventRequest}
+                    />
                     : null
                 }
                 <Modal openButtonTitle={UI_TEXT.addEvent}
