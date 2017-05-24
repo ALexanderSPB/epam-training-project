@@ -5,6 +5,10 @@ import {connect} from 'react-redux';
 import Select from '../../../common/ui/select';
 import Schedule from '../../../schedule/schedule';
 import {changeSortType, createEventRequest, getEvents, editEventRequest} from './scheduleActions';
+import Modal from '../../../common/ui/modal/modalComponent';
+import Input from '../../../common/ui/input';
+import Firebase from '../../../common/helpers/firebase';
+import {PATHS} from '../../../constants/database';
 
 const UI_TEXT = {
     addEvent: 'Add event',
@@ -44,6 +48,35 @@ const mapDispatchToProps = dispatch => ({
 // eslint-disable-next-line no-unused-vars
 class ScheduleSection extends Component {
 
+    constructor(props, context) {
+        super(props, context);
+        this.addButtonHandleClick = this.addButtonHandleClick.bind(this);
+    };
+
+    addButtonHandleClick() {
+        let event = {
+            "name": this.state.name,
+            "timing": {
+                "duration": this.state.duration,
+                "beginning": this.state.beginning
+            },
+            "type": "",
+            "teacher": {
+                "uuid": "fyHa2LjckRTfuSfMRWAOdWAUAgG3",
+                "name": this.state.teacher
+            },
+            "location": {
+                "name": this.state.location
+            },
+            "room": this.state.room,
+            "group": {
+                "uuid": "group0x1x42",
+                "name": this.state.group
+            }
+        };
+        Firebase.set(PATHS.events, event);
+    };
+
     render() {
         const { sortType, sortOptions, events } = this.props.schedule;
         const { changeSortType, getEvents, editEventRequest, createEvent } = this.props;
@@ -57,21 +90,126 @@ class ScheduleSection extends Component {
                 />
                 { sortOptions
                     ? <Select
-                        labelText={UI_TEXT.select[sortType]}
-                        options={sortOptions}
-                        valueChanged={(uuid) => getEvents(institutionId, sortType, uuid)}
-                    />
+                    labelText={UI_TEXT.select[sortType]}
+                    options={sortOptions}
+                    valueChanged={(uuid) => getEvents(institutionId, sortType, uuid)}
+                />
                     : null
                 }
                 { events !== undefined
                     ? <Schedule
-                        events={events}
-                        officeHours={institutionTiming}
-                        onEventClick={editEventRequest}
-                    />
+                    events={events}
+                    officeHours={institutionTiming}
+                    onEventClick={editEventRequest}
+                />
                     : null
                 }
-                <button onClick={createEvent}>{UI_TEXT.addEvent}</button>
+                <Modal openButtonTitle={UI_TEXT.addEvent}
+                       title="Add new event"
+                       footerButtons={[{text: 'Add event', type: 'success', onClick: this.addButtonHandleClick }]}>
+                    <section className="row">
+                        <form className="form-horizontal">
+                            <Input
+                                classes={{
+                                label: 'col-xs-2',
+                                inputWrapper: 'col-xs-7',
+                                error: 'col-xs-3 text-danger',
+                                input: ''
+                            }}
+                                valueChanged={ v => this.setState({'name': v}) }
+                                inputId=""
+                                placeholder=""
+                                labelText="Name"
+                                type="text"
+                                error=""
+                            />
+                            <Input
+                                classes={{
+                                label: 'col-xs-2',
+                                inputWrapper: 'col-xs-7',
+                                error: 'col-xs-3 text-danger',
+                                input: ''
+                            }}
+                                valueChanged={ v => this.setState({'beginning': v}) }
+                                inputId=""
+                                placeholder=""
+                                labelText="Beginning"
+                                type="text"
+                                error=""
+                            />
+                            <Input
+                                classes={{
+                            label: 'col-xs-2',
+                            inputWrapper: 'col-xs-7',
+                            error: 'col-xs-3 text-danger',
+                            input: ''
+                        }}
+                                valueChanged={ v => this.setState({'duration': v}) }
+                                inputId=""
+                                placeholder=""
+                                labelText="Duration"
+                                type="text"
+                                error=""
+                            />
+                            <Input
+                                classes={{
+                                label: 'col-xs-2',
+                                inputWrapper: 'col-xs-7',
+                                error: 'col-xs-3 text-danger',
+                                input: ''
+                            }}
+                                valueChanged={ v => this.setState({'teacher': v}) }
+                                inputId=""
+                                placeholder=""
+                                labelText="Teacher"
+                                type="text"
+                                error=""
+                            />
+                            <Input
+                                classes={{
+                                label: 'col-xs-2',
+                                inputWrapper: 'col-xs-7',
+                                error: 'col-xs-3 text-danger',
+                                input: ''
+                            }}
+                                valueChanged={ v => this.setState({'location': v}) }
+                                inputId=""
+                                placeholder=""
+                                labelText="Location"
+                                type="text"
+                                error=""
+                            />
+                            <Input
+                                classes={{
+                                label: 'col-xs-2',
+                                inputWrapper: 'col-xs-7',
+                                error: 'col-xs-3 text-danger',
+                                input: ''
+                            }}
+                                valueChanged={ v => this.setState({'room': v}) }
+                                inputId=""
+                                placeholder=""
+                                labelText="Room"
+                                type="text"
+                                error=""
+                            />
+                            <Input
+                                classes={{
+                            label: 'col-xs-2',
+                            inputWrapper: 'col-xs-7',
+                            error: 'col-xs-3 text-danger',
+                            input: ''
+                        }}
+                                valueChanged={ v => this.setState({'group': v}) }
+                                inputId=""
+                                placeholder=""
+                                labelText="Group"
+                                type="text"
+                                error=""
+                            />
+                        </form>
+                    </section>
+                </Modal>
             </section>
         );
     }
