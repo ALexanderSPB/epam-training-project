@@ -139,11 +139,11 @@ class ScheduleSection extends Component {
                             />
                             <Input
                                 classes={{
-                            label: 'col-xs-2',
-                            inputWrapper: 'col-xs-7',
-                            error: 'col-xs-3 text-danger',
-                            input: ''
-                        }}
+                                    label: 'col-xs-2',
+                                    inputWrapper: 'col-xs-7',
+                                    error: 'col-xs-3 text-danger',
+                                    input: ''
+                                }}
                                 valueChanged={ v => this.setState({'duration': v}) }
                                 inputId=""
                                 placeholder=""
@@ -195,11 +195,11 @@ class ScheduleSection extends Component {
                             />
                             <Input
                                 classes={{
-                            label: 'col-xs-2',
-                            inputWrapper: 'col-xs-7',
-                            error: 'col-xs-3 text-danger',
-                            input: ''
-                        }}
+                                    label: 'col-xs-2',
+                                    inputWrapper: 'col-xs-7',
+                                    error: 'col-xs-3 text-danger',
+                                    input: ''
+                                }}
                                 valueChanged={ v => this.setState({'group': v}) }
                                 inputId=""
                                 placeholder=""
