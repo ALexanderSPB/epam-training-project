@@ -10,18 +10,18 @@ import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {PATHS} from '../../../constants/database';
 import {INSTITUTIONS, LOCATIONS} from '../../../constants/fetchActionsTypes';
 import EditRoomModal from './modals/editRoom';
+import Firebase from '../../../common/helpers/firebase';
 
 const UI_TEXT = {
     rooms: 'Rooms',
     add: 'Add',
     remove: 'Remove',
-    location: 'Location',
-    institution: 'Institution'
+    location: 'Location'
 };
 
 const mapStateToProps = state => ({
+    institution: state.loginData.institution,
     locations: state.locations,
-    institutions: state.institutions,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -32,19 +32,12 @@ const mapDispatchToProps = dispatch => ({
 class LocationsSection extends Component {
     constructor(props) {
         super(props);
-        this.changeInstitution = this.changeInstitution.bind(this);
         this.changeLocation = this.changeLocation.bind(this);
-        this.state = {selectedInstitution: '', selectedLocation: ''};
+        this.state = {selectedLocation: ''};
     }
 
     componentWillMount() {
-        this.props.fetchEntities(PATHS.institutions, INSTITUTIONS);
-    }
-
-    changeInstitution(selected) {
-        this.setState({selectedInstitution: selected, selectedLocation: ''}, () => {
-            this.props.fetchEntities(`${PATHS.locations}/${this.state.selectedInstitution}`, LOCATIONS);
-        });
+        this.props.fetchEntities(`${PATHS.locations}/${this.props.institution}`, LOCATIONS);
     }
 
     changeLocation(selected) {
@@ -52,8 +45,9 @@ class LocationsSection extends Component {
     }
 
     locationInfo() {
-        const {locations} = this.props;
-        const {selectedLocation, selectedInstitution} = this.state;
+        const {locations, institution} = this.props;
+        console.log(locations);
+        const {selectedLocation} = this.state;
         if (selectedLocation === '') return;
 
         let locationId = '';
@@ -83,7 +77,10 @@ class LocationsSection extends Component {
                         {rooms.map((room, id) =>
                             <li key={id} className="room">
                                 <span>name: {room.name}, capacity: {room.capacity}</span>
-                                <EditRoomModal room={room} institution={selectedInstitution} reference={`${PATHS.locations}${selectedInstitution}/${locationId}/rooms/${id}`}/>
+                                <EditRoomModal room={room}
+                                               institution={institution}
+                                               reference={`${PATHS.locations}${institution}/${locationId}/rooms/${id}`}
+                                />
                             </li>)}
 
                     </ul>
@@ -97,11 +94,11 @@ class LocationsSection extends Component {
     render() {
         return (
             <section className="col-xs-6">
-                <Select
-                    options={this.props.institutions}
-                    labelText={UI_TEXT.institution}
-                    valueChanged={this.changeInstitution}
-                />
+                {/*<Select*/}
+                    {/*options={this.props.institutions}*/}
+                    {/*labelText={UI_TEXT.institution}*/}
+                    {/*valueChanged={this.changeInstitution}*/}
+                {/*/>*/}
                 <Select
                     options={this.props.locations}
                     labelText={UI_TEXT.location}
@@ -120,7 +117,7 @@ LocationsSection.propTypes = {
     handleRoomClick: PropTypes.func,
     location: PropTypes.object,
     locations: PropTypes.array,
-    institutions: PropTypes.array,
+    institution: PropTypes.array,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationsSection);
