@@ -97,5 +97,5 @@ Modal.PropTypes = {
         type: PropTypes.string.isRequired,
         onClick: PropTypes.func.isRequired
     }))
-}
+};
 

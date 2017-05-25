@@ -29,7 +29,7 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
                     className={classNames('form-control', classes.input, classes.hasError)}
                     placeholder={placeholder}
                     onChange={handleChange}
-                    type={type}
+                    type={type ? type : 'text'}
                 />
             </div>
             {errorMessage(error, classes.error)}
@@ -40,11 +40,11 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
 Input.propTypes = {
     inputId: PropTypes.string.isRequired,
     labelText: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
     placeholder: PropTypes.string.isRequired,
     valueChanged: PropTypes.func.isRequired,
     classes: PropTypes.object,
     error: PropTypes.string,
+    type: PropTypes.string,
     value: PropTypes.string,
     defaultValue: PropTypes.string
 };
