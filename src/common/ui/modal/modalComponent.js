@@ -51,7 +51,7 @@ export default class Modal extends Component {
 
         return (
             <div>
-                <button onClick={this.toggleModal.bind(this)}>{this.props.openButtonTitle}</button>
+                <button className="modal__open-button" onClick={this.toggleModal.bind(this)}>{this.props.openButtonTitle}</button>
                 <div className={modalClass}>
                     <div className="modal-dialog">
                         <div className="modal-content">
