@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function Input({inputId, classes, placeholder, labelText, type, valueChanged, defaultValue, error}) {
+export default function Input({classes, placeholder, labelText, type, valueChanged, defaultValue, error}) {
     function handleChange(event) {
         valueChanged(event.target.value);
     }
@@ -19,17 +19,19 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
 
     return (
         <div className={classNames('form-group', classes.wrapper)}>
-            <label className={classNames('control-label', classes.label)} htmlFor={inputId}>
-                {labelText}
-            </label>
+            {labelText
+                ? <label className={classNames('control-label', classes.label)} htmlFor={labelText}>
+                    {labelText}
+                </label>
+                : null}
             <div className={classNames(classes.inputWrapper)}>
                 <input
-                    id={inputId}
+                    id={labelText}
                     defaultValue={defaultValue}
                     className={classNames('form-control', classes.input, classes.hasError)}
                     placeholder={placeholder}
                     onChange={handleChange}
-                    type={type}
+                    type={type ? type : 'text'}
                 />
             </div>
             {errorMessage(error, classes.error)}
@@ -38,13 +40,12 @@ export default function Input({inputId, classes, placeholder, labelText, type, v
 }
 
 Input.propTypes = {
-    inputId: PropTypes.string.isRequired,
-    labelText: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    placeholder: PropTypes.string.isRequired,
     valueChanged: PropTypes.func.isRequired,
     classes: PropTypes.object,
     error: PropTypes.string,
+    labelText: PropTypes.string,
+    placeholder: PropTypes.string,
+    type: PropTypes.string,
     value: PropTypes.string,
     defaultValue: PropTypes.string
 };
