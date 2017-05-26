@@ -73,6 +73,10 @@ export default class Firebase {
             });
     }
 
+    static push(path, obj) {
+        return firebase.database().ref(path).push().set(obj);
+    }
+
     static get(path) {
         return firebase.database().ref(path).once('value').then(snapshot => {
             return snapshot.val();
