@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import Select from '../../../common/ui/select';
 import OfficeHoursBlock from './officeHoursBlock';
 import * as formats from '../../../constants/dateTimeFormats';
-import {locationsRequest} from './locationsActions';
+import {locationsRequest, saveTime, selectLocation} from './locationsActions';
 
 const UI_TEXT = {
     rooms: 'Rooms',
@@ -15,28 +15,30 @@ const UI_TEXT = {
     location: 'Location'
 };
 
-const institutionId = 'inst0'; //TODO: replace this temporary constant after institution info is stored somewhere
-
 const mapStateToProps = state => ({
-    locations: state.locationsSection.locations
+    institutionId: state.loginData.institution,
+    locations: state.locationsSection.locations,
+    location: state.locationsSection.selectedLocation
 });
 
 const mapDispatchToProps = dispatch => ({
     locationsRequest: bindActionCreators(locationsRequest, dispatch),
+    changeLocation: bindActionCreators(selectLocation, dispatch),
+    saveTime: bindActionCreators(saveTime, dispatch),
     dispatch,
 });
 
 class LocationsSection extends Component {
 
     componentWillMount() {
-        this.props.locationsRequest(institutionId);
+        this.props.locationsRequest(this.props.institutionId);
     }
 
     locationInfo() {
         if (!this.props.location) return;
 
-        const { name, address, timing, rooms } = this.props.location;
-        const { handleTimeChanged, handleRoomClick } = this.props;
+        const { name, address, timing, rooms } = this.props.location.data;
+        const { institutionId, handleRoomClick } = this.props;
 
         const formattedTime = {
             opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
@@ -49,16 +51,16 @@ class LocationsSection extends Component {
                 <p>{address}</p>
                 <OfficeHoursBlock
                     formattedTime={formattedTime}
-                    changeTime={handleTimeChanged}
+                    saveTime={(time) => this.props.saveTime(time, institutionId, this.props.location.id)}
                 />
                 <div>
                     <p>{UI_TEXT.rooms}</p>
                     <button>{UI_TEXT.add}</button>
                     <ul>
-                        {rooms.map(room =>
+                        {rooms.map((room, i) =>
                             <li
-                                key={room.uuid}
-                                onClick={() => handleRoomClick(room.uuid)}
+                                key={i}
+                                onClick={() => handleRoomClick(i)}
                             >
                                 {room.name}
                             </li>)}
@@ -85,9 +87,10 @@ class LocationsSection extends Component {
 }
 
 LocationsSection.propTypes = {
+    institutionId: PropTypes.string.isRequired,
     locationsRequest: PropTypes.func.isRequired,
-    changeLocation: PropTypes.func,
-    handleTimeChanged: PropTypes.func,
+    changeLocation: PropTypes.func.isRequired,
+    saveTime: PropTypes.func,
     handleRoomClick:  PropTypes.func,
     location: PropTypes.object,
     locations: PropTypes.array
