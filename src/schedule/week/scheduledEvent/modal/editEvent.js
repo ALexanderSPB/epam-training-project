@@ -109,26 +109,20 @@ class EditEvent extends Component {
             >
                 <div className="container-fluid">
                     <Input
-                        inputId="name"
                         classes={classes}
                         labelText={UI_TEXT.name}
-                        placeholder={UI_TEXT.name}
                         valueChanged={ v => this.setState({'name': v}) }
                         defaultValue={this.state.name}
                     />
                     <Input
-                        inputId="beginning"
                         classes={classes}
                         labelText={UI_TEXT.beginning}
-                        placeholder={UI_TEXT.beginning}
                         valueChanged={ v => this.setState({'beginning': v}) }
                         defaultValue={this.state.timing.beginning + ''}
                     />
                     <Input
-                        inputId="duration"
                         classes={classes}
                         labelText={UI_TEXT.duration}
-                        placeholder={UI_TEXT.duration}
                         valueChanged={ v => this.setState({'duration': v}) }
                         defaultValue={this.state.timing.duration + ''}
                     />
