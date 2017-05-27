@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+// import moment from 'moment';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Select from '../../../common/ui/select';
-import OfficeHoursBlock from './officeHoursBlock';
-import * as formats from '../../../constants/dateTimeFormats';
+// import OfficeHoursBlock from './officeHoursBlock';
+// import * as formats from '../../../constants/dateTimeFormats';
 import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {PATHS} from '../../../constants/database';
-import {INSTITUTIONS, LOCATIONS} from '../../../constants/fetchActionsTypes';
+import {LOCATIONS} from '../../../constants/fetchActionsTypes';
 import EditRoomModal from './modals/editRoom';
-import Firebase from '../../../common/helpers/firebase';
 
 const UI_TEXT = {
     rooms: 'Rooms',
@@ -46,12 +45,11 @@ class LocationsSection extends Component {
 
     locationInfo() {
         const {locations, institution} = this.props;
-        console.log(locations);
         const {selectedLocation} = this.state;
         if (selectedLocation === '') return;
 
         let locationId = '';
-        const {name, address, timing, rooms} = locations.find((loc, id)=> {
+        const {name, address, /*timing,*/ rooms} = locations.find((loc, id)=> {
             locationId = id;
             return loc.name === selectedLocation;
         });
@@ -75,7 +73,7 @@ class LocationsSection extends Component {
                     <button>{UI_TEXT.add}</button>
                     <ul>
                         {rooms.map((room, id) =>
-                            <li key={id} className="room">
+                            <li key={`${id}_${room.name}`} className="room">
                                 <span>name: {room.name}, capacity: {room.capacity}</span>
                                 <EditRoomModal room={room}
                                                institution={institution}
@@ -117,7 +115,7 @@ LocationsSection.propTypes = {
     handleRoomClick: PropTypes.func,
     location: PropTypes.object,
     locations: PropTypes.array,
-    institution: PropTypes.array,
+    institution: PropTypes.string,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationsSection);

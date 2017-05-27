@@ -24,6 +24,7 @@ class EditRoomModal extends Component {
         };
         this.saveRoom = this.saveRoom.bind(this);
         this.removeRoom = this.removeRoom.bind(this);
+        this.fetchLocations = this.fetchLocations.bind(this);
     }
 
     static createButton(text, type, onClick) {
@@ -39,15 +40,18 @@ class EditRoomModal extends Component {
         ];
     }
 
+    fetchLocations() {
+        this.props.fetchEntities(`${PATHS.locations}/${this.props.institution}`, LOCATIONS);
+    }
+
     saveRoom() {
         const {room, reference} = this.state;
-        Firebase.set(reference, room);
-        this.props.fetchEntities(`${PATHS.locations}/${this.props.institution}`, LOCATIONS);
+        Firebase.set(reference, room).then(this.fetchLocations);
     }
 
     removeRoom() {
         const {reference} = this.state;
-        Firebase.set(reference, null);
+        Firebase.set(reference, null).then(this.fetchLocations);
     }
 
     modalChild() {
