@@ -5,7 +5,7 @@ import './sidebar.css';
 const Sidebar = () => {
     const sideRoutes = ['location', 'teacher', 'schedule'];
     return (
-        <section className="col-xs-4 sidebar">
+        <section className="col-xs-3 sidebar">
             <ul>
                 {sideRoutes.map((route, index) => <li key={index}> <RouteButton name={route}/> </li>)}
             </ul>

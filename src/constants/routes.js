@@ -8,6 +8,7 @@ import RegistrationPage from '../pages/registrationPage/registrationPage';
 import FaqPage from '../pages/faqPage/faqPage';
 import TeacherWorkflow from '../pages/teacherWorkflow/teacherWorkflow';
 import ManagerWorkflow from '../pages/managerWorkflow/managerWorkflow';
+import LocationSection from '../pages/managerWorkflow/locationsSection/locationsSection';
 import NotFound from '../pages/notFound/notFound';
 import Sidebar from '../pages/managerWorkflow/sidebar/sidebar';
 import Workflow from '../pages/managerWorkflow/workflow';
@@ -33,7 +34,7 @@ export const routes = (
         <Route path={ROUTE_PATHS.faq} component={ FaqPage }/>
         <Route path={ROUTE_PATHS.teacher} component={ TeacherWorkflow }/>
         <Route path={ROUTE_PATHS.manager} component={ ManagerWorkflow }>
-            <Route path={ROUTE_PATHS.managerLocation} components={{sidebar: Sidebar, workflow: Workflow}}/>
+            <Route path={ROUTE_PATHS.managerLocation} components={{sidebar: Sidebar, workflow: LocationSection}}/>
             <Route path={ROUTE_PATHS.managerTeacher} components={{sidebar: Sidebar, workflow: Workflow}}/>
             <Route path={ROUTE_PATHS.managerSchedule} components={{sidebar: Sidebar, workflow: Workflow}}/>
         </Route>
