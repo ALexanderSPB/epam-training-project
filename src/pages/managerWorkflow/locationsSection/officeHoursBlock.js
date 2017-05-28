@@ -52,21 +52,22 @@ export default class OfficeHoursBlock extends Component {
     }
 
     render() {
+        const {error, formattedTime, saveButtonEnabled} = this.state;
         return (
             <div>
                 <h3>{UI_TEXT.officeHours}</h3>
-                {this.state.error ? <p>{this.state.error}</p> : null}
+                {error ? <p>{error}</p> : null}
                 <Input
                     labelText={UI_TEXT.opening}
-                    value={this.state.formattedTime.opening}
+                    value={formattedTime.opening}
                     valueChanged={(value) => this.handleChange(value, timeNames.opening)}
                 />
                 <Input
                     labelText={UI_TEXT.closing}
-                    value={this.state.formattedTime.closing}
+                    value={formattedTime.closing}
                     valueChanged={(value) => this.handleChange(value, timeNames.closing)}
                 />
-                <button disabled={!this.state.saveButtonEnabled} id="officeHoursBlock__SaveButton" onClick={this.handleSave.bind(this)}>{UI_TEXT.save}</button>
+                <button disabled={!saveButtonEnabled} id="officeHoursBlock__SaveButton" onClick={this.handleSave.bind(this)}>{UI_TEXT.save}</button>
             </div>
         );
     }

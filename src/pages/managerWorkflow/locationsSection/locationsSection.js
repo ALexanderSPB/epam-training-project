@@ -59,7 +59,7 @@ class LocationsSection extends Component {
                     <ul>
                         {rooms.map((room, i) =>
                             <li
-                                key={i}
+                                key={`${i}_${room.name}`}
                                 onClick={() => handleRoomClick(i)}
                             >
                                 {room.name}
