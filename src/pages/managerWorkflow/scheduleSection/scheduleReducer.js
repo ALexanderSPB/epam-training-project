@@ -16,6 +16,14 @@ export default function schedule(state = initialState, action) {
                 ...state,
                 events: payload
             };
+        case actionTypes.LIST_RECEIVED:
+            return {
+                ...state,
+                lists: {
+                    ...state.lists,
+                    [action.field]: payload
+                }
+            };
         default:
             return state;
     }

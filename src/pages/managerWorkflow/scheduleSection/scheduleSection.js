@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Select from '../../../common/ui/select';
 import Schedule from '../../../schedule/schedule';
-import {changeSortType, createEventRequest, getEvents, editEventRequest} from './scheduleActions';
+import {changeSortType, createEventRequest, getEvents, editEventRequest, loadSelectsOptions} from './scheduleActions';
 import Modal from '../../../common/ui/modal/modalComponent';
 import Input from '../../../common/ui/input';
 import Firebase from '../../../common/helpers/firebase';
@@ -27,14 +27,14 @@ export const SORT_EVENTS_OPTIONS = [
     }
 ];
 
-const institutionId = 'inst0'; //TODO: replace this temporary constant after institution info is stored somewhere
 const institutionTiming = {
     opening: 9,
     closing: 23
 };
 
 const mapStateToProps = state => ({
-    schedule: state.schedule
+    schedule: state.schedule,
+    institutionUuid: state.loginData.institution || 'inst0' //tmp test string 'inst0'
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -42,11 +42,15 @@ const mapDispatchToProps = dispatch => ({
     createEvent: bindActionCreators(createEventRequest, dispatch),
     getEvents: bindActionCreators(getEvents, dispatch),
     editEventRequest: bindActionCreators(editEventRequest, dispatch),
+    loadSelectsOptions: bindActionCreators(loadSelectsOptions, dispatch),
     dispatch,
 });
 
-// eslint-disable-next-line no-unused-vars
 class ScheduleSection extends Component {
+
+    componentWillMount() {
+        this.props.loadSelectsOptions(this.props.institutionUuid);
+    }
 
     constructor(props, context) {
         super(props, context);
@@ -79,20 +83,20 @@ class ScheduleSection extends Component {
 
     render() {
         const { sortType, sortOptions, events } = this.props.schedule;
-        const { changeSortType, getEvents, editEventRequest, createEvent } = this.props;
+        const { changeSortType, getEvents, editEventRequest, createEvent, institutionUuid } = this.props;
 
         return (
             <section>
                 <Select
                     labelText={UI_TEXT.sortBy}
                     options={SORT_EVENTS_OPTIONS}
-                    valueChanged={(newSortType) => changeSortType(newSortType, institutionId)}
+                    valueChanged={(newSortType) => changeSortType(newSortType, institutionUuid)}
                 />
                 { sortOptions
                     ? <Select
                         labelText={UI_TEXT.select[sortType]}
                         options={sortOptions}
-                        valueChanged={(uuid) => getEvents(institutionId, sortType, uuid)}
+                        valueChanged={(uuid) => getEvents(institutionUuid, sortType, uuid)}
                     />
                     : null
                 }
@@ -101,6 +105,7 @@ class ScheduleSection extends Component {
                         events={events}
                         officeHours={institutionTiming}
                         onEventClick={editEventRequest}
+                        canUserEdit={true}
                     />
                     : null
                 }
@@ -220,6 +225,8 @@ ScheduleSection.propTypes = {
     createEvent: PropTypes.func.isRequired,
     editEventRequest: PropTypes.func.isRequired,
     schedule: PropTypes.object.isRequired,
+    institutionUuid: PropTypes.string.isRequired,
+    loadSelectsOptions: PropTypes.func.isRequired,
     getEvents: PropTypes.func
 };
 
