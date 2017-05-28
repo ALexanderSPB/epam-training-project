@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import './modalComponent.css'
+import './modalComponent.css';
 
 export default class Modal extends Component {
 
-    static defaultProps = {
-        visible: false,
-        openButtonTitle: 'Open Modal window',
-        title: '',
-        footerButtons: []
-    };
-
     constructor(props) {
         super(props);
+        this.toggleModal = this.toggleModal.bind(this);
         this.state = {
             visible: this.props.visible
         };
@@ -23,7 +17,7 @@ export default class Modal extends Component {
         this.setState({ visible: !this.state.visible });
     }
 
-    identifyClass(type) {
+    static identifyClass(type) {
         const classes = {
             danger: 'btn btn-danger',
             primary: 'btn btn-primary',
@@ -36,22 +30,25 @@ export default class Modal extends Component {
     }
 
     render() {
-        let modalClass = classNames({
-            'modal fade': true,
-            'in': this.state.visible,
-            'hide': !this.state.visible
-        });
-        let backdrop = this.state.visible ? (
-                <div className="modal-backdrop fade in"/>
-            ) : null;
+        const {children, openButtonTitle, title, footerButtons} = this.props;
+        const {visible} = this.state;
 
-        let title = this.props.title ? (
-                    <h4 className="modal-title">{this.props.title}</h4>
-            ) : null;
+        const modalClass = classNames({
+            'modal fade': true,
+            'in': visible,
+            'hide': !visible
+        });
+        const backdrop = visible ? (
+            <div className="modal-backdrop fade in"/>
+        ) : null;
+
+        const modalTitle = title ? (
+            <h4 className="modal-title">{title}</h4>
+        ) : null;
 
         return (
             <div>
-                <button onClick={this.toggleModal.bind(this)}>{this.props.openButtonTitle}</button>
+                <button onClick={this.toggleModal}>{openButtonTitle}</button>
                 <div className={modalClass}>
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -59,24 +56,27 @@ export default class Modal extends Component {
                                 <button type="button"
                                         className="close"
                                         aria-label="Close"
-                                        onClick={this.toggleModal.bind(this)}>
+                                        onClick={this.toggleModal}>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                                {title}
+                            {modalTitle}
                             </div>
                             <div className="modal-body">
-                                {this.props.children}
+                                {children}
                             </div>
                             <div className="modal-footer">
-                                {this.props.footerButtons.map( (item, id) =>
+                                {footerButtons.map((item, id) =>
                                     <button
                                         key={id}
                                         type="button"
                                         className={
-                                            classNames(this.identifyClass(item.type))
+                                            classNames(Modal.identifyClass(item.type))
                                         }
-                                        onClick={item.onClick}>
-                                    {item.text}
+                                        onClick={() => {
+                                            item.onClick();
+                                            this.toggleModal();
+                                        }}>
+                                        {item.text}
                                     </button>
                                 )}
                             </div>
@@ -85,17 +85,26 @@ export default class Modal extends Component {
                 </div>
                 {backdrop}
             </div>
-        )
+        );
     }
 }
 
-Modal.PropTypes = {
+Modal.propTypes = {
     title: PropTypes.string,
-    openButtonTitle: PropTypes.string.isRequired,
+    visible: PropTypes.bool,
+    children: PropTypes.object.isRequired,
+    openButtonTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
     footerButtons: PropTypes.arrayOf(PropTypes.shape({
         text: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         onClick: PropTypes.func.isRequired
     }))
-}
+};
+
+Modal.defaultProps = {
+    visible: false,
+    openButtonTitle: 'Open Modal window',
+    title: '',
+    footerButtons: []
+};
 
