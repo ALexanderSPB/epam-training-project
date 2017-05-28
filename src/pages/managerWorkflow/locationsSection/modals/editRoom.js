@@ -1,16 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Modal from '../../../../common/ui/modal/modalComponent';
-import Firebase from '../../../../common/helpers/firebase';
 import {bindActionCreators} from 'redux';
-import {fetchEntities} from '../../../../constants/fetchEntityActions';
 import {connect} from 'react-redux';
-import {LOCATIONS} from '../../../../constants/fetchActionsTypes';
-import {PATHS} from '../../../../constants/database';
-
+import {removeRoom, saveRoom} from '../locationActions';
 
 const mapDispatchToProps = dispatch => ({
-    fetchEntities: bindActionCreators(fetchEntities, dispatch),
+    saveRoom: bindActionCreators(saveRoom, dispatch),
+    removeRoom: bindActionCreators(removeRoom, dispatch),
     dispatch,
 });
 
@@ -22,9 +19,6 @@ class EditRoomModal extends Component {
             room,
             reference
         };
-        this.saveRoom = this.saveRoom.bind(this);
-        this.removeRoom = this.removeRoom.bind(this);
-        this.fetchLocations = this.fetchLocations.bind(this);
     }
 
     static createButton(text, type, onClick) {
@@ -34,24 +28,12 @@ class EditRoomModal extends Component {
     }
 
     modalButtons() {
-        return [
-            EditRoomModal.createButton('save', 'success', this.saveRoom),
-            EditRoomModal.createButton('remove', 'danger', this.removeRoom),
-        ];
-    }
-
-    fetchLocations() {
-        this.props.fetchEntities(`${PATHS.locations}/${this.props.institution}`, LOCATIONS);
-    }
-
-    saveRoom() {
+        const {institution, saveRoom, removeRoom} = this.props;
         const {room, reference} = this.state;
-        Firebase.set(reference, room).then(this.fetchLocations);
-    }
-
-    removeRoom() {
-        const {reference} = this.state;
-        Firebase.set(reference, null).then(this.fetchLocations);
+        return [
+            EditRoomModal.createButton('save', 'success', () => saveRoom(room, reference, institution)),
+            EditRoomModal.createButton('remove', 'danger', () => removeRoom(reference, institution)),
+        ];
     }
 
     modalChild() {
@@ -88,6 +70,8 @@ EditRoomModal.propTypes = {
     room: PropTypes.object.isRequired,
     reference: PropTypes.string.isRequired,
     institution: PropTypes.string,
+    saveRoom: PropTypes.func,
+    removeRoom: PropTypes.func,
     fetchEntities: PropTypes.func,
 };
 
