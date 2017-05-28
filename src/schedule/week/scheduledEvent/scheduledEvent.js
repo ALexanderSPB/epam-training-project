@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import * as formats from '../../../constants/dateTimeFormats';
+import Edit from './modal/editEvent';
 
-// eslint-disable-next-line no-unused-vars
-export default function ScheduledEvent({name, teacher, location, room, date, top, height, isActive}) {
+export default function ScheduledEvent({uuid, name, teacher, location, room, date, top, height, isActive, isEditable}) {
     function getTime(date) {
         return moment(date).format(formats.hoursAndMinutes);
     }
 
     return (
         <div
-            className="event"
+            className={isActive ? 'event event--active' : 'event'}
             style={{
                 top: top + 'px',
                 height: height + 'px'
@@ -22,11 +22,13 @@ export default function ScheduledEvent({name, teacher, location, room, date, top
             </p>
             <p className="name">{name}</p>
             <p className="additional">{teacher}</p>
+            {isEditable ? <Edit uuid={uuid}/> : null}
         </div>
-    )
+    );
 }
 
 ScheduledEvent.propTypes = {
+    uuid: PropTypes.string.isRequired,
     height: PropTypes.number.isRequired,
     location: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -34,5 +36,6 @@ ScheduledEvent.propTypes = {
     teacher: PropTypes.string.isRequired,
     date: PropTypes.object.isRequired,
     top: PropTypes.number.isRequired,
-    isActive: PropTypes.bool.isRequired
+    isActive: PropTypes.bool,
+    isEditable: PropTypes.bool
 };

@@ -48,7 +48,7 @@ export default class Modal extends Component {
 
         return (
             <div>
-                <button onClick={this.toggleModal}>{openButtonTitle}</button>
+                <button className="modal__open-button" onClick={this.toggleModal.bind(this)}>{openButtonTitle}</button>
                 <div className={modalClass}>
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -56,7 +56,7 @@ export default class Modal extends Component {
                                 <button type="button"
                                         className="close"
                                         aria-label="Close"
-                                        onClick={this.toggleModal}>
+                                        onClick={this.toggleModal.bind(this)}>
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             {modalTitle}
