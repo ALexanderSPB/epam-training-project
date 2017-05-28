@@ -7,7 +7,7 @@ import Select from '../../../common/ui/select';
 import OfficeHoursBlock from './officeHoursBlock';
 import * as formats from '../../../constants/dateTimeFormats';
 import {fetchEntities} from '../../../constants/fetchEntityActions';
-import {locationsRequest, saveTime, selectLocation} from './locationsActions';
+import {saveTime} from './locationActions';
 import {PATHS} from '../../../constants/database';
 import {LOCATIONS} from '../../../constants/fetchActionsTypes';
 import EditRoomModal from './modals/editRoom';
@@ -21,14 +21,11 @@ const UI_TEXT = {
 
 const mapStateToProps = state => ({
     institutionId: state.loginData.institution,
-    locations: state.locations.locations,
-    location: state.locations.selectedLocation
+    locations: state.locations
 });
 
 const mapDispatchToProps = dispatch => ({
     fetchEntities: bindActionCreators(fetchEntities, dispatch),
-    locationsRequest: bindActionCreators(locationsRequest, dispatch),
-    changeLocation: bindActionCreators(selectLocation, dispatch),
     saveTime: bindActionCreators(saveTime, dispatch),
     dispatch,
 });
@@ -41,8 +38,7 @@ class LocationsSection extends Component {
     }
 
     componentWillMount() {
-        this.props.locationsRequest(this.props.institutionId);
-        this.props.fetchEntities(`${PATHS.locations}/${this.props.institution}`, LOCATIONS);
+        this.props.fetchEntities(`${PATHS.locations}/${this.props.institutionId}`, LOCATIONS);
     }
 
     changeLocation(selected) {
@@ -50,19 +46,16 @@ class LocationsSection extends Component {
     }
 
     locationInfo() {
-        if (!this.props.location) return;
-
-        const {locations, institution} = this.props;
         const {selectedLocation} = this.state;
         if (selectedLocation === '') return;
 
+        const {locations} = this.props;
         let locationId = '';
-        const {name, address, /*timing,*/ rooms} = locations.find((loc, id)=> {
+
+        const { name, address, timing, rooms } = locations.find((loc, id)=> {
             locationId = id;
             return loc.name === selectedLocation;
         });
-
-        const { name, address, timing, rooms } = this.props.location.data;
         const { institutionId, handleRoomClick } = this.props;
 
         const formattedTime = {
@@ -76,7 +69,7 @@ class LocationsSection extends Component {
                 <p>{address}</p>
                 <OfficeHoursBlock
                     formattedTime={formattedTime}
-                    saveTime={(time) => this.props.saveTime(time, institutionId, this.props.location.id)}
+                    saveTime={(time) => this.props.saveTime(time, institutionId, locationId)}
                 />
                 <div>
                     <p>{UI_TEXT.rooms}</p>
@@ -89,9 +82,10 @@ class LocationsSection extends Component {
                                 onClick={() => handleRoomClick(id)}
                             >
                                 <span>name: {room.name}, capacity: {room.capacity}</span>
-                                <EditRoomModal room={room}
-                                               institution={institutionId}
-                                               reference={`${PATHS.locations}${institutionId}/${locationId}/rooms/${id}`}
+                                <EditRoomModal
+                                    room={room}
+                                    institution={institutionId}
+                                    reference={`${PATHS.locations}${institutionId}/${locationId}/rooms/${id}`}
                                 />
                             </li>)}
                     </ul>
@@ -119,13 +113,9 @@ class LocationsSection extends Component {
 LocationsSection.propTypes = {
     fetchEntities: PropTypes.func.isRequired,
     institutionId: PropTypes.string.isRequired,
-    locationsRequest: PropTypes.func.isRequired,
-    changeLocation: PropTypes.func.isRequired,
     saveTime: PropTypes.func,
     handleRoomClick:  PropTypes.func,
-    location: PropTypes.object,
-    locations: PropTypes.array,
-    institution: PropTypes.string,
+    locations: PropTypes.array
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationsSection);

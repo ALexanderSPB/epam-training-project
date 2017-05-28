@@ -1,6 +1,6 @@
 import {LOCATIONS} from '../../../constants/fetchActionsTypes';
 
-const initialState = [];
+const initialState = {};
 
 export default function locationsSection(state = initialState, action) {
     const {payload, type} = action;
@@ -17,3 +17,4 @@ export default function locationsSection(state = initialState, action) {
             return state;
     }
 }
+
