@@ -36,7 +36,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch,
 });
 
-// eslint-disable-next-line no-unused-vars
 class EditEvent extends Component {
 
     set(value, field) {
