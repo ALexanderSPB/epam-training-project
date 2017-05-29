@@ -24,7 +24,7 @@ export default class OfficeHoursBlock extends Component {
     }
 
     handleChange(value, partOfTime) {
-        if (!moment(value).isValid) {
+        if (!moment(value).isValid()) {
             this.setState({error: `Incorrect time format in ${partOfTime} time, please use HH:MM format`});
             return;
         }
