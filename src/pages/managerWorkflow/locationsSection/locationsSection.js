@@ -15,7 +15,6 @@ import DeleteLocationModal from './modals/deleteLocationModal';
 const UI_TEXT = {
     rooms: 'Rooms',
     add: 'Add',
-    // remove: 'Remove',
     location: 'Location'
 };
 
@@ -54,21 +53,11 @@ class LocationsSection extends Component {
             locationId = id;
             return loc.name === selectedLocation;
         });
-        // const {handleTimeChanged, handleRoomClick} = this.props;
-        //
-        // const formattedTime = {
-        //     opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
-        //     closing: moment(timing.closing, 'h').format(formats.hoursAndMinutes)
-        // };
 
         return (
             <section>
                 <h2>{name}</h2>
                 <p>{address}</p>
-                {/*<OfficeHoursBlock*/}
-                    {/*formattedTime={formattedTime}*/}
-                    {/*changeTime={handleTimeChanged}*/}
-                {/*/>*/}
                 <div>
                     <p>{UI_TEXT.rooms}</p>
                     <button>{UI_TEXT.add}</button>
@@ -81,11 +70,10 @@ class LocationsSection extends Component {
                                                reference={`${PATHS.locations}${institution}/${locationId}/rooms/${id}`}
                                 />
                             </li>)}
-
                     </ul>
                 </div>
                 {/*<button onClick={this.props}>{UI_TEXT.add}</button>*/}
-                <DeleteLocationModal deleteLocation="" institution="" locationId=""/>
+                <DeleteLocationModal institution={institution} locationId={locationId} />
             </section>
         );
     }
@@ -93,11 +81,6 @@ class LocationsSection extends Component {
     render() {
         return (
             <section className="col-xs-6">
-                {/*<Select*/}
-                    {/*options={this.props.institutions}*/}
-                    {/*labelText={UI_TEXT.institution}*/}
-                    {/*valueChanged={this.changeInstitution}*/}
-                {/*/>*/}
                 <Select
                     options={this.props.locations}
                     labelText={UI_TEXT.location}

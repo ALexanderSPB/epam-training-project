@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Modal from '../../../../common/ui/modal/modalComponent';
 import {bindActionCreators} from 'redux';
+import Modal from '../../../../common/ui/modal/modalComponent';
 import {deleteLocation} from './deleteLocationAction';
 import {connect} from 'react-redux';
-import Input from '../../../../common/ui/input';
 
 const mapStateToProps = state => ({
     institution : state.loginData.institution
@@ -49,9 +48,9 @@ class DeleteLocationModal extends Component {
 }
 
 DeleteLocationModal.propTypes = {
-    deleteLocation: PropTypes.func.isRequired,
     institution: PropTypes.string.isRequired,
-    locationId: PropTypes.string.isRequired
+    locationId: PropTypes.number.isRequired,
+    deleteLocation: PropTypes.func
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeleteLocationModal);
