@@ -8,24 +8,34 @@ import {save} from './addLocationActions';
 import * as formats from '../../../../constants/dateTimeFormats';
 import Input from '../../../../common/ui/input';
 import OfficeHoursBlock from '../officeHoursBlock';
+import {saveTime} from '../locationActions';
 
 const mapStateToProps = state => ({
-    institution: state.loginData.institution
+    locations: state.locations,
 });
 
 const mapDispatchToProps = dispatch => ({
     save: bindActionCreators(save, dispatch),
+    saveTime: bindActionCreators(saveTime, dispatch),
     dispatch,
 });
 
 class AddLocationModal extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {timing: {opening: 9, closing: 20}};
+        this.saveLocation = this.saveLocation.bind(this);
+    }
 
-    saveLocation() {
-        const {address, name, time} = this.state;
-        this.props.save({address, name, time}, this.props.institution);
+    saveLocation(redirectTo) {
+        const {locations, save, reference} = this.props;
+        const {address, name, timing} = this.state;
+        save([...locations, {address, name, timing}], reference, redirectTo);
     }
 
     render() {
+        const {timing, name} = this.state;
+
         const formattedTime = {
             opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
             closing: moment(timing.closing, 'h').format(formats.hoursAndMinutes)
@@ -34,21 +44,21 @@ class AddLocationModal extends Component {
         return (
             <Modal
                 openButtonTitle="Add location"
-                footerButtons={[{text: 'save', type: 'success', onClick: this.saveLocation.bind(this)}]}
+                footerButtons={[{text: 'save', type: 'success', onClick: () => this.saveLocation(() => this.props.redirectTo(name))}]}
             >
                 <div>
                     <Input
                         labelText="Address:"
-                        valueChanged={e => this.setState({address: e.target.value})}
+                        valueChanged={value => this.setState({address: value})}
                     />
                     <Input
                         labelText="Name:"
-                        valueChanged={e => this.setState({name: e.target.value})}
+                        valueChanged={value => this.setState({name: value})}
                     />
                     <OfficeHoursBlock
                         formattedTime={formattedTime}
                         labelText="Office hours:"
-                        valueChanged={e => this.setState({name: e.target.value})}
+                        saveTime={(time) => this.setState({timing: time})}
                     />
                 </div>
             </Modal>
@@ -57,9 +67,11 @@ class AddLocationModal extends Component {
 }
 
 AddLocationModal.propTypes = {
-    save: PropTypes.func.isRequired,
-    institution: PropTypes.string.isRequired,
-    //locationId: PropTypes.string.isRequired
+    reference: PropTypes.string.isRequired,
+    save: PropTypes.func,
+    saveTime: PropTypes.func,
+    locations: PropTypes.array,
+    redirectTo: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddLocationModal);
