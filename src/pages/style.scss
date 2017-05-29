@@ -11,11 +11,15 @@ p, ul {
     font-family: SourceSansProLight, sans-serif;
 }
 
-a {
-    color: #1A9CB0;
+.siteBody {
+    margin-bottom: 60px;
 
-    &:hover, &:focus {
-        text-decoration: none;
-        color: #7F993A;
+    a {
+        color: #1A9CB0;
+
+        &:hover, &:focus {
+            text-decoration: none;
+            color: #7F993A;
+        }
     }
 }

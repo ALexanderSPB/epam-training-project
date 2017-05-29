@@ -73,13 +73,13 @@ class InstitutionAndGroupScheduleSelector extends Component {
                             <Select
                                 options={institutions}
                                 valueChanged={this.handleSelectInstitution}
-                                labelText="Выберите заведение"
+                                labelText="Choose the institution: "
                             />
                             { selectedInstitution
                                 ? <Select
                                     options={groups[selectedInstitution] || []}
                                     valueChanged={this.handleSelectGroup}
-                                    labelText="Выберите группу"
+                                    labelText="Choose the group: "
                                 />
                                 : null
                             }
