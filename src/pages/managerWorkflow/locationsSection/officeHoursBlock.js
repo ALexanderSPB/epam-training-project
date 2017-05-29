@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import Input from '../../../common/ui/input';
 import moment from 'moment';
+import Input from '../../../common/ui/input';
+import * as formats from '../../../constants/dateTimeFormats';
 
 const UI_TEXT = {
     opening: 'Opening',
@@ -24,7 +25,7 @@ export default class OfficeHoursBlock extends Component {
     }
 
     handleChange(value, partOfTime) {
-        if (!moment(value).isValid()) {
+        if (!moment(value, formats.hoursAndMinutes).isValid()) {
             this.setState({error: `Incorrect time format in ${partOfTime} time, please use HH:MM format`});
             return;
         }
