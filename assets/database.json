@@ -1,165 +1,314 @@
 {
-  "users" : {
-    "Z5aUAwGaTxZJPjWrCngITi3cZQo2": {
-      "email": "smb@gmail.com",
-      "name": "Vasiliy Vasilyev",
-      "password": "qwerty",
-      "role": 0
-    },
-    "fyHa2LjckRTfuSfMRWAOdWAUAgG3": {
-      "email": "va@gmail.com",
-      "name": "Vasilisa Andreeva",
-      "password" : "asdfgh",
-      "role": 2,
-      "skills": [0, 1, 2],
-      "institution": "inst0"
-    },
-    "AoKuuzZ4saNyXTO4tmZIsaJg90x2": {
-      "email": "zxc@gmail.com",
-      "name": "Innokentiy Baranov",
-      "password": "zxcvbn",
-      "role": 1,
-      "institution": "inst0"
-    }
-  },
-  "institutions": [
-    {
-      "uuid" : "inst0",
-      "name" : "MyInstitution",
-      "timing": {
-        "opening": 8,
-        "closing": 23
-      }
-    },
-    {
-      "uuid" : "inst1",
-      "name" : "Another Institution",
-      "timing": {
-        "opening": 8,
-        "closing": 20
-      }
-    }
-  ],
-  "locations" : {
-    "inst0": [
-      {
-        "name" : "Office 1",
-        "address": "Some address",
-        "timing": {
-          "opening": 8,
-          "closing": 22
+    "users" : {
+        "Z5aUAwGaTxZJPjWrCngITi3cZQo2": {
+            "email": "smb@gmail.com",
+            "name": "Vasiliy Vasilyev",
+            "password": "qwerty",
+            "role": 0
         },
-        "rooms": [
-          {
-            "name": "1",
-            "capacity": "20"
-          },
-          {
-            "name": "12a",
-            "capacity": "10"
-          }
-        ]
-      },
-      {
-        "name" : "Office 2",
-        "address": "Some address",
-        "timing": {
-          "opening": 8,
-          "closing": 23
+        "fyHa2LjckRTfuSfMRWAOdWAUAgG3": {
+            "email": "va@gmail.com",
+            "name": "Vasilisa Andreeva",
+            "password" : "asdfgh",
+            "role": 2,
+            "skills": [0, 1, 2],
+            "institution": "inst0"
         },
-        "rooms": [
-          {
-            "name": "1",
-            "capacity": "20"
-          },
-          {
-            "name": "12a",
-            "capacity": "10"
-          }
-        ]
-      }
-    ],
-    "inst1": [
-      {
-        "name" : "The only one office",
-        "address": "Some address",
-        "timing": {
-          "opening": 8,
-          "closing": 20
+        "AoKuuzZ4saNyXTO4tmZIsaJg90x2": {
+            "email": "zxc@gmail.com",
+            "name": "Innokentiy Baranov",
+            "password": "zxcvbn",
+            "role": 1,
+            "institution": "inst0"
         },
-        "rooms": [
-          {
-            "name": "1",
-            "capacity": "20"
-          },
-          {
-            "name": "12a",
-            "capacity": "10"
-          }
-        ]
-      }
-    ]
-  },
-  "groups": {
-    "inst0": [
-      {
-        "uuid": "group0x1x42",
-        "name": "Group 42",
-        "studentsNumber": 15
-      }
-    ],
-    "inst1": []
-  },
-  "events": {
-    "inst0": [
-      {
-        "uuid": "ev0x122",
-        "name": "JavaScript",
-        "skills": [0, 2],
-        "timing": {
-          "duration": 2,
-          "beginning": "Thu Apr 20 2017 16:13:02 GMT+0300 (E. Africa Standard Time)"
+        "39vNYkjFIHhqbKyg3I0xT1ZhCJx2": {
+            "email": "xs@kml.de",
+            "name": "Andrey Gorshkov",
+            "role": 2,
+            "skills": [1, 2],
+            "institution": "inst0"
         },
-        "type": "",
-        "teacher": {
-          "uuid": "fyHa2LjckRTfuSfMRWAOdWAUAgG3",
-          "name": "Vasilisa Andreeva"
+        "3JnVuRSG5DdB9IhQouF3BnrQQfJ3": {
+            "email": "sx@km.ij",
+            "name": "Gennadii Petrov",
+            "role": 2,
+            "skills": [0],
+            "institution": "inst0"
         },
-        "location": {
-          "uuid": 0,
-          "name": "Office 1"
-        },
-        "room": "12a",
-        "group": {
-            "uuid": "group0x1x42",
-            "name": "Group 42"
+        "3d9OCEDlHkbIougdJWpQiKQRxAm2": {
+            "email": "sw@zl.sw",
+            "name": "Anna Gordeeva",
+            "role": 2,
+            "skills": [1, 2],
+            "institution": "inst0"
         }
-      },
-      {
-        "uuid": "ev0x132",
-        "name": "Java SE",
-        "skills": [1, 2],
-        "timing": {
-          "duration": 4,
-          "beginning": "Fri Apr 21 2017 14:03:04 GMT+0300 (E. Africa Standard Time)"
+    },
+    "institutions": [
+        {
+            "uuid" : "inst0",
+            "name" : "MyInstitution",
+            "timing": {
+                "opening": 8,
+                "closing": 23
+            }
         },
-        "type": "",
-        "teacher": {
-          "uuid": "tyo1rhCCswTcPZvHMLhoEC0AbB02",
-          "name": "Vasilisa Andreeva"
-        },
-        "location": {
-          "uuid": 1,
-          "name": "Office 2"
-        },
-        "room": "1",
-        "group": {
-            "uuid": "group0x1x42",
-            "name": "Group 42"
+        {
+            "uuid" : "inst1",
+            "name" : "Another Institution",
+            "timing": {
+                "opening": 8,
+                "closing": 20
+            }
         }
-      }
     ],
-    "inst1": []
-  },
-  "skills": ["JS", "Java SE", "programming"]
+    "locations" : {
+        "inst0": [
+            {
+                "name" : "Office 1",
+                "address": "Some address",
+                "timing": {
+                    "opening": 8,
+                    "closing": 22
+                },
+                "rooms": [
+                    {
+                        "name": "1",
+                        "capacity": "20"
+                    },
+                    {
+                        "name": "12a",
+                        "capacity": "10"
+                    }
+                ]
+            },
+            {
+                "name" : "Office 2",
+                "address": "Some address",
+                "timing": {
+                    "opening": 8,
+                    "closing": 23
+                },
+                "rooms": [
+                    {
+                        "name": "1",
+                        "capacity": "20"
+                    },
+                    {
+                        "name": "12a",
+                        "capacity": "10"
+                    }
+                ]
+            },
+            {
+                "name" : "Bolshoy",
+                "address": "68, Bolshoy",
+                "timing": {
+                    "opening": 9,
+                    "closing": 21
+                },
+                "rooms": [
+                    {
+                        "name": "1st floor",
+                        "capacity": "50"
+                    },
+                    {
+                        "name": "2nd floor",
+                        "capacity": "40"
+                    }
+                ]
+            },
+            {
+                "name" : "Black river Office",
+                "address": "12, The Black River street",
+                "timing": {
+                    "opening": 9,
+                    "closing": 23
+                },
+                "rooms": [
+                    {
+                        "name": "Boston",
+                        "capacity": "50"
+                    },
+                    {
+                        "name": "London",
+                        "capacity": "40"
+                    },
+                    {
+                        "name": "London",
+                        "capacity": "40"
+                    }
+                ]
+            },
+            {
+                "name" : "Zastavskaya Office",
+                "address": "22, Zastavskaya street",
+                "timing": {
+                    "opening": 9,
+                    "closing": 23
+                },
+                "rooms": [
+                    {
+                        "name": "Amsterdam",
+                        "capacity": "30"
+                    },
+                    {
+                        "name": "Saint-Petersburg",
+                        "capacity": "15"
+                    },
+                    {
+                        "name": "Ivanovo",
+                        "capacity": "30"
+                    }
+                ]
+            },
+            {
+                "name" : "Pevchesky Office",
+                "address": "12, Pevchesky",
+                "timing": {
+                    "opening": 9,
+                    "closing": 23
+                },
+                "rooms": [
+                    {
+                        "name": "102.1 Kolmogorov",
+                        "capacity": "20"
+                    },
+                    {
+                        "name": "Moskow",
+                        "capacity": "35"
+                    },
+                    {
+                        "name": "Brazil",
+                        "capacity": "30"
+                    }
+                ]
+            },
+            {
+                "name" : "Evropolis",
+                "address": "24, Some Street",
+                "timing": {
+                    "opening": 9,
+                    "closing": 23
+                },
+                "rooms": [
+                    {
+                        "name": "room1",
+                        "capacity": "20"
+                    },
+                    {
+                        "name": "room2",
+                        "capacity": "35"
+                    },
+                    {
+                        "name": "room3",
+                        "capacity": "30"
+                    }
+                ]
+            },
+            {
+                "name" : "Petrogradetc",
+                "address": "4, Some another Street",
+                "timing": {
+                    "opening": 9,
+                    "closing": 23
+                },
+                "rooms": [
+                    {
+                        "name": "wow1",
+                        "capacity": "20"
+                    },
+                    {
+                        "name": "wow2",
+                        "capacity": "35"
+                    },
+                    {
+                        "name": "wow3",
+                        "capacity": "30"
+                    }
+                ]
+            }
+        ],
+        "inst1": [
+            {
+                "name" : "The only one office",
+                "address": "Some address",
+                "timing": {
+                    "opening": 8,
+                    "closing": 20
+                },
+                "rooms": [
+                    {
+                        "name": "1",
+                        "capacity": "20"
+                    },
+                    {
+                        "name": "12a",
+                        "capacity": "10"
+                    }
+                ]
+            }
+        ]
+    },
+    "groups": {
+        "inst0": [
+            {
+                "uuid": "group0x1x42",
+                "name": "Group 42",
+                "studentsNumber": 15
+            }
+        ],
+        "inst1": []
+    },
+    "events": {
+        "inst0": [
+            {
+                "uuid": "ev0x122",
+                "name": "JavaScript",
+                "skills": [0, 2],
+                "timing": {
+                    "duration": 2,
+                    "beginning": "Thu Apr 20 2017 16:13:02 GMT+0300 (E. Africa Standard Time)"
+                },
+                "type": "",
+                "teacher": {
+                    "uuid": "fyHa2LjckRTfuSfMRWAOdWAUAgG3",
+                    "name": "Vasilisa Andreeva"
+                },
+                "location": {
+                    "uuid": 0,
+                    "name": "Office 1"
+                },
+                "room": "12a",
+                "group": {
+                    "uuid": "group0x1x42",
+                    "name": "Group 42"
+                }
+            },
+            {
+                "uuid": "ev0x132",
+                "name": "Java SE",
+                "skills": [1, 2],
+                "timing": {
+                    "duration": 4,
+                    "beginning": "Fri Apr 21 2017 14:03:04 GMT+0300 (E. Africa Standard Time)"
+                },
+                "type": "",
+                "teacher": {
+                    "uuid": "tyo1rhCCswTcPZvHMLhoEC0AbB02",
+                    "name": "Vasilisa Andreeva"
+                },
+                "location": {
+                    "uuid": 1,
+                    "name": "Office 2"
+                },
+                "room": "1",
+                "group": {
+                    "uuid": "group0x1x42",
+                    "name": "Group 42"
+                }
+            }
+        ],
+        "inst1": []
+    },
+    "skills": ["JS", "Java SE", "programming"]
 }
