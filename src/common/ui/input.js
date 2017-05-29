@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function Input({classes, placeholder, labelText, type, valueChanged, defaultValue, error}) {
+export default function Input({classes = {}, placeholder, labelText, type, valueChanged, defaultValue, value, error}) {
     function handleChange(event) {
         valueChanged(event.target.value);
     }
@@ -32,6 +32,7 @@ export default function Input({classes, placeholder, labelText, type, valueChang
                     placeholder={placeholder}
                     onChange={handleChange}
                     type={type ? type : 'text'}
+                    value={value}
                 />
             </div>
             {errorMessage(error, classes.error)}

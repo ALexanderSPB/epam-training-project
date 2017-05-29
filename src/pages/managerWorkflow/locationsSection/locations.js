@@ -17,3 +17,4 @@ export default function locationsSection(state = initialState, action) {
             return state;
     }
 }
+
