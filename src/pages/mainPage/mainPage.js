@@ -20,7 +20,8 @@ export default class MainPage extends Component {
                         </div>
                     </section>
                     <section className="row siteBody__instruction">
-                        <section className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0 instruction__contentCol text-center">
+                        <section
+                            className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0 instruction__contentCol text-center">
                             <div className="contentCol__icon">
                                 <span className="glyphicon glyphicon-briefcase"/>
                             </div>
@@ -33,7 +34,8 @@ export default class MainPage extends Component {
                                 </p>
                             </div>
                         </section>
-                        <section className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0 instruction__contentCol text-center">
+                        <section
+                            className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0 instruction__contentCol text-center">
                             <div className="contentCol__icon">
                                 <span className="glyphicon glyphicon-sunglasses"/>
                             </div>
@@ -46,7 +48,8 @@ export default class MainPage extends Component {
                                 </p>
                             </div>
                         </section>
-                        <section className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0 instruction__contentCol text-center">
+                        <section
+                            className="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-3 col-md-offset-0 instruction__contentCol text-center">
                             <div className="contentCol__icon">
                                 <span className="glyphicon glyphicon-education"/>
                             </div>
@@ -60,7 +63,7 @@ export default class MainPage extends Component {
                             </div>
                         </section>
                     </section>
-                        <InstitutionAndGroupScheduleSelector {...this.props}/>
+                    <InstitutionAndGroupScheduleSelector {...this.props}/>
                 </div>
             </section>
         );

@@ -19,7 +19,8 @@ export default function Select({classes = {}, labelText = '', valueChanged, opti
                     multiple={multiple}
                 >
                     <option hidden={true}/>
-                    {options.map(option => <option key={option.uuid} value={option.uuid}>{option.name}</option>)}
+                    {options.map((option, index) => <option key={`${index}_${option.uuid}`}
+                                                            value={option.uuid}>{option.name}</option>)}
                 </select>
             </div>
         </div>

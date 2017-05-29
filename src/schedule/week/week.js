@@ -4,7 +4,7 @@ import TimeGrid from './timeGrid';
 import ScheduledEvent from './scheduledEvent/scheduledEvent';
 import {daysOfWeek, scheduleCellHeight} from '../../constants/scheduleOptions';
 
-export default function Week({officeHours, events}) {
+export default function Week({officeHours, events, canUserEdit}) {
     const tableHeight = scheduleCellHeight * (officeHours.closing - officeHours.opening);
 
     let eventsByDay = [];
@@ -20,6 +20,7 @@ export default function Week({officeHours, events}) {
         return events.map(event =>
             <ScheduledEvent
                 key={event.uuid}
+                uuid={event.uuid}
                 name={event.name}
                 teacher={event.teacher.name}
                 location={event.location.name}
@@ -28,6 +29,7 @@ export default function Week({officeHours, events}) {
                 top={(new Date(event.timing.beginning).getHours() - openingHour) * cellHeight}
                 height={event.timing.duration * cellHeight}
                 isActive={true}
+                isEditable={canUserEdit}
             />
         );
     }
@@ -78,5 +80,6 @@ export default function Week({officeHours, events}) {
 
 Week.propTypes = {
     events: PropTypes.array.isRequired,
-    officeHours: PropTypes.object.isRequired
+    officeHours: PropTypes.object.isRequired,
+    canUserEdit: PropTypes.bool
 };

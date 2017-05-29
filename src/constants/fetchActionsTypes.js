@@ -17,3 +17,8 @@ export const SKILLS = {
     RECEIVE: 'RECEIVE_SKILLS',
     REJECT: 'REJECT_SKILLS',
 };
+
+export const LOCATIONS = {
+    RECEIVE: 'RECEIVE_LOCATIONS',
+    REJECT: 'REJECT_LOCATIONS',
+};
