@@ -85,12 +85,12 @@ class LoginPage extends Component {
                         <div className="row">
                             <div className="col-xs-4">
                                 <button className="btn loginForm__submitBtn">
-                                    Войти
+                                    Log in
                                 </button>
                             </div>
                             <div className="col-xs-8 text-right">
                                 <p className="loginForm__registrationComment">
-                                    Нет аккаунта? <Link to="/">Зарегистрируйся</Link>
+                                    No account? <Link to="/">Register now</Link>
                                 </p>
                             </div>
                         </div>
