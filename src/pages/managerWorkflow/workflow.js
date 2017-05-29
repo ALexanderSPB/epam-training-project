@@ -18,8 +18,8 @@ const checkPath = (path) => {
 };
 
 const Workflow = (props) => <section className="col-xs-8">
-                                { checkPath(props.route.path) }
-                            </section>;
+    { checkPath(props.route.path) }
+</section>;
 
 Workflow.propTypes = {
     route: PropTypes.object.isRequired,

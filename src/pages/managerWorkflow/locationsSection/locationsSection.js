@@ -15,6 +15,7 @@ import EditRoomModal from './modals/editRoom';
 const UI_TEXT = {
     rooms: 'Rooms',
     add: 'Add',
+    addLocation: 'Add location',
     remove: 'Remove',
     location: 'Location'
 };
