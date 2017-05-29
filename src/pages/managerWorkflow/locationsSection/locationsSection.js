@@ -10,11 +10,12 @@ import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {PATHS} from '../../../constants/database';
 import {LOCATIONS} from '../../../constants/fetchActionsTypes';
 import EditRoomModal from './modals/editRoom';
+import DeleteLocationModal from './modals/deleteLocationModal';
 
 const UI_TEXT = {
     rooms: 'Rooms',
     add: 'Add',
-    remove: 'Remove',
+    // remove: 'Remove',
     location: 'Location'
 };
 
@@ -84,7 +85,7 @@ class LocationsSection extends Component {
                     </ul>
                 </div>
                 {/*<button onClick={this.props}>{UI_TEXT.add}</button>*/}
-                {/*<button onClick={this.props}>{UI_TEXT.remove}</button>*/}
+                <DeleteLocationModal deleteLocation="" institution="" locationId=""/>
             </section>
         );
     }
