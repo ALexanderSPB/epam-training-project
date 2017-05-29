@@ -10,6 +10,7 @@ import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {saveTime} from './locationActions';
 import {PATHS} from '../../../constants/database';
 import {LOCATIONS} from '../../../constants/fetchActionsTypes';
+import AddRoomModal from './modals/addRoom';
 import EditRoomModal from './modals/editRoom';
 import DeleteLocationModal from './modals/deleteLocationModal';
 
@@ -74,7 +75,7 @@ class LocationsSection extends Component {
                 />
                 <div>
                     <p>{UI_TEXT.rooms}</p>
-                    <button>{UI_TEXT.add}</button>
+                    {/*<button>{UI_TEXT.add}</button>*/}
                     <ul>
                         {rooms.map((room, id) =>
                             <li
@@ -91,7 +92,7 @@ class LocationsSection extends Component {
                             </li>)}
                     </ul>
                 </div>
-                <button onClick={this.props}>{UI_TEXT.add}</button>
+                {/*<button onClick={this.props}>{UI_TEXT.add}</button>*/}
                 <DeleteLocationModal institution={institutionId} locationId={locationId} />
             </section>
         );

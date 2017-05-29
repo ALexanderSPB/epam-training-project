@@ -31,7 +31,7 @@ class Header extends Component {
                 </h4>
                 <button className="button log-out__button" onClick={this.handleClick}>
                     <span className="button__text">Log Out</span>
-                    <span className="glyphicon glyphicon-edit button__glyph"/>
+                    <span className="glyphicon glyphicon-log-out button__glyph"/>
                 </button>
             </div>
         );

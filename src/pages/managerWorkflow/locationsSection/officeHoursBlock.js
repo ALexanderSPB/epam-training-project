@@ -6,7 +6,7 @@ const UI_TEXT = {
     opening: 'Opening',
     closing: 'Closing',
     officeHours: 'Office hours:',
-    save: 'Save'
+    save: 'Save time'
 };
 
 const timeNames = {

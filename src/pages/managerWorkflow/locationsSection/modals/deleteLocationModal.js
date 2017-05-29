@@ -24,7 +24,7 @@ class DeleteLocationModal extends Component {
         return (
             <Modal
                 title="Please, confirm your decision"
-                openButtonTitle="Delete"
+                openButtonTitle="Delete location"
                 footerButtons={[
                     {
                         text: 'Delete',
