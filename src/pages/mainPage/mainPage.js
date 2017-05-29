@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
+import {ROUTE_PATHS} from '../../constants/routes';
 import './mainPage.css';
 import InstitutionAndGroupScheduleSelector from './institutionAndGroupScheduleSelector/institutionAndGroupScheduleSelector';
 
@@ -30,7 +31,7 @@ export default class MainPage extends Component {
                                     Are you the representative of the institution?
                                 </h3>
                                 <p>
-                                    <Link to="/registration">Register</Link> yourself and your institution to get full access to edit the schedule. Fill out important information, add events!
+                                    <Link to={ROUTE_PATHS.registration}>Register</Link> yourself and your institution to get full access to edit the schedule. Fill out important information, add events!
                                 </p>
                             </div>
                         </section>
@@ -44,7 +45,7 @@ export default class MainPage extends Component {
                                     Are you a teacher?
                                 </h3>
                                 <p>
-                                    <Link to="/registration">Register</Link> and make notes about the cancellation of the lesson
+                                    <Link to={ROUTE_PATHS.registration}>Register</Link> and make notes about the cancellation of the lesson
                                 </p>
                             </div>
                         </section>
