@@ -6,6 +6,7 @@ import {fetchEntities} from '../../../constants/fetchEntityActions';
 import TeacherCard from '../../managerWorkflow/teacherSection/teacherCard/teacherCard';
 import {SKILLS, TEACHERS} from '../../../constants/fetchActionsTypes';
 import {PATHS} from '../../../constants/database';
+import Input from '../../../common/ui/input';
 
 const mapStateToProps = state => ({
     teachers: state.teachers,
@@ -23,12 +24,29 @@ class TeacherSection extends Component {
         const {users, skills} = PATHS;
         props.fetchEntities(users, TEACHERS);
         props.fetchEntities(skills, SKILLS);
+        this.state = {partToFind: ''};
+    }
+
+    filteredTeachers() {
+        if (this.state.partToFind === '')
+            return this.props.teachers;
+        return this.props.teachers.filter(teacher => (teacher.name.toLowerCase().indexOf(this.state.partToFind) + 1));
+    }
+
+    setFilter(subString) {
+        this.setState({partToFind: subString.toLowerCase()});
     }
 
     render() {
-        const {teachers, skills} = this.props;
+        const {skills} = this.props;
+        let teachers = this.filteredTeachers.call(this);
+
         return (
             <section className="row">
+                <Input
+                    placeholder="Find..."
+                    valueChanged={this.setFilter.bind(this)}
+                />
                 {
                     (teachers === undefined || skills === undefined)
                         ? null
