@@ -11,6 +11,12 @@
     }
 }
 
+.introduction {
+    &__text {
+        font-size: 1.3em;
+    }
+}
+
 .instruction {
     &__contentCol {
         border: 1px solid #CCC;
@@ -28,7 +34,7 @@
 
 .contentCol {
     &__icon {
-        font-size: 10em;
+        font-size: 9em;
         color: #39C2D7;
         border: {
             left: 1px solid #CCC;
@@ -36,5 +42,9 @@
             bottom: 1px solid #CCC;
             radius: 0 0 4px 4px;
         }
+    }
+
+    &__text {
+        font-size: 1.3em;
     }
 }

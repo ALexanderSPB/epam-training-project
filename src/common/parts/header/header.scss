@@ -7,20 +7,31 @@ $epam-green: #A3C644;
     padding-left: 5.35% !important;
   }
 
-  .my-schedule__header {
-    margin: auto;
-    font-family: OswaldRegular, sans-serif;
-    font-size: 4rem;
-    line-height: 6rem;
-    letter-spacing: -0.15rem;
-    text: {
-      transform: uppercase;
-      align: left;
-    }
+  .my-schedule {
+      &__header {
+          margin: auto;
+          font: {
+              family: OswaldRegular, sans-serif;
+              size: 4rem;
+          }
+          line-height: 6rem;
+          letter-spacing: -0.15rem;
+          text: {
+              transform: uppercase;
+              align: left;
+          }
+          & a {
+              text-decoration: none;
+          }
 
-    @media (max-width: 768px) {
-      font-size: 3rem;
-    }
+          @media (max-width: 768px) {
+              font-size: 3rem;
+          }
+      }
+
+      &__greeting {
+          font-size: 2.5em;
+      }
   }
 
   &__logo-wrapper {

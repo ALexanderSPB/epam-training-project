@@ -16,7 +16,7 @@ const Footer = () => {
                 <ul className="app-footer__navigate-list">
                     <li className="navigate-list__list-item">
                         <a onClick={() => goToPage(ROUTE_PATHS.root)}>
-                            Главная
+                            Home
                         </a>
                     </li>
                     <li className="navigate-list__list-item">

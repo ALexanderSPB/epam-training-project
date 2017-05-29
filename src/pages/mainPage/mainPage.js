@@ -12,10 +12,10 @@ export default class MainPage extends Component {
                     <section className="row siteBody__introduction">
                         <div className="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-center">
                             <h2 className="siteBody__header siteBody__header--second text-center">
-                                Что такое MySchedule?
+                                What is MySchedule?
                             </h2>
-                            <p>
-                                MySchedule - это информационный портал, который позволит вам легко узнать интересующее Вас расписание в 2 клика или создать своё собственное!<br/>Один аккаунт - множество возможностей
+                            <p className="introduction__text">
+                                MySchedule is an information portal that will allow you to easily find out the schedule you are interested in for only 2 clicks or create your own! One account - many opportunities
                             </p>
                         </div>
                     </section>
@@ -26,10 +26,10 @@ export default class MainPage extends Component {
                             </div>
                             <div className="contentCol__text">
                                 <h3 className="siteBody__header siteBody__header--third">
-                                    Ты представитель заведения?
+                                    Are you the representative of the institution?
                                 </h3>
                                 <p>
-                                    <Link to="/registration">Зарегистрируй</Link> себя и свое заведение, чтобы получить полный доступ к редактированию расписания. Заполняй важную информацию, добавляй события!
+                                    <Link to="/registration">Register</Link> yourself and your institution to get full access to edit the schedule. Fill out important information, add events!
                                 </p>
                             </div>
                         </section>
@@ -39,10 +39,10 @@ export default class MainPage extends Component {
                             </div>
                             <div className="contentCol__text">
                                 <h3 className="siteBody__header siteBody__header--third">
-                                    Ты преподаватель?
+                                    Are you a teacher?
                                 </h3>
                                 <p>
-                                    <Link to="/registration">Регистрируйся</Link> и делай пометки об отмене занятия.
+                                    <Link to="/registration">Register</Link> and make notes about the cancellation of the lesson
                                 </p>
                             </div>
                         </section>
@@ -52,10 +52,10 @@ export default class MainPage extends Component {
                             </div>
                             <div className="contentCol__text">
                                 <h3 className="siteBody__header siteBody__header--third">
-                                    Просто учащийся?
+                                    Just a student?
                                 </h3>
                                 <p>
-                                    Воспользуйся нашим сайтом, выбери учебное заведение ниже, найди свою группу и узнай расписание. Все просто! Регистрироваться нет необходимости!
+                                    Use our site, choose an educational institution below, find your group and find out the schedule. It's simple! Registration is not necessary!
                                 </p>
                             </div>
                         </section>
