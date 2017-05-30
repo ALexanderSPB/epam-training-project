@@ -4,7 +4,7 @@ import moment from 'moment';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Select from '../../../common/ui/select';
-import OfficeHoursBlock from './officeHoursBlock';
+import EditHoursBlock from './editHoursBlock';
 import * as formats from '../../../constants/dateTimeFormats';
 import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {saveTime} from './locationActions';
@@ -52,14 +52,14 @@ class LocationsSection extends Component {
         const {selectedLocation} = this.state;
         if (selectedLocation === '') return;
 
-        const {locations, institutionId} = this.props;
+        const {locations} = this.props;
         let locationId = '';
 
         const {name, address, timing, rooms = []} = locations.find((loc, id) => {
             locationId = id;
             return loc.name === selectedLocation;
         });
-        const {handleRoomClick} = this.props;
+        const {institutionId, handleRoomClick} = this.props;
 
         const formattedTime = {
             opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
@@ -70,9 +70,8 @@ class LocationsSection extends Component {
             <section>
                 <h2>{name}</h2>
                 <p>{address}</p>
-                <OfficeHoursBlock
+                <EditHoursBlock
                     formattedTime={formattedTime}
-                    saveTime={(time) => this.props.saveTime(time, institutionId, locationId)}
                 />
                 <div>
                     <p>{UI_TEXT.rooms}</p>
@@ -106,7 +105,7 @@ class LocationsSection extends Component {
         let filledLocations = fillHolesIn(this.props.locations);
 
         return (
-            <section className="col-xs-6">
+            <section className="col-xs-9">
                 <Select
                     options={filledLocations}
                     labelText={UI_TEXT.location}

@@ -67,28 +67,26 @@ class InstitutionAndGroupScheduleSelector extends Component {
 
         return (
             <section className="row siteBody__searchSchedulePart">
-                <div className="col-xs-10 col-xs-offset-1">
-                    <div className="row searchSchedulePart__selectionPart">
-                        <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-                            <Select
-                                options={institutions}
-                                valueChanged={this.handleSelectInstitution}
-                                labelText="Choose the institution: "
-                            />
-                            { selectedInstitution
-                                ? <Select
-                                    options={groups[selectedInstitution] || []}
-                                    valueChanged={this.handleSelectGroup}
-                                    labelText="Choose the group: "
-                                />
-                                : null
-                            }
-                        </div>
+                <div className="row searchSchedulePart__selectionPart">
+                    <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                        <Select
+                            options={institutions}
+                            valueChanged={this.handleSelectInstitution}
+                            labelText="Choose the institution: "
+                        />
+                        { selectedInstitution
+                            ? <Select
+                            options={groups[selectedInstitution] || []}
+                            valueChanged={this.handleSelectGroup}
+                            labelText="Choose the group: "
+                        />
+                            : null
+                        }
                     </div>
                 </div>
                 { events !== undefined
                     ? <div className="row searchSchedulePart__schedulePart">
-                        <div className="col-xs-12">
+                        <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
                             <Shedule
                                 events={events}
                                 officeHours={institutionInfo.timing}
