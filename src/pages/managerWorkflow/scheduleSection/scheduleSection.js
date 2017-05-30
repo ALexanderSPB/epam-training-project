@@ -75,7 +75,7 @@ class ScheduleSection extends Component {
         if (!newTime.isValid()) this.setState({beginningError: 'Wrong Time'});
         else {
             let event = {
-                uuid: this.state.name + date.getMilliseconds(),
+                uuid: this.state.name + newTime._d.getMilliseconds(),
                 name: this.state.name,
                 skills: [0, 2],
                 timing: {
