@@ -32,19 +32,14 @@ export const registrationSubmit = (data) => {
                     institution
                 }));
                 switch (role) {
-                    case ROLE_MANAGER: {
+                    case ROLE_MANAGER:
                         browserHistory.push('/manager/location');
                         break;
-                    }
-                    case ROLE_TEACHER: {
+                    case ROLE_TEACHER:
                         browserHistory.push('/teacher');
                         break;
-                    }
-
-                    default: {
+                    default:
                         browserHistory.push('/');
-                        break;
-                    }
                 }
             })
             // eslint-disable-next-line no-console
