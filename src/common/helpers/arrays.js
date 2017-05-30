@@ -1,4 +1,4 @@
-export const fillArray = (array) => {
+export function fillHolesIn(array) {
     const length = array.length;
     const fullArray = new Array(length);
 
@@ -8,4 +8,4 @@ export const fillArray = (array) => {
     }
 
     return fullArray;
-};
+}

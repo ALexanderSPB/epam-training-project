@@ -13,7 +13,7 @@ import {LOCATIONS} from '../../../constants/fetchActionsTypes';
 import EditRoomModal from './modals/editRoom';
 import AddLocationModal from './modals/addLocation';
 import AddRoomModal from './modals/addRoom';
-import {fillArray} from '../../../common/helpers/fillArray';
+import {fillHolesIn} from '../../../common/helpers/arrays';
 
 const UI_TEXT = {
     rooms: 'Rooms',
@@ -59,7 +59,7 @@ class LocationsSection extends Component {
             locationId = id;
             return loc.name === selectedLocation;
         });
-        const filledRooms = fillArray(rooms);
+        const filledRooms = fillHolesIn(rooms);
 
         const formattedTime = {
             opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
