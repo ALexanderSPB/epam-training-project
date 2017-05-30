@@ -28,11 +28,6 @@ const mapStateToProps = state => ({
     lists: state.schedule.lists
 });
 
-const classes = {
-    label: 'col-xs-3 col-sm-2',
-    inputWrapper: 'col-xs-8 col-sm-9'
-};
-
 const mapDispatchToProps = dispatch => ({
     save: bindActionCreators(save, dispatch),
     dispatch,
@@ -119,19 +114,16 @@ class EditEvent extends Component {
             >
                 <div className="container-fluid">
                     <Input
-                        classes={classes}
                         labelText={UI_TEXT.name}
                         valueChanged={ v => this.setState({name: v}) }
                         defaultValue={this.state.name}
                     />
                     <Input
-                        classes={classes}
                         labelText={UI_TEXT.beginning}
                         valueChanged={this.handleChangeBeginningTime.bind(this)}
                         defaultValue={moment(this.state.timing.beginning).format(formats.eventBeginning)}
                     />
                     <Input
-                        classes={classes}
                         labelText={UI_TEXT.duration}
                         valueChanged={ v => this.setState({timing: {
                             ...this.state.timing,

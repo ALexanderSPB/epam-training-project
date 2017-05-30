@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function Input({classes = {}, placeholder, labelText, type, valueChanged, defaultValue, value, error}) {
+const defaultClasses =  {
+    wrapper: 'common-input container-fluid',
+    label: 'col-xs-12 col-md-3',
+    inputWrapper: 'col-xs-12 col-md-9'
+};
+
+export default function Input({classes = defaultClasses, placeholder, labelText, type, valueChanged, defaultValue, value, error}) {
     function handleChange(event) {
         valueChanged(event.target.value);
     }

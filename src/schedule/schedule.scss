@@ -1,5 +1,6 @@
 $color-grid: #ddd;
 $color-event: #eee;
+$color-bright: #39C2D7;
 
 .schedule {
   .bg-table {
@@ -18,19 +19,35 @@ $color-event: #eee;
   .event {
     position: absolute;
     width: 99%;
-    padding: 0.4em;
     margin: 1px;
     border-radius: 4px;
-    background-color: $color-event;
+    background-color: white;
     text-align: left;
+    overflow: hidden;
+    border: solid 3px $color-grid;
 
     .additional {
       font-size: .9em;
-      margin: 0;
+      margin: 0 .5em;
     }
+
     .name {
-      margin: 0;
+        margin: 0 0 .3em;
+        width: 100%;
+        background-color: $color-grid;
+        color: white;
+
+        padding: 0.4em;
+        font-weight: bold;
     }
+
+      &--active {
+        border: solid 3px $color-bright;
+
+        .name {
+          background-color: $color-bright;
+        }
+      }
 
     & .modal__open-button {
         position: absolute;
@@ -49,11 +66,14 @@ $color-event: #eee;
 
   .time-col {
     padding: 0;
+    font-weight: normal;
   }
 
   .time-cell {
     width: 100%;
     border-bottom: 1px solid $color-grid;
+    text-align: center;
+    font-size: .9em;
 
     &:first-of-type {
       margin-top: 1px;
