@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import {PATHS} from '../../constants/database';
-import {ROLE_USER} from '../../constants/roles';
+import {ROLE_TEACHER} from '../../constants/roles';
 
 export const errorCodes = {
     auth: {
@@ -51,7 +51,8 @@ export default class Firebase {
 
                 const user = {
                     name,
-                    role: ROLE_USER,
+                    role: ROLE_TEACHER,
+                    institution: 'inst0', //yeap, hardcode, need to be fixed
                     location
                 };
 
