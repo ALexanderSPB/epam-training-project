@@ -16,13 +16,14 @@ const timeNames = {
     closing: 'closing'
 };
 
-export default class OfficeHoursBlock extends Component {
+export default class EditHoursBlock extends Component {
     constructor(props) {
         super(props);
         this.state = {
             saveButtonEnabled: true,
             formattedTime: this.props.formattedTime
         };
+        this.handleSave = this.handleSave.bind(this);
     }
 
     handleChange(value, partOfTime) {
@@ -49,12 +50,11 @@ export default class OfficeHoursBlock extends Component {
     }
 
     handleSave() {
-        this.setState({saveButtonEnabled: false});
         this.props.saveTime(this.state.formattedTime);
     }
 
     render() {
-        const {error, formattedTime, saveButtonEnabled} = this.state;
+        const {error, formattedTime} = this.state;
         return (
             <div>
                 <h3>{UI_TEXT.officeHours}</h3>
@@ -63,19 +63,20 @@ export default class OfficeHoursBlock extends Component {
                     labelText={UI_TEXT.opening}
                     value={formattedTime.opening}
                     valueChanged={(value) => this.handleChange(value, timeNames.opening)}
+                    handleBlur={this.handleSave}
                 />
                 <Input
                     labelText={UI_TEXT.closing}
                     value={formattedTime.closing}
                     valueChanged={(value) => this.handleChange(value, timeNames.closing)}
+                    handleBlur={this.handleSave}
                 />
-                <button disabled={!saveButtonEnabled} id="officeHoursBlock__SaveButton" onClick={this.handleSave.bind(this)}>{UI_TEXT.save}</button>
             </div>
         );
     }
 }
 
-OfficeHoursBlock.propTypes = {
+EditHoursBlock.propTypes = {
     formattedTime: PropTypes.object.isRequired,
     error: PropTypes.string,
     saveTime: PropTypes.func

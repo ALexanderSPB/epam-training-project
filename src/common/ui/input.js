@@ -2,8 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function Input({classes = {}, placeholder, labelText, type, valueChanged, defaultValue, value, error}) {
+export default function Input({classes = {}, placeholder, labelText, type, valueChanged, defaultValue, value, error, handleBlur}) {
     function handleChange(event) {
+        if (handleBlur && event.type === 'blur') {
+            handleBlur(event.target.value);
+            return;
+        }
         valueChanged(event.target.value);
     }
 
@@ -30,6 +34,7 @@ export default function Input({classes = {}, placeholder, labelText, type, value
                     defaultValue={defaultValue}
                     className={classNames('form-control', classes.input, classes.hasError)}
                     placeholder={placeholder}
+                    onBlur={handleChange}
                     onChange={handleChange}
                     type={type ? type : 'text'}
                     value={value}
@@ -48,5 +53,6 @@ Input.propTypes = {
     placeholder: PropTypes.string,
     type: PropTypes.string,
     value: PropTypes.string,
-    defaultValue: PropTypes.string
+    defaultValue: PropTypes.string,
+    handleBlur: PropTypes.func,
 };

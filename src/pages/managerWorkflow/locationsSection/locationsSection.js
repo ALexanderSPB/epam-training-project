@@ -4,7 +4,7 @@ import moment from 'moment';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Select from '../../../common/ui/select';
-import OfficeHoursBlock from './officeHoursBlock';
+import EditHoursBlock from './editHoursBlock';
 import * as formats from '../../../constants/dateTimeFormats';
 import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {saveTime} from './locationActions';
@@ -69,9 +69,8 @@ class LocationsSection extends Component {
             <section>
                 <h2>{name}</h2>
                 <p>{address}</p>
-                <OfficeHoursBlock
+                <EditHoursBlock
                     formattedTime={formattedTime}
-                    saveTime={(time) => this.props.saveTime(time, institutionId, locationId)}
                 />
                 <div>
                     <p>{UI_TEXT.rooms}</p>
@@ -92,8 +91,6 @@ class LocationsSection extends Component {
                             </li>)}
                     </ul>
                 </div>
-                {/*<button onClick={this.props}>{UI_TEXT.add}</button>*/}
-                {/*<button onClick={this.props}>{UI_TEXT.remove}</button>*/}
             </section>
         );
     }
