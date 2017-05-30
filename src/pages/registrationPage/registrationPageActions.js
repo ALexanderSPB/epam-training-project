@@ -7,6 +7,7 @@ import {
     REGISTRATION_GET_LOCATIONS,
     REGISTRATION_LOCATIONS_REQUEST,
 } from './registrationPageActionTypes';
+import {ROLE_MANAGER, ROLE_TEACHER} from '../../constants/roles';
 
 export const registrationSubmit = (data) => {
     return (dispatch) => {
@@ -22,13 +23,24 @@ export const registrationSubmit = (data) => {
                     type: REGISTRATION_SUBMIT,
                     value: result
                 });
-                const { name, role, location } = result;
+                const { name, role, location, institution } = result;
                 dispatch(loginSuccess({
                     uid: result.uuid,
                     name,
                     role,
-                    location
+                    location,
+                    institution
                 }));
+                switch (role) {
+                    case ROLE_MANAGER:
+                        browserHistory.push('/manager/location');
+                        break;
+                    case ROLE_TEACHER:
+                        browserHistory.push('/teacher');
+                        break;
+                    default:
+                        browserHistory.push('/');
+                }
             })
             // eslint-disable-next-line no-console
             .catch(error => {
