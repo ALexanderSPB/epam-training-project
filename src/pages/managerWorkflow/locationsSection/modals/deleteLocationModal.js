@@ -17,7 +17,8 @@ const mapDispatchToProps = dispatch => ({
 class DeleteLocationModal extends Component {
 
     deleteCurrentLocation() {
-        this.props.deleteLocation(this.props.institution, this.props.locationId);
+        const {institutionId, locationId, deleteLocation} = this.props;
+        deleteLocation(institutionId, locationId);
     }
 
     render() {
@@ -48,7 +49,7 @@ class DeleteLocationModal extends Component {
 }
 
 DeleteLocationModal.propTypes = {
-    institution: PropTypes.string.isRequired,
+    institutionId: PropTypes.string.isRequired,
     locationId: PropTypes.number.isRequired,
     deleteLocation: PropTypes.func
 };

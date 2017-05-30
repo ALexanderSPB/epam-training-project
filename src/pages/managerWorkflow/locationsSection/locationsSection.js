@@ -10,6 +10,7 @@ import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {saveTime} from './locationActions';
 import {PATHS} from '../../../constants/database';
 import {LOCATIONS} from '../../../constants/fetchActionsTypes';
+import {fillHolesIn} from '../../../common/helpers/arrays';
 import EditRoomModal from './modals/editRoom';
 import DeleteLocationModal from './modals/deleteLocationModal';
 import AddLocationModal from './modals/addLocation';
@@ -18,7 +19,6 @@ const UI_TEXT = {
     rooms: 'Rooms',
     add: 'Add',
     addLocation: 'Add location',
-    remove: 'Remove',
     location: 'Location'
 };
 
@@ -52,14 +52,14 @@ class LocationsSection extends Component {
         const {selectedLocation} = this.state;
         if (selectedLocation === '') return;
 
-        const {locations} = this.props;
+        const {locations, institutionId} = this.props;
         let locationId = '';
 
         const {name, address, timing, rooms = []} = locations.find((loc, id) => {
             locationId = id;
             return loc.name === selectedLocation;
         });
-        const {institutionId, handleRoomClick} = this.props;
+        const {handleRoomClick} = this.props;
 
         const formattedTime = {
             opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
@@ -94,16 +94,21 @@ class LocationsSection extends Component {
                     </ul>
                 </div>
                 {/*<button onClick={this.props}>{UI_TEXT.add}</button>*/}
-                <DeleteLocationModal institution={institutionId} locationId={locationId} />
+                <DeleteLocationModal
+                    institutionId={institutionId}
+                    locationId={locationId} />
             </section>
         );
     }
 
     render() {
+
+        let filledLocations = fillHolesIn(this.props.locations);
+
         return (
             <section className="col-xs-6">
                 <Select
-                    options={this.props.locations}
+                    options={filledLocations}
                     labelText={UI_TEXT.location}
                     valueChanged={this.changeLocation}
                     selected={this.state.selectedLocation}

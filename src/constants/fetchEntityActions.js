@@ -13,10 +13,5 @@ const rejectEntity = (type, error) => ({
 export const fetchEntities = (path, entity) => dispatch => {
     return Firebase.get(path)
         .then(entityList => dispatch(receiveEntity(entity.RECEIVE, entityList)))
-        .then(entityList => {
-            return entityList.filter((entity) => {
-                return entity !== null || undefined;
-            });
-        })
         .catch(error => dispatch(rejectEntity(entity.REJECT, error)));
 };
