@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
+import {browserHistory} from 'react-router';
 import Schedule from '../../schedule/schedule';
 import {fetchEntities} from '../../constants/fetchEntityActions';
 import {PATHS} from '../../constants/database';
+import {ROLE_TEACHER} from '../../constants/roles';
 import Firebase from '../../common/helpers/firebase';
 import './teacherWorkflow.css';
 
@@ -28,9 +30,16 @@ class TeacherWorkflow extends Component {
         this.getEvents();
     }
 
+    componentWillMount() {
+        if (this.props.loginData.role !== ROLE_TEACHER) {
+            browserHistory.push('/');
+        }
+    }
 
     getEvents() {
         const {institution, uuid} = this.props.loginData;
+        if (!institution || !uuid)
+            return;
         Firebase.get(PATHS.events)
             .then(events => {
                 const teacherEvents = [];
