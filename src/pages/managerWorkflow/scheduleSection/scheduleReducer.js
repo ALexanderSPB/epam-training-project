@@ -25,7 +25,7 @@ export default function schedule(state = initialState, action) {
                 }
             };
         case actionTypes.ADD_EVENT:
-            if(!state.events) state.events =[];
+            if (!state.events) state.events = [];
             return {
                 ...state,
                 events: [...state.events, payload]

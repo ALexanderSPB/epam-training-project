@@ -62,58 +62,53 @@ class ScheduleSection extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.schedule.lists) {
-            if (nextProps.schedule.lists.teachers)
-                this.setState({teachers: nextProps.schedule.lists.teachers});
-            if (nextProps.schedule.lists.locations)
-                this.setState({locations: nextProps.schedule.lists.locations});
-            if (nextProps.schedule.lists.groups)
-                this.setState({groups: nextProps.schedule.lists.groups});
-        };
+        if (!nextProps.schedule.lists) return;
+        for (let field of ['groups', 'locations', 'teachers']) {
+            if (nextProps.schedule.lists[field]) this.setState({[field]: nextProps.schedule.lists[field]});
+        }
     }
 
     addButtonHandleClick() {
         let date = new Date();
-        date.setMonth = this.state.month;
-        date.setDate = this.state.date;
-        date.setHours = this.state.hours;
+        date.setMonth(this.state.month);
+        date.setDate(this.state.date);
+        date.setHours(this.state.hours);
+        date.setMinutes(this.state.hours);
         let event = {
-            "uuid": this.state.name + date.getMilliseconds(),
-            "name": this.state.name,
-            "skills": [0, 2],
-            "timing": {
-                "duration": this.state.duration,
-                "beginning": date
+            uuid: this.state.name + date.getMilliseconds(),
+            name: this.state.name,
+            skills: [0, 2],
+            timing: {
+                duration: this.state.duration,
+                beginning: date
             },
-            "type": "",
-            "teacher": {
-                "uuid": "fyHa2LjckRTfuSfMRWAOdWAUAgG3",
-                "name": this.state.teacher
+            type: "",
+            teacher: {
+                uuid: "fyHa2LjckRTfuSfMRWAOdWAUAgG3",
+                name: this.state.teacher
             },
-            "location": {
-                "uuid": 0,
-                "name": this.state.location
+            location: {
+                uuid: 0,
+                name: this.state.location
             },
-            "room": this.state.room,
-            "group": {
-                "uuid": this.state.group + this.state.room,
-                "name": this.state.group
+            room: this.state.room,
+            group: {
+                uuid: this.state.group + this.state.room,
+                name: this.state.group
             }
         };
-        this.props.addEvent(event);
+        this.props.addEvent(event, this.props.institutionUuiD);
     }
 
     render() {
         const inputClasses = {
             label: 'col-xs-2',
             inputWrapper: 'col-xs-9',
-            error: 'col-xs-3 text-danger',
-            input: ''
+            error: 'col-xs-3 text-danger'
         };
         const selectClasses = {
             label: 'col-xs-3',
-            selectWrapper: 'col-xs-8',
-            select: ''
+            selectWrapper: 'col-xs-8'
         };
         const { sortType, sortOptions, events } = this.props.schedule;
         const { changeSortType, getEvents, editEventRequest, createEvent, institutionUuid } = this.props;
@@ -147,6 +142,12 @@ class ScheduleSection extends Component {
                                 classes={inputClasses}
                                 valueChanged={ v => this.setState({'hours': v}) }
                                 labelText="Hours"
+                                type="text"
+                            />
+                            <Input
+                                classes={inputClasses}
+                                valueChanged={ v => this.setState({'minutes': v}) }
+                                labelText="Minutes"
                                 type="text"
                             />
                             <Input

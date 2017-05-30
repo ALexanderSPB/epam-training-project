@@ -99,8 +99,8 @@ export const editEventRequest = (eventUuid) => {
     };
 };
 
-export const addEvent = (event) => {
-    Firebase.set(PATHS.events, event);
+export const addEvent = (event, institution) => {
+    Firebase.push(`${PATHS.events}${institution}/`, event)
     return {
         type: ADD_EVENT,
         payload: event
