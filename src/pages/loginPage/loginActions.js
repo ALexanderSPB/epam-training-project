@@ -2,12 +2,17 @@ import Firebase, {errorCodes} from '../../common/helpers/firebase';
 import {browserHistory} from 'react-router';
 import {ROLE_MANAGER, ROLE_TEACHER} from '../../constants/roles';
 
+export const LOG_OUT = 'LOG_OUT';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const CLEAR_ERROR = 'CLEAR_ERROR';
+
 export const LOGIN_ERROR_TYPES = {
     email: 'email',
     password: 'password'
 };
+
+export const logOut = () => ({type: LOG_OUT});
 
 export const loginSuccess = userData => ({
     type: LOGIN_SUCCESS,
@@ -22,15 +27,25 @@ const loginError = (error, field) => ({
     }
 });
 
+const clearError = (field) => ({
+    type: CLEAR_ERROR,
+    payload: {
+        field: field,
+    }
+});
+
 export const loginAttempt = (email, password) => dispatch => {
 
     if (!email || !email.trim()) {
         dispatch(loginError('please, enter valid email', LOGIN_ERROR_TYPES.email));
+    } else {
+        dispatch(clearError(LOGIN_ERROR_TYPES.email));
     }
+
     if (!password || !password.trim()) {
         dispatch(loginError('password is required', LOGIN_ERROR_TYPES.password));
-    }
-    else
+    } else {
+        dispatch(clearError(LOGIN_ERROR_TYPES.password));
         Firebase.signIn(email, password)
             .then(userData => {
                 dispatch(loginSuccess(userData));
@@ -58,4 +73,6 @@ export const loginAttempt = (email, password) => dispatch => {
                     dispatch(loginError(error.message, LOGIN_ERROR_TYPES.email));
                 }
             });
+    }
+
 };
