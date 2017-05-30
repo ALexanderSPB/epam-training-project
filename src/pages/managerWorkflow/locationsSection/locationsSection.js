@@ -97,7 +97,7 @@ class LocationsSection extends Component {
 
     render() {
         return (
-            <section className="col-xs-6">
+            <section className="col-xs-9">
                 <Select
                     options={this.props.locations}
                     labelText={UI_TEXT.location}

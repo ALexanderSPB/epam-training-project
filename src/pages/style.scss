@@ -5,6 +5,25 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
+
+    button {
+        &:not(:first-child) {
+            margin-left: 15px;
+        }
+        background-color: white;
+        border: 2px solid #39C2D7;
+        box-sizing: border-box;
+        text-transform: uppercase;
+        color: #39C2D7;
+        font: {
+            family: SourceSansProSemibold, sans-serif;
+            size: 16px;
+        }
+        padding: {
+            top: 4px;
+            bottom: 4px;
+        }
+    }
 }
 
 p, ul {
@@ -22,4 +41,16 @@ p, ul {
             color: #7F993A;
         }
     }
+}
+
+.common-input {
+    width: 100%;
+    padding: 0;
+    margin: 0 0 .5em;
+}
+
+.common-select {
+    margin-bottom: 1em;
+    width: 100%;
+    padding: 0;
 }

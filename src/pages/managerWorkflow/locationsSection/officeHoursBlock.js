@@ -69,7 +69,13 @@ export default class OfficeHoursBlock extends Component {
                     value={formattedTime.closing}
                     valueChanged={(value) => this.handleChange(value, timeNames.closing)}
                 />
-                <button disabled={!saveButtonEnabled} id="officeHoursBlock__SaveButton" onClick={this.handleSave.bind(this)}>{UI_TEXT.save}</button>
+                <button
+                    disabled={!saveButtonEnabled}
+                    id="officeHoursBlock__SaveButton"
+                    onClick={this.handleSave.bind(this)}
+                >
+                    {UI_TEXT.save}
+                </button>
             </div>
         );
     }
