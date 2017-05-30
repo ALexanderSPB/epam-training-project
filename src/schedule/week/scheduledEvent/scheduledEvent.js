@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import * as formats from '../../../constants/dateTimeFormats';
 import Edit from './modal/editEvent';
+import ViewEvent from './modal/viewEvent';
 
 export default function ScheduledEvent({uuid, name, teacher, location, room, date, top, height, isActive, isEditable}) {
     function getTime(date) {
@@ -22,7 +23,17 @@ export default function ScheduledEvent({uuid, name, teacher, location, room, dat
             </p>
             <p className="name">{name}</p>
             <p className="additional">{teacher}</p>
-            {isEditable ? <Edit uuid={uuid}/> : null}
+            {isEditable
+                ? <Edit uuid={uuid}/>
+                : <ViewEvent
+                    name={name}
+                    beginning={date}
+                    teacher={teacher}
+                    location={location}
+                    room={room}
+                    cancelFunction={() => alert('cancel') }
+                />
+            }
         </div>
     );
 }
