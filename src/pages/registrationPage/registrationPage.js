@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Input from '../../common/ui/input';
 import Select from '../../common/ui/select';
-import Loader from '../../common/ui/loader/loader'
+import Loader from '../../common/ui/loader/loader';
 import './registrationPage.css';
 import * as registrationActions from './registrationPageActions';
 
