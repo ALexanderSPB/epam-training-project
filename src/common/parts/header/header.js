@@ -26,7 +26,7 @@ class Header extends Component {
         return(
             <div
                 className="app-header__buttons">
-                <h4 className="my-schedule__header">
+                <h4 className="my-schedule__greeting">
                     Greetings, {this.props.userName}
                 </h4>
                 <button className="button log-out__button" onClick={this.handleClick}>
@@ -34,7 +34,7 @@ class Header extends Component {
                     <span className="glyphicon glyphicon-edit button__glyph"/>
                 </button>
             </div>
-        )
+        );
     }
 
     loggedOut() {

@@ -1,30 +1,34 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-// import moment from 'moment';
+import moment from 'moment';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Select from '../../../common/ui/select';
-// import OfficeHoursBlock from './officeHoursBlock';
-// import * as formats from '../../../constants/dateTimeFormats';
+import OfficeHoursBlock from './officeHoursBlock';
+import * as formats from '../../../constants/dateTimeFormats';
 import {fetchEntities} from '../../../constants/fetchEntityActions';
+import {saveTime} from './locationActions';
 import {PATHS} from '../../../constants/database';
 import {LOCATIONS} from '../../../constants/fetchActionsTypes';
 import EditRoomModal from './modals/editRoom';
+import AddLocationModal from './modals/addLocation';
 
 const UI_TEXT = {
     rooms: 'Rooms',
     add: 'Add',
+    addLocation: 'Add location',
     remove: 'Remove',
     location: 'Location'
 };
 
 const mapStateToProps = state => ({
-    institution: state.loginData.institution,
-    locations: state.locations,
+    institutionId: state.loginData.institution,
+    locations: state.locations
 });
 
 const mapDispatchToProps = dispatch => ({
     fetchEntities: bindActionCreators(fetchEntities, dispatch),
+    saveTime: bindActionCreators(saveTime, dispatch),
     dispatch,
 });
 
@@ -36,7 +40,7 @@ class LocationsSection extends Component {
     }
 
     componentWillMount() {
-        this.props.fetchEntities(`${PATHS.locations}/${this.props.institution}`, LOCATIONS);
+        this.props.fetchEntities(`${PATHS.locations}/${this.props.institutionId}`, LOCATIONS);
     }
 
     changeLocation(selected) {
@@ -44,43 +48,48 @@ class LocationsSection extends Component {
     }
 
     locationInfo() {
-        const {locations, institution} = this.props;
         const {selectedLocation} = this.state;
         if (selectedLocation === '') return;
 
+        const {locations} = this.props;
         let locationId = '';
-        const {name, address, /*timing,*/ rooms} = locations.find((loc, id)=> {
+
+        const {name, address, timing, rooms = []} = locations.find((loc, id) => {
             locationId = id;
             return loc.name === selectedLocation;
         });
-        // const {handleTimeChanged, handleRoomClick} = this.props;
-        //
-        // const formattedTime = {
-        //     opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
-        //     closing: moment(timing.closing, 'h').format(formats.hoursAndMinutes)
-        // };
+        const {institutionId, handleRoomClick} = this.props;
+
+        const formattedTime = {
+            opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
+            closing: moment(timing.closing, 'h').format(formats.hoursAndMinutes)
+        };
 
         return (
             <section>
                 <h2>{name}</h2>
                 <p>{address}</p>
-                {/*<OfficeHoursBlock*/}
-                    {/*formattedTime={formattedTime}*/}
-                    {/*changeTime={handleTimeChanged}*/}
-                {/*/>*/}
+                <OfficeHoursBlock
+                    formattedTime={formattedTime}
+                    saveTime={(time) => this.props.saveTime(time, institutionId, locationId)}
+                />
                 <div>
                     <p>{UI_TEXT.rooms}</p>
                     <button>{UI_TEXT.add}</button>
                     <ul>
                         {rooms.map((room, id) =>
-                            <li key={`${id}_${room.name}`} className="room">
+                            <li
+                                className="room"
+                                key={`${id}_${room.name}`}
+                                onClick={() => handleRoomClick(id)}
+                            >
                                 <span>name: {room.name}, capacity: {room.capacity}</span>
-                                <EditRoomModal room={room}
-                                               institution={institution}
-                                               reference={`${PATHS.locations}${institution}/${locationId}/rooms/${id}`}
+                                <EditRoomModal
+                                    room={room}
+                                    institution={institutionId}
+                                    reference={`${PATHS.locations}${institutionId}/${locationId}/rooms/${id}`}
                                 />
                             </li>)}
-
                     </ul>
                 </div>
                 {/*<button onClick={this.props}>{UI_TEXT.add}</button>*/}
@@ -92,17 +101,19 @@ class LocationsSection extends Component {
     render() {
         return (
             <section className="col-xs-6">
-                {/*<Select*/}
-                    {/*options={this.props.institutions}*/}
-                    {/*labelText={UI_TEXT.institution}*/}
-                    {/*valueChanged={this.changeInstitution}*/}
-                {/*/>*/}
                 <Select
                     options={this.props.locations}
                     labelText={UI_TEXT.location}
                     valueChanged={this.changeLocation}
+                    selected={this.state.selectedLocation}
                 />
                 {this.locationInfo()}
+                <AddLocationModal
+                    institutionId={this.props.institutionId}
+                    reference={`${PATHS.locations}${this.props.institutionId}`}
+                    redirectTo={(location) => this.setState({selectedLocation: location})}
+                />
+
             </section>
         );
     }
@@ -110,12 +121,10 @@ class LocationsSection extends Component {
 
 LocationsSection.propTypes = {
     fetchEntities: PropTypes.func.isRequired,
-    changeLocation: PropTypes.func,
-    handleTimeChanged: PropTypes.func,
+    institutionId: PropTypes.string.isRequired,
+    saveTime: PropTypes.func,
     handleRoomClick: PropTypes.func,
-    location: PropTypes.object,
-    locations: PropTypes.array,
-    institution: PropTypes.string,
+    locations: PropTypes.array
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationsSection);

@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import moment from 'moment';
 import Input from '../../../../common/ui/input';
 import Select from '../../../../common/ui/select';
 import Modal from '../../../../common/ui/modal/modalComponent';
 import {save} from './editEventActions';
+import * as formats from '../../../../constants/dateTimeFormats';
 
 const UI_TEXT = {
     name: 'Event name',
@@ -80,6 +82,15 @@ class EditEvent extends Component {
         }
     }
 
+    handleChangeBeginningTime(time) {
+        let newTime = moment(time, formats.eventBeginning);
+        if (newTime.isValid())
+            this.setState({timing: {
+                ...this.state.timing,
+                beginning: newTime.toDate() + ''
+            }});
+    }
+
     render() {
         const { teachers, locations, groups } = this.props.lists;
 
@@ -91,7 +102,7 @@ class EditEvent extends Component {
                 return;
             return (<Select
                 options={locationInfo.rooms}
-                valueChanged={ v => this.setState({'room': v}) }
+                valueChanged={ v => this.setState({room: v}) }
                 labelText={UI_TEXT.room}
             />);
         }
@@ -110,35 +121,38 @@ class EditEvent extends Component {
                     <Input
                         classes={classes}
                         labelText={UI_TEXT.name}
-                        valueChanged={ v => this.setState({'name': v}) }
+                        valueChanged={ v => this.setState({name: v}) }
                         defaultValue={this.state.name}
                     />
                     <Input
                         classes={classes}
                         labelText={UI_TEXT.beginning}
-                        valueChanged={ v => this.setState({'beginning': v}) }
-                        defaultValue={this.state.timing.beginning + ''}
+                        valueChanged={this.handleChangeBeginningTime.bind(this)}
+                        defaultValue={moment(this.state.timing.beginning).format(formats.eventBeginning)}
                     />
                     <Input
                         classes={classes}
                         labelText={UI_TEXT.duration}
-                        valueChanged={ v => this.setState({'duration': v}) }
+                        valueChanged={ v => this.setState({timing: {
+                            ...this.state.timing,
+                            duration: v
+                        }}) }
                         defaultValue={this.state.timing.duration + ''}
                     />
                     <Select
                         options={teachers}
-                        valueChanged={ v => this.setState({'teacher': {'name': v}}) }
+                        valueChanged={ v => this.setState({teacher: {name: v}}) }
                         labelText={UI_TEXT.teacher}
                     />
                     <Select
                         options={locations}
-                        valueChanged={ v => this.setState({'location': {'name': v}}) }
+                        valueChanged={ v => this.setState({location: {name: v}}) }
                         labelText={UI_TEXT.location}
                     />
                     {rooms.call(this)}
                     <Select
                         options={groups}
-                        valueChanged={ v => this.setState({'group': {'uuid': v}}) }
+                        valueChanged={ v => this.setState({group: {uuid: v}}) }
                         labelText={UI_TEXT.group}
                     />
                 </div>
