@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import moment from 'moment';
 import Select from '../../../common/ui/select';
 import Schedule from '../../../schedule/schedule';
 import {changeSortType, createEventRequest, getEvents, editEventRequest, loadSelectsOptions, addEvent} from './scheduleActions';
 import Modal from '../../../common/ui/modal/modalComponent';
 import Input from '../../../common/ui/input';
+import { eventBeginning } from '../../../constants/dateTimeFormats';
 
 const UI_TEXT = {
     addEvent: 'Add event',
@@ -69,35 +71,34 @@ class ScheduleSection extends Component {
     }
 
     addButtonHandleClick() {
-        let date = new Date();
-        date.setMonth(this.state.month);
-        date.setDate(this.state.date);
-        date.setHours(this.state.hours);
-        date.setMinutes(this.state.hours);
-        let event = {
-            uuid: this.state.name + date.getMilliseconds(),
-            name: this.state.name,
-            skills: [0, 2],
-            timing: {
-                duration: this.state.duration,
-                beginning: date
-            },
-            type: "",
-            teacher: {
-                uuid: "fyHa2LjckRTfuSfMRWAOdWAUAgG3",
-                name: this.state.teacher
-            },
-            location: {
-                uuid: 0,
-                name: this.state.location
-            },
-            room: this.state.room,
-            group: {
-                uuid: this.state.group + this.state.room,
-                name: this.state.group
-            }
-        };
-        this.props.addEvent(event, this.props.institutionUuiD);
+        let newTime = moment(this.state.beginning, eventBeginning);
+        if (!newTime.isValid()) this.setState({beginningError: 'Wrong Time'});
+        else {
+            let event = {
+                uuid: this.state.name + date.getMilliseconds(),
+                name: this.state.name,
+                skills: [0, 2],
+                timing: {
+                    duration: this.state.duration,
+                    beginning: newTime._d,
+                },
+                type: 'event',
+                teacher: {
+                    uuid: 'fyHa2LjckRTfuSfMRWAOdWAUAgG3',
+                    name: this.state.teacher
+                },
+                location: {
+                    uuid: 0,
+                    name: this.state.location
+                },
+                room: this.state.room,
+                group: {
+                    uuid: this.state.group + this.state.room,
+                    name: this.state.group
+                }
+            };
+            this.props.addEvent(event, this.props.institutionUuiD);
+        }
     }
 
     render() {
@@ -128,27 +129,10 @@ class ScheduleSection extends Component {
                             />
                             <Input
                                 classes={inputClasses}
-                                valueChanged={ v => this.setState({'month': v}) }
-                                labelText="Month"
+                                valueChanged={ v => this.setState({'beginning': v}) }
+                                labelText="Beginning"
                                 type="text"
-                            />
-                            <Input
-                                classes={inputClasses}
-                                valueChanged={ v => this.setState({'date': v}) }
-                                labelText="Date"
-                                type="text"
-                            />
-                            <Input
-                                classes={inputClasses}
-                                valueChanged={ v => this.setState({'hours': v}) }
-                                labelText="Hours"
-                                type="text"
-                            />
-                            <Input
-                                classes={inputClasses}
-                                valueChanged={ v => this.setState({'minutes': v}) }
-                                labelText="Minutes"
-                                type="text"
+                                error={this.state.beginningError}
                             />
                             <Input
                                 classes={inputClasses}
