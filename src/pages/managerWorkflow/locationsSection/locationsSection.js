@@ -10,13 +10,14 @@ import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {saveTime} from './locationActions';
 import {PATHS} from '../../../constants/database';
 import {LOCATIONS} from '../../../constants/fetchActionsTypes';
-import AddRoomModal from './modals/addRoom';
 import EditRoomModal from './modals/editRoom';
 import DeleteLocationModal from './modals/deleteLocationModal';
+import AddLocationModal from './modals/addLocation';
 
 const UI_TEXT = {
     rooms: 'Rooms',
     add: 'Add',
+    addLocation: 'Add location',
     remove: 'Remove',
     location: 'Location'
 };
@@ -54,11 +55,11 @@ class LocationsSection extends Component {
         const {locations} = this.props;
         let locationId = '';
 
-        const { name, address, timing, rooms } = locations.find((loc, id)=> {
+        const {name, address, timing, rooms = []} = locations.find((loc, id) => {
             locationId = id;
             return loc.name === selectedLocation;
         });
-        const { institutionId, handleRoomClick } = this.props;
+        const {institutionId, handleRoomClick} = this.props;
 
         const formattedTime = {
             opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
@@ -105,8 +106,15 @@ class LocationsSection extends Component {
                     options={this.props.locations}
                     labelText={UI_TEXT.location}
                     valueChanged={this.changeLocation}
+                    selected={this.state.selectedLocation}
                 />
                 {this.locationInfo()}
+                <AddLocationModal
+                    institutionId={this.props.institutionId}
+                    reference={`${PATHS.locations}${this.props.institutionId}`}
+                    redirectTo={(location) => this.setState({selectedLocation: location})}
+                />
+
             </section>
         );
     }
@@ -116,7 +124,7 @@ LocationsSection.propTypes = {
     fetchEntities: PropTypes.func.isRequired,
     institutionId: PropTypes.string.isRequired,
     saveTime: PropTypes.func,
-    handleRoomClick:  PropTypes.func,
+    handleRoomClick: PropTypes.func,
     locations: PropTypes.array
 };
 
