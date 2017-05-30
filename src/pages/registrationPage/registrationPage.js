@@ -6,7 +6,7 @@ import Input from '../../common/ui/input';
 import Select from '../../common/ui/select';
 import Loader from '../../common/ui/loader/loader';
 import './registrationPage.css';
-import * as registrationActions from './registrationPageActions';
+import {registrationGetLocations, registrationSubmit} from './registrationPageActions';
 
 class RegistrationPage extends Component {
     constructor(props, context) {
@@ -22,56 +22,62 @@ class RegistrationPage extends Component {
             passwordError: ''
         };
 
-        this.handleClick = (e) => {
-            e.preventDefault();
-            let error = false;
-            let emailError, nameError, passwordError;
-            if (!this.isValidEmail(this.state.email)) {
-                error = true;
-                emailError = 'Invalid E-Mail';
-            } else {
-                emailError = '';
-            }
-            if (this.state.name.length === 0) {
-                error = true;
-                nameError = 'Name is required';
-            } else {
-                nameError = '';
-            }
-            if (this.state.password.length < 7) {
-                error = true;
-                passwordError = 'Need > 6 symbols';
-            } else {
-                passwordError = '';
-            }
-
-            this.setState({emailError, nameError, passwordError});
-
-            if (error) return;
-
-            const {email, password, name, surname, location} = this.state;
-
-            this.props.registrationActions.registrationSubmit({
-                name: name + ' ' + surname,
-                email,
-                password,
-                location
-            });
-        };
-    }
-
-    componentDidMount() {
-        this.props.registrationActions.registrationGetLocations();
-    }
-
-    isValidEmail(email) {
-        let r = /^[\w.\d-_]+@[\w.\d-_]+\.\w{2,4}$/i;
-        return r.test(email);
-
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.setEmailError = this.setEmailError.bind(this);
+        this.setNameError = this.setNameError.bind(this);
+        this.setPasswordError = this.setPasswordError.bind(this);
+        this.hasErrors = this.hasErrors.bind(this);
     }
 
     handleChange(value, field) {
         this.setState({[field]: value});
+    }
+
+    handleClick() {
+        const emailError = this.setEmailError();
+        const nameError = this.setNameError();
+        const passwordError = this.setPasswordError();
+
+        this.setState({emailError, nameError, passwordError});
+
+        if (this.hasErrors) return;
+
+        const {email, password, name, surname, location} = this.state;
+        console.log('');
+        this.props.registrationSubmit({
+            name: name + ' ' + surname,
+            email,
+            password,
+            location
+        });
+    }
+
+    setEmailError() {
+        return !RegistrationPage.isValidEmail(this.state.email) ? 'Invalid E-Mail' : '';
+    }
+
+    setNameError() {
+        return this.state.name.length === 0 ? 'Name is required' : '';
+    }
+
+    setPasswordError() {
+        return this.state.password.length < 7 ? 'Password should be longer than 6 symbols' : '';
+    }
+
+    hasErrors() {
+        const {emailError, nameError, passwordError} = this.state;
+        return emailError !== '' && nameError !== '' && passwordError !== '';
+    }
+
+    componentDidMount() {
+        this.props.registrationGetLocations();
+    }
+
+    static isValidEmail(email) {
+        const r = /^[\w.\d-_]+@[\w.\d-_]+\.\w{2,4}$/i;
+        return r.test(email);
+
     }
 
     render() {
@@ -89,6 +95,7 @@ class RegistrationPage extends Component {
                                 input: 'registrationForm__input'
                             }}
                             valueChanged={ v => this.handleChange(v, 'email') }
+                            handleBlur={() => this.setState({emailError: this.setEmailError()})}
                             inputId="registrationPageInput0"
                             placeholder="email@smth.com"
                             labelText="E-mail"
@@ -103,6 +110,7 @@ class RegistrationPage extends Component {
                                 input: 'registrationForm__input'
                             }}
                             valueChanged={ v => this.handleChange(v, 'password') }
+                            handleBlur={() => this.setState({passwordError: this.setPasswordError()})}
                             inputId="registrationPageInput1"
                             placeholder="Type password"
                             labelText="Password"
@@ -117,6 +125,7 @@ class RegistrationPage extends Component {
                                 input: 'registrationForm__input'
                             }}
                             valueChanged={ v => this.handleChange(v, 'name') }
+                            handleBlur={() => this.setState({nameError: this.setNameError()})}
                             inputId="registrationPageInput2"
                             placeholder="Ivan"
                             labelText="Name"
@@ -143,13 +152,14 @@ class RegistrationPage extends Component {
                                 error: 'col-xs-3 text-danger',
                                 select: 'registrationForm__select'
                             }}
-                            valueChanged={ v => this.handleChange(this.props.locations[v].name, 'location') }
+                            valueChanged={ v => this.handleChange(this.props.locations.find(location => location.uuid === v).name, 'location')}
                             labelText="Location"
                             multiple={false}
                             options={this.props.locations}
                         />
                         <div className="registration__button">
                             <button
+                                type="button"
                                 ref="btn"
                                 disabled={ this.props.isLoading }
                                 className="btn btn-success registrationForm__submitBtn"
@@ -170,13 +180,15 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    registrationActions: bindActionCreators(registrationActions, dispatch)
+    registrationGetLocations: bindActionCreators(registrationGetLocations, dispatch),
+    registrationSubmit: bindActionCreators(registrationSubmit, dispatch)
 });
 
 RegistrationPage.propTypes = {
     isLoading: PropTypes.bool.isRequired,
-    registrationActions: PropTypes.object.isRequired,
     locations: PropTypes.array,
+    registrationSubmit: PropTypes.func,
+    registrationGetLocations: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegistrationPage);

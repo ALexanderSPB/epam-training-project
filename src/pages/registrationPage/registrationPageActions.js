@@ -1,37 +1,42 @@
 import Firebase from '../../common/helpers/firebase';
 import {loginSuccess} from '../loginPage/loginActions';
 import {browserHistory} from 'react-router';
-import {
-    REGISTRATION_SUBMIT,
-    REGISTRATION_SUBMIT_REQUEST,
-    REGISTRATION_GET_LOCATIONS,
-    REGISTRATION_LOCATIONS_REQUEST,
-} from './registrationPageActionTypes';
 import {ROLE_MANAGER, ROLE_TEACHER} from '../../constants/roles';
+import {
+    REGISTRATION_LOCATIONS_RESPONSE,
+    REGISTRATION_LOCATIONS_REQUEST,
+    REGISTRATION_SUBMIT_RESPONSE,
+    REGISTRATION_SUBMIT_REQUEST
+} from './registrationPageActionTypes';
+
+const locationsRequest = () => ({
+    type: REGISTRATION_LOCATIONS_REQUEST
+});
+
+const locationsResponse = (locations) => ({
+    type: REGISTRATION_LOCATIONS_RESPONSE,
+    value: locations
+});
+
+const registrationSubmitRequest = () => ({
+    type: REGISTRATION_SUBMIT_REQUEST,
+});
+
+const registrationSubmitResponse = () => ({
+    type: REGISTRATION_SUBMIT_RESPONSE,
+});
+
 
 export const registrationSubmit = (data) => {
     return (dispatch) => {
-        dispatch({
-            type: REGISTRATION_SUBMIT_REQUEST,
-            value: ''
-        });
+        dispatch(registrationSubmitRequest());
         Firebase.signUp(data.email, data.password, data.name, data.location)
             .then(result => {
                 alert('Registration success');
                 browserHistory.push('/');
-                dispatch({
-                    type: REGISTRATION_SUBMIT,
-                    value: result
-                });
-                const { name, role, location, institution } = result;
-                dispatch(loginSuccess({
-                    uid: result.uuid,
-                    name,
-                    role,
-                    location,
-                    institution
-                }));
-                switch (role) {
+                dispatch(registrationSubmitResponse());
+                dispatch(loginSuccess(result));
+                switch (result.role) {
                     case ROLE_MANAGER:
                         browserHistory.push('/manager/location');
                         break;
@@ -50,31 +55,23 @@ export const registrationSubmit = (data) => {
             });
     };
 };
-export const registrationGetLocations = () => {
-    return (dispatch) => {
-        dispatch({
-            type: REGISTRATION_LOCATIONS_REQUEST,
-            payload: ''
-        });
-        let insts = [];
-        Firebase.get('locations/')
-            .then(result => {
-                for (let inst in result) {
-                    if (result.hasOwnProperty(inst))
-                        result[inst].forEach(
-                            element => insts.push({
-                                uuid: insts.length,
-                                name: element.name
-                            })
-                        );
-                }
-                insts.push({uuid: insts.length, name: 'Another Location'});
-                dispatch({
-                    type: REGISTRATION_GET_LOCATIONS,
-                    value: insts
-                });
-            })
-// eslint-disable-next-line no-console
-            .catch(error => console.log(error));
-    };
+
+export const registrationGetLocations = () => (dispatch) => {
+    dispatch(locationsRequest());
+    Firebase.get('locations/')
+        .then(locations => {
+            const institutionIDs = Object.keys(locations);
+            const allLocations = institutionIDs.reduce((allLocations, institutionID) => {
+                const institutionLocations = locations[institutionID].map(location => ({
+                    uuid: `${institutionID}_${location.name.replace(/\s+/g, '_')}`,
+                    name: location.name,
+                }));
+                return [...allLocations, ...institutionLocations];
+            }, [{uuid: 'no-inst_location', name: 'Another Location'}]);
+
+            dispatch(locationsResponse(allLocations));
+        })
+        // eslint-disable-next-line no-console
+        .catch(error => console.log(error));
 };
+

@@ -1,7 +1,7 @@
 import {
-    REGISTRATION_GET_LOCATIONS,
+    REGISTRATION_SUBMIT_RESPONSE,
     REGISTRATION_LOCATIONS_REQUEST,
-    REGISTRATION_SUBMIT,
+    REGISTRATION_LOCATIONS_RESPONSE,
     REGISTRATION_SUBMIT_REQUEST
 } from './registrationPageActionTypes';
 
@@ -13,16 +13,9 @@ export default function registrationSubmit(state = {isLoading: true}, action) {
                 isLoading: true
             };
 
-        case REGISTRATION_SUBMIT:
+        case REGISTRATION_SUBMIT_RESPONSE:
             return {
                 ...state,
-                isLoading: false
-            };
-
-        case REGISTRATION_GET_LOCATIONS:
-            return {
-                ...state,
-                locations: action.value,
                 isLoading: false
             };
 
@@ -31,7 +24,14 @@ export default function registrationSubmit(state = {isLoading: true}, action) {
                 ...state,
                 isLoading: true
             };
-            
+
+        case REGISTRATION_LOCATIONS_RESPONSE:
+            return {
+                ...state,
+                locations: action.value,
+                isLoading: false
+            };
+
         default:
             return state;
     }
