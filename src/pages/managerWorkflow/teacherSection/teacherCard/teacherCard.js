@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import EditModal from '../modals/teacherCardEdit';
 
-const TeacherCard = ({name, institution, location, email, skills}) => {
+const TeacherCard = ({name, institution, location, email, skills, save}) => {
     return (
         <div className="col-xs-5 col-xs-offset-4 card-wrapper">
             <div className="panel panel-info teacherCard">
@@ -17,6 +18,13 @@ const TeacherCard = ({name, institution, location, email, skills}) => {
                     </ul>
                 </div>
             </div>
+            <EditModal
+                name={name}
+                email={email}
+                teacherSkills={skills}
+                selectedLocation={location}
+                save={save}
+            />
         </div>
     );
 };
@@ -26,7 +34,8 @@ TeacherCard.propTypes = {
     institution: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     skills: PropTypes.array.isRequired,
-    location: PropTypes.object,
+    location: PropTypes.string,
+    save: PropTypes.func
 };
 
 export default TeacherCard;
