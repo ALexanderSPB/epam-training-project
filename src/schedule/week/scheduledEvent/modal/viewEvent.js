@@ -32,7 +32,6 @@ class ViewEvent extends Component {
                 uuid: locationId,
                 name: location
             },
-            group,
             timing: {
                 beginning,
                 duration
@@ -41,9 +40,7 @@ class ViewEvent extends Component {
                 name: teacher,
                 uuid: teacherId
             },
-            uuid,
-            name,
-            room,
+            uuid, name, room, group,
             isActive: false
         };
        this.props.cancel(event, this.props.institution);
@@ -55,7 +52,7 @@ class ViewEvent extends Component {
                 openButtonTitle="view"
                 title="Event Inforamation"
                 footerButtons={[{
-                    text: "Cancel this event",
+                    text: 'Cancel this event',
                     type: 'danger',
                     onClick: this.handleClick.bind(this)
                 }]}
