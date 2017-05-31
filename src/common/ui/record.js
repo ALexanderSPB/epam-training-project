@@ -4,8 +4,12 @@ import PropTypes from 'prop-types';
 export default function Record({classes = {}, label, text}) {
     return (
         <div className={classes.wrapper}>
-            <label className={classes.label}>{label}</label>
-            <span className={classes.span}>{text}</span>
+            <label className={classes.label}>
+                {label}
+            </label>
+            <span className={classes.span}>
+                {text}
+            </span>
         </div>
     );
 }
