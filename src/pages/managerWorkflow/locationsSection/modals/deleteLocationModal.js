@@ -35,7 +35,7 @@ class DeleteLocationModal extends Component {
                     {
                         text: 'Cancel',
                         type: 'default',
-                        onClick: () => {console.log('Canceled');}
+                        onClick: () => {}
                     }
                 ]}
             >
