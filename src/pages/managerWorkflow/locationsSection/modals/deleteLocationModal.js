@@ -16,9 +16,9 @@ const mapDispatchToProps = dispatch => ({
 
 class DeleteLocationModal extends Component {
 
-    deleteCurrentLocation() {
-        const {institutionId, locationId, deleteLocation} = this.props;
-        deleteLocation(institutionId, locationId);
+    deleteCurrentLocation(redirectTo) {
+        const {institutionId, locationId, firstLocation, deleteLocation} = this.props;
+        deleteLocation(institutionId, locationId, firstLocation, redirectTo);
     }
 
     render() {
@@ -30,7 +30,7 @@ class DeleteLocationModal extends Component {
                     {
                         text: 'Delete',
                         type: 'danger',
-                        onClick: this.deleteCurrentLocation.bind(this)
+                        onClick: () => this.deleteCurrentLocation(this.props.redirectTo(this.props.firstLocation))
                     },
                     {
                         text: 'Cancel',
@@ -51,6 +51,8 @@ class DeleteLocationModal extends Component {
 DeleteLocationModal.propTypes = {
     institutionId: PropTypes.string.isRequired,
     locationId: PropTypes.number.isRequired,
+    firstLocation: PropTypes.string,
+    redirectTo: PropTypes.func,
     deleteLocation: PropTypes.func
 };
 

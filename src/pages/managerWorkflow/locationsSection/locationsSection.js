@@ -53,6 +53,8 @@ class LocationsSection extends Component {
         if (selectedLocation === '') return;
 
         const {locations} = this.props;
+        let firstLocation = locations[0].name;
+
         let locationId = '';
 
         const {name, address, timing, rooms = []} = locations.find((loc, id) => {
@@ -95,7 +97,10 @@ class LocationsSection extends Component {
                 {/*<button onClick={this.props}>{UI_TEXT.add}</button>*/}
                 <DeleteLocationModal
                     institutionId={institutionId}
-                    locationId={locationId} />
+                    locationId={locationId}
+                    firstLocation={firstLocation}
+                    redirectTo={(location) => this.setState({selectedLocation: location})}
+                />
             </section>
         );
     }
