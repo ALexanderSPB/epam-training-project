@@ -5,7 +5,7 @@ import {
     REGISTRATION_SUBMIT_REQUEST
 } from './registrationPageActionTypes';
 
-export default function registrationSubmit(state = {isLoading: true}, action) {
+export default function registration(state = {isLoading: true}, action) {
     switch (action.type) {
         case REGISTRATION_SUBMIT_REQUEST:
             return {

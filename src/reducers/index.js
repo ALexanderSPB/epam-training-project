@@ -6,7 +6,7 @@ import teachers from '../pages/teacherWorkflow/teachers';
 import skills from '../pages/managerWorkflow/teacherSection/skills';
 import loginData from '../pages/loginPage/loginReducer';
 import locations from '../pages/managerWorkflow/locationsSection/locations';
-import registrationSubmit from '../pages/registrationPage/registrationPageReducers';
+import registration from '../pages/registrationPage/registrationPageReducers';
 import schedule from '../pages/managerWorkflow/scheduleSection/scheduleReducer';
 
 export const rootReducer = combineReducers({
@@ -16,7 +16,7 @@ export const rootReducer = combineReducers({
     teachers,
     skills,
     loginData,
-    registrationSubmit,
+    registration,
     schedule,
     locations
 });

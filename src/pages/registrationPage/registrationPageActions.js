@@ -1,6 +1,7 @@
 import Firebase from '../../common/helpers/firebase';
 import {loginSuccess} from '../loginPage/loginActions';
 import {browserHistory} from 'react-router';
+import {fillHolesIn} from '../../common/helpers/arrays';
 import {ROLE_MANAGER, ROLE_TEACHER} from '../../constants/roles';
 import {
     REGISTRATION_LOCATIONS_RESPONSE,
@@ -32,7 +33,6 @@ export const registrationSubmit = (data) => {
         dispatch(registrationSubmitRequest());
         Firebase.signUp(data.email, data.password, data.name, data.location)
             .then(result => {
-                alert('Registration success');
                 browserHistory.push('/');
                 dispatch(registrationSubmitResponse());
                 dispatch(loginSuccess(result));
@@ -47,9 +47,9 @@ export const registrationSubmit = (data) => {
                         browserHistory.push('/');
                 }
             })
-            // eslint-disable-next-line no-console
             .catch(error => {
-                alert('Something went wrong! \n' + error);
+            // eslint-disable-next-line no-console
+                console.error(error);
                 browserHistory.push('/');
                 browserHistory.push('/registration');
             });
@@ -62,7 +62,7 @@ export const registrationGetLocations = () => (dispatch) => {
         .then(locations => {
             const institutionIDs = Object.keys(locations);
             const allLocations = institutionIDs.reduce((allLocations, institutionID) => {
-                const institutionLocations = locations[institutionID].map(location => ({
+                const institutionLocations = fillHolesIn(locations[institutionID]).map(location => location === null ? null : ({
                     uuid: `${institutionID}_${location.name.replace(/\s+/g, '_')}`,
                     name: location.name,
                 }));
@@ -72,6 +72,6 @@ export const registrationGetLocations = () => (dispatch) => {
             dispatch(locationsResponse(allLocations));
         })
         // eslint-disable-next-line no-console
-        .catch(error => console.log(error));
+        .catch(console.error);
 };
 

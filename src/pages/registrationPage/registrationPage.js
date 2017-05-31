@@ -41,10 +41,10 @@ class RegistrationPage extends Component {
 
         this.setState({emailError, nameError, passwordError});
 
-        if (this.hasErrors) return;
+        if (this.hasErrors()) return;
 
         const {email, password, name, surname, location} = this.state;
-        console.log('');
+
         this.props.registrationSubmit({
             name: name + ' ' + surname,
             email,
@@ -175,8 +175,8 @@ class RegistrationPage extends Component {
 }
 
 const mapStateToProps = state => ({
-    isLoading: state.registrationSubmit.isLoading,
-    locations: state.registrationSubmit.locations
+    isLoading: state.registration.isLoading,
+    locations: state.registration.locations
 });
 
 const mapDispatchToProps = dispatch => ({
