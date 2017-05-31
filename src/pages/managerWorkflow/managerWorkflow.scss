@@ -1,8 +1,8 @@
-$epam-soft-highlight: #EDFBFC;
-$epam-dark-gray: #666666;
+@import "../../constants/colors";
 
 .manager-workflow {
     padding: 1em 0;
+    min-height: calc(100vh - 120px);
 
     & .modal__open-button {
         width: 8em;
@@ -12,7 +12,7 @@ $epam-dark-gray: #666666;
     h2 {
         margin-top: 3rem;
         margin-bottom: 0;
-        color: #39C2D7;
+        color: $main-bright-color;
         font: {
             family: OswaldRegular, sans-serif;
             size: 3rem;

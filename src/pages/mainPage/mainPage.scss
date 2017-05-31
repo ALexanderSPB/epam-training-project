@@ -1,27 +1,37 @@
+@import "../../constants/colors";
+
 .siteBody {
     &--mainPage {
-        padding: {
-            bottom: 3%;
-        }
-
         .schedule {
             margin-top: .5em;
             margin-bottom: 2em;
         }
-
 
         @media(min-width: 992px) {
             .common-select__label {
                 text-align: right;
             }
         }
-
     }
     &__introduction {
-        background-color: #39C2D7;
-        box-shadow: 1px 1px 10px #CCC;
+        background-color: $main-bright-color;
+        box-shadow: 1px 1px 10px $epam-light-gray;
         padding: 3%;
     }
+}
+
+.siteBody__searchSchedulePart {
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.searchSchedulePart__schedulePart {
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .introduction {
@@ -32,9 +42,9 @@
 
 .instruction {
     &__contentCol {
-        border: 1px solid #CCC;
+        border: 1px solid $epam-light-gray;
         border-radius: 4px;
-        box-shadow: 1px 1px 10px #CCC;
+        box-shadow: 1px 1px 10px $epam-light-gray;
         margin: {
             top: 3%;
             bottom: 3%;
@@ -48,11 +58,11 @@
 .contentCol {
     &__icon {
         font-size: 9em;
-        color: #39C2D7;
+        color: $main-bright-color;
         border: {
-            left: 1px solid #CCC;
-            right: 1px solid #CCC;
-            bottom: 1px solid #CCC;
+            left: 1px solid $epam-light-gray;
+            right: 1px solid $epam-light-gray;
+            bottom: 1px solid $epam-light-gray;
             radius: 0 0 4px 4px;
         }
     }

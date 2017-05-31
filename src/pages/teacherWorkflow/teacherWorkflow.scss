@@ -1,15 +1,21 @@
+@import "../../constants/colors";
+
 .siteBody {
     font-family: SourceSansProLight, sans-serif;
 
     &__description {
         padding: 3%;
-        background-color: #39C2D7;
-        box-shadow: 1px 1px 10px #CCC;
-        color: #FFFFFF;
+        background-color: $main-bright-color;
+        box-shadow: 1px 1px 10px $epam-light-gray;
+        color: $lightest-text-color;
         font-size: 24px;
         @media (max-width: 768px) {
             font-size: 20px;
         }
+    }
+
+    .schedule {
+        margin-top: 1em;
     }
 
     .instructions {

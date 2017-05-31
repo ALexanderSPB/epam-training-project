@@ -1,19 +1,21 @@
+@import "../../constants/colors";
+
 .registration {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    background: #464547 url("../../../public/img/line.png") no-repeat 95%;
+    background: $dark-background-color url("../../../public/img/line.png") no-repeat 95%;
 
     &__form {
         padding: 4%;
         margin: 0 10%;
-        border: 1px solid #666;
+        border: 1px solid $epam-dark-gray;
         border-radius: 4px;
-        box-shadow: inset 3px 3px 80px #666;
+        box-shadow: inset 3px 3px 80px $epam-dark-gray;
 
         & span {
-            color: #fff;
+            color: $lightest-text-color;
         }
     }
     &__button {
@@ -24,7 +26,7 @@
 .registrationForm {
     &__label {
         font-size: 1.2em;
-        color: #FFF;
+        color: $lightest-text-color;
     }
 
     &__input {
@@ -39,12 +41,12 @@
     &__submitBtn {
         font-size: 1.2em !important;
         font-weight: 600;
-        background-color: #7F993A;
+        background-color: $additional-bright-color;
         border-radius: 0 !important;
         color: white;
 
         &:hover, &:focus {
-            background-color: #A3C644;
+            background-color: $additional-bright-color;
             color: white !important;
         }
     }

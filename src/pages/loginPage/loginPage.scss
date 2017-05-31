@@ -1,18 +1,20 @@
+@import "../../constants/colors";
+
 .siteBody {
   &--loginPage {
-      background: #464547 url("../../../public/img/line.png") no-repeat 95%;
+      background: $dark-background-color url("../../../public/img/line.png") no-repeat 95%;
       padding: calc(45vh - 120px) 0;
   }
 
   &__loginForm {
     padding: 4%;
     margin: 0 10%;
-    border: 1px solid #666;
+    border: 1px solid $epam-dark-gray;
     border-radius: 4px;
-    box-shadow: inset 3px 3px 80px #666;
+    box-shadow: inset 3px 3px 80px $epam-dark-gray;
 
     & span {
-      color: #fff;
+      color: $lightest-text-color;
     }
   }
 }
@@ -20,7 +22,7 @@
 .loginForm {
   &__label {
     font-size: 1.2em;
-    color: #FFF;
+    color: $lightest-text-color;
   }
 
   &__input {
@@ -30,18 +32,18 @@
   &__submitBtn {
     font-size: 1.2em !important;
     font-weight: 600;
-    background-color: #7F993A;
+    background-color: $additional-bright-color;
     border-radius: 0 !important;
-    color: white;
+    color: $lightest-text-color;
 
     &:hover, &:focus {
-      background-color: #A3C644;
-      color: white !important;
+      background-color: $additional-bright-color;
+      color: $lightest-text-color !important;
     }
   }
 
   &__registrationComment {
-    color: #FFF;
+    color: $lightest-text-color;
     font-size: 1.2em !important;
     display: inline-block;
     margin: auto;
