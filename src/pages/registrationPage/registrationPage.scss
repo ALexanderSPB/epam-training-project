@@ -1,9 +1,9 @@
 .registration {
-    background-color: #464547;
-    background-image: url("../../../public/img/line.png");
-    background-repeat: no-repeat;
-    background-position: 95%;
-    padding: 11% 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background: #464547 url("../../../public/img/line.png") no-repeat 95%;
 
     &__form {
         padding: 4%;
@@ -17,7 +17,8 @@
         }
     }
     &__button {
-        margin-left: 85%;
+        width: 5em;
+        margin-left: auto;
     }
 }
 .registrationForm {
@@ -32,6 +33,7 @@
 
     &__select {
         margin-left: 3%;
+        margin-bottom: 1em;
     }
 
     &__submitBtn {

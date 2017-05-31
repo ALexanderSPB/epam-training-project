@@ -75,71 +75,51 @@ class RegistrationPage extends Component {
     }
 
     render() {
+        const classesInput = {
+            label: 'col-xs-3 col-sm-2 registrationForm__label',
+            inputWrapper: 'col-xs-9 col-sm-10',
+            error: 'col-xs-3 text-danger',
+            input: 'registrationForm__input'
+        };
+
         return (
             this.props.isLoading
                 ? <Loader/>
-                : <section className="registration row">
+                : <section className="registration row siteBody">
                 <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <form className="registration__form form-horizontal">
                         <Input
-                            classes={{
-                                label: 'col-xs-2 registrationForm__label',
-                                inputWrapper: 'col-xs-7',
-                                error: 'col-xs-3 text-danger',
-                                input: 'registrationForm__input'
-                            }}
+                            classes={classesInput}
                             valueChanged={ v => this.handleChange(v, 'email') }
-                            inputId="registrationPageInput0"
                             placeholder="email@smth.com"
                             labelText="E-mail"
-                            type="text"
                             error={this.state.emailError}
                         />
                         <Input
-                            classes={{
-                                label: 'col-xs-2 registrationForm__label',
-                                inputWrapper: 'col-xs-7',
-                                error: 'col-xs-3 text-danger',
-                                input: 'registrationForm__input'
-                            }}
+                            classes={classesInput}
                             valueChanged={ v => this.handleChange(v, 'password') }
-                            inputId="registrationPageInput1"
                             placeholder="Type password"
                             labelText="Password"
                             type="password"
                             error={this.state.passwordError}
                         />
                         <Input
-                            classes={{
-                                label: 'col-xs-2 registrationForm__label',
-                                inputWrapper: 'col-xs-7',
-                                error: 'col-xs-3 text-danger',
-                                input: 'registrationForm__input'
-                            }}
+                            classes={classesInput}
                             valueChanged={ v => this.handleChange(v, 'name') }
-                            inputId="registrationPageInput2"
                             placeholder="Ivan"
                             labelText="Name"
-                            type="text"
                             error={this.state.nameError}
                         />
                         <Input
-                            classes={{
-                                label: 'col-xs-2 registrationForm__label',
-                                inputWrapper: 'col-xs-7',
-                                error: 'col-xs-3 text-danger',
-                                input: 'registrationForm__input'
-                            }}
+                            classes={classesInput}
                             valueChanged={ v => this.handleChange(v, 'surname') }
-                            inputId="registrationPageInput3"
                             placeholder="Ivanov"
                             labelText="Surname"
-                            type="text"
                         />
                         <Select
                             classes={{
-                                label: 'col-xs-2 registrationForm__label',
-                                selectWrapper: 'col-xs-7',
+                                label: 'col-xs-3 col-sm-2 registrationForm__label',
+                                selectWrapper: 'col-xs-9 col-sm-10',
                                 error: 'col-xs-3 text-danger',
                                 select: 'registrationForm__select'
                             }}

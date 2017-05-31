@@ -1,10 +1,7 @@
 .siteBody {
   &--loginPage {
-    background-color: #464547;
-    background-image: url("../../../public/img/line.png");
-    background-repeat: no-repeat;
-    background-position: 95%;
-    padding: calc(45vh - 120px) 0;
+      background: #464547 url("../../../public/img/line.png") no-repeat 95%;
+      padding: calc(45vh - 120px) 0;
   }
 
   &__loginForm {

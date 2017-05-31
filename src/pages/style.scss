@@ -2,14 +2,10 @@
 
 body {
     position: relative;
-    min-height: 100vh;
-    margin: 0;
     padding: 0;
+    margin: 0 0 60px;
 
     button {
-        &:not(:first-child) {
-            margin-left: 15px;
-        }
         background-color: white;
         border: 2px solid #39C2D7;
         box-sizing: border-box;
@@ -26,13 +22,16 @@ body {
     }
 }
 
+#root>div {
+    min-height: 100vh;
+}
+
 p, ul {
     font-family: SourceSansProLight, sans-serif;
 }
 
 .siteBody {
-    margin-bottom: 60px;
-
+    min-height: calc(100vh - 120px);
     a {
         color: #1A9CB0;
 

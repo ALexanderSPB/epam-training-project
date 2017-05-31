@@ -1,4 +1,59 @@
+$epam-soft-highlight: #EDFBFC;
+$epam-dark-gray: #666666;
+
 .manager-workflow {
-    display: flex;
     padding: 1em 0;
+
+    & .modal__open-button {
+        width: 8em;
+        margin-left: calc(50% - 4em);
+    }
+
+    h2 {
+        margin-top: 3rem;
+        margin-bottom: 0;
+        color: #39C2D7;
+        font: {
+            family: OswaldRegular, sans-serif;
+            size: 3rem;
+        }
+    }
+}
+
+.location-info {
+    &>div {
+        margin: 1em 0;
+        padding: 0 0 .7em;
+        border: solid 3px $epam-soft-highlight;
+        border-radius: 4px;
+
+        h3 {
+            margin: 0 0 1em;
+            padding: .5em 2%;
+            font-size: 1.6rem;
+            color: $epam-dark-gray;
+            background-color: $epam-soft-highlight;
+        }
+
+        & .control-label {
+            color: $epam-dark-gray;
+            font-weight: normal;
+            text-align: right;
+        }
+
+        #officeHoursBlock__SaveButton {
+            width: 4em;
+            margin-left: calc(100% - 6em);
+        }
+
+        .modal__open-button {
+            width: auto;
+        }
+
+        .room {
+            .modal__open-button {
+                margin-left: .5em;
+            }
+        }
+    }
 }
