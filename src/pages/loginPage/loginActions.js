@@ -22,15 +22,15 @@ export const loginSuccess = userData => ({
 const loginError = (error, field) => ({
     type: LOGIN_ERROR,
     payload: {
-        field: field,
-        error: error
+        field,
+        error
     }
 });
 
-const clearError = (field) => ({
+const clearError = field => ({
     type: CLEAR_ERROR,
     payload: {
-        field: field,
+        field,
     }
 });
 
@@ -54,6 +54,7 @@ export const loginAttempt = (email, password) => dispatch => {
                         browserHistory.push('/manager/location');
                         break;
                     }
+
                     case ROLE_TEACHER: {
                         browserHistory.push('/teacher');
                         break;
@@ -68,11 +69,9 @@ export const loginAttempt = (email, password) => dispatch => {
             .catch(error => {
                 if (error.code === errorCodes.auth.wrongPassword) {
                     dispatch(loginError(error.message, LOGIN_ERROR_TYPES.password));
-                }
-                else {
+                } else {
                     dispatch(loginError(error.message, LOGIN_ERROR_TYPES.email));
                 }
             });
     }
-
 };
