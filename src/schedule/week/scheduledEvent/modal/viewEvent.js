@@ -25,7 +25,7 @@ const classes = {
 class ViewEvent extends Component {
 
     handleClick() {
-        const {uuid, name, beginning, duration, teacher, teacherId,  location, locationId, group, room} = this.props;
+        const {uuid, name, beginning, duration, teacher, teacherId, location, locationId, group, room} = this.props;
 
         let event = {
             location: {
@@ -47,6 +47,7 @@ class ViewEvent extends Component {
     }
 
     render() {
+        const {name, beginning, duration, group, teacher, location, room} = this.props;
         return (
             <Modal
                 openButtonTitle="view"
@@ -59,13 +60,13 @@ class ViewEvent extends Component {
             >
                 <div className="row">
                     <form className="form-horizontal">
-                        <Record classes={classes} text={this.props.name} label="Name"/>
-                        <Record classes={classes} text={moment(this.props.beginning).format(formats.eventBeginning)} label="Beginning"/>
-                        <Record classes={classes} text={this.props.duration} label="Duration"/>
-                        <Record classes={classes} text={this.props.group.name} label="Group"/>
-                        <Record classes={classes} text={this.props.teacher} label="Teacher"/>
-                        <Record classes={classes} text={this.props.location} label="Location"/>
-                        <Record classes={classes} text={this.props.room} label="Room"/>
+                        <Record classes={classes} text={name} label="Name"/>
+                        <Record classes={classes} text={moment(beginning).format(formats.eventBeginning)} label="Beginning"/>
+                        <Record classes={classes} text={duration} label="Duration"/>
+                        <Record classes={classes} text={group.name} label="Group"/>
+                        <Record classes={classes} text={teacher} label="Teacher"/>
+                        <Record classes={classes} text={location} label="Location"/>
+                        <Record classes={classes} text={room} label="Room"/>
                     </form>
                 </div>
             </Modal>

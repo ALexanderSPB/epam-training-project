@@ -22,3 +22,8 @@ export const LOCATIONS = {
     RECEIVE: 'RECEIVE_LOCATIONS',
     REJECT: 'REJECT_LOCATIONS',
 };
+
+export const EVENTS = {
+    RECEIVE: 'RECEIVE_EVENTS',
+    REJECT: 'REJECT_EVENTS'
+}
