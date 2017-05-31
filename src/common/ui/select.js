@@ -12,6 +12,7 @@ export default function Select({classes = defaultClasses, labelText = '', valueC
     function handleChange(event) {
         valueChanged(event.target.value);
     }
+
     const selectedOption = options.find(opt => (opt.name === selected || opt.uuid === selected));
 
     return (

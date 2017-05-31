@@ -10,14 +10,14 @@ import {fetchEntities} from '../../../constants/fetchEntityActions';
 import {saveTime} from './locationActions';
 import {PATHS} from '../../../constants/database';
 import {LOCATIONS} from '../../../constants/fetchActionsTypes';
-import {fillHolesIn} from '../../../common/helpers/arrays';
 import EditRoomModal from './modals/editRoom';
 import DeleteLocationModal from './modals/deleteLocationModal';
 import AddLocationModal from './modals/addLocation';
+import AddRoomModal from './modals/addRoom';
+import {fillHolesIn} from '../../../common/helpers/arrays';
 
 const UI_TEXT = {
     rooms: 'Rooms',
-    add: 'Add',
     addLocation: 'Add location',
     location: 'Location'
 };
@@ -52,7 +52,7 @@ class LocationsSection extends Component {
         const {selectedLocation} = this.state;
         if (selectedLocation === '') return;
 
-        const {locations} = this.props;
+        const {locations, institutionId} = this.props;
         let firstLocation = locations[0].name;
 
         let locationId = '';
@@ -61,7 +61,7 @@ class LocationsSection extends Component {
             locationId = id;
             return loc.name === selectedLocation;
         });
-        const {institutionId, handleRoomClick} = this.props;
+        const filledRooms = fillHolesIn(rooms);
 
         const formattedTime = {
             opening: moment(timing.opening, 'h').format(formats.hoursAndMinutes),
@@ -77,13 +77,16 @@ class LocationsSection extends Component {
                 />
                 <div>
                     <p>{UI_TEXT.rooms}</p>
-                    {/*<button>{UI_TEXT.add}</button>*/}
+                    <AddRoomModal
+                        rooms={filledRooms}
+                        locationId={locationId}
+                        institutionId={institutionId}
+                    />
                     <ul>
-                        {rooms.map((room, id) =>
-                            <li
+                        {filledRooms.map((room, id) =>
+                            room === null ? null : <li
                                 className="room"
                                 key={`${id}_${room.name}`}
-                                onClick={() => handleRoomClick(id)}
                             >
                                 <span>name: {room.name}, capacity: {room.capacity}</span>
                                 <EditRoomModal
@@ -91,7 +94,8 @@ class LocationsSection extends Component {
                                     institution={institutionId}
                                     reference={`${PATHS.locations}${institutionId}/${locationId}/rooms/${id}`}
                                 />
-                            </li>)}
+                            </li>
+                        )}
                     </ul>
                 </div>
                 {/*<button onClick={this.props}>{UI_TEXT.add}</button>*/}
@@ -123,7 +127,6 @@ class LocationsSection extends Component {
                     reference={`${PATHS.locations}${this.props.institutionId}`}
                     redirectTo={(location) => this.setState({selectedLocation: location})}
                 />
-
             </section>
         );
     }
@@ -133,7 +136,6 @@ LocationsSection.propTypes = {
     fetchEntities: PropTypes.func.isRequired,
     institutionId: PropTypes.string.isRequired,
     saveTime: PropTypes.func,
-    handleRoomClick: PropTypes.func,
     locations: PropTypes.array
 };
 
