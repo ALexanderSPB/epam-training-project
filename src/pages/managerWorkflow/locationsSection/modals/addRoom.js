@@ -6,37 +6,39 @@ import {save} from './addRoomActions';
 import {connect} from 'react-redux';
 import Input from '../../../../common/ui/input';
 
-const mapStateToProps = state => ({
-    institution : state.loginData.institution
-});
-
 const mapDispatchToProps = dispatch => ({
     save: bindActionCreators(save, dispatch),
     dispatch,
 });
 
 class AddRoomModal extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+        this.saveRoom = this.saveRoom.bind(this);
+    }
 
     saveRoom() {
         const {name, capacity} = this.state;
-        this.props.save({name, capacity}, this.props.institution, this.props.locationId);
+        const {save, institutionId, rooms, locationId} = this.props;
+        save([...rooms, {name, capacity}], institutionId, locationId);
     }
 
     render() {
         return (
             <Modal
                 openButtonTitle="Add room"
-                footerButtons={[{text: 'save', type: 'success', onClick: this.saveRoom.bind(this)}]}
+                footerButtons={[{text: 'save', type: 'success', onClick: this.saveRoom}]}
             >
                 <div>
                     <Input
                         labelText="Name:"
-                        valueChanged={e => this.setState({name: e.target.value})}
+                        valueChanged={value => this.setState({name: value})}
                     />
                     <Input
                         labelText="Capacity:"
                         type="number"
-                        valueChanged={e => this.setState({capacity: e.target.value})}
+                        valueChanged={value => this.setState({capacity: value})}
                     />
                 </div>
             </Modal>
@@ -45,9 +47,10 @@ class AddRoomModal extends Component {
 }
 
 AddRoomModal.propTypes = {
-    save: PropTypes.func.isRequired,
-    institution: PropTypes.string.isRequired,
-    locationId: PropTypes.string.isRequired
+    rooms: PropTypes.array.isRequired,
+    locationId: PropTypes.number.isRequired,
+    save: PropTypes.func,
+    institutionId: PropTypes.string,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddRoomModal);
+export default connect(null, mapDispatchToProps)(AddRoomModal);

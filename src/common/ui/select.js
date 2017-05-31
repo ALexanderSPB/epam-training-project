@@ -12,6 +12,7 @@ export default function Select({classes = defaultClasses, labelText = '', valueC
     function handleChange(event) {
         valueChanged(event.target.value);
     }
+
     const selectedOption = options.find(opt => (opt.name === selected || opt.uuid === selected));
 
     return (
@@ -27,8 +28,9 @@ export default function Select({classes = defaultClasses, labelText = '', valueC
                     value={selectedOption && (selectedOption.name || selectedOption.uuid)}
                 >
                     <option hidden={true}/>
-                    {options.map((option, index) => <option key={`${index}_${option.uuid || option.name}`}
-                                                            value={option.uuid || option.name}>{option.name}</option>)}
+                    {options.map((option, index) => option === null ? null :
+                        <option key={`${index}_${option.uuid || option.name}`}
+                                value={option.uuid || option.name}>{option.name}</option>)}
                 </select>
             </div>
         </div>
