@@ -37,10 +37,12 @@ export default function Select({classes = defaultClasses, labelText = '', valueC
                     value={selectedOption && (selectedOption.name || selectedOption.uuid)}
                 >
                     <option hidden={true}/>
-                    {options.map((option, index) => <option key={`${index}_${option.uuid || option.name || option}`}
-                                                            value={option.uuid || option.name || option}>
-                        {option.name || option}
-                    </option>)}
+                    {options.map((option, index) => option === null
+                        ? null
+                        :<option key={`${index}_${option.uuid || option.name || option}`}
+                                 value={option.uuid || option.name || option}>
+                            {option.name || option}
+                        </option>)}
                 </select>
             </div>
         </div>
