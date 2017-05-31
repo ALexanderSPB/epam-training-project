@@ -23,10 +23,14 @@ export default function Week({officeHours, events, canUserEdit}) {
                 uuid={event.uuid}
                 name={event.name}
                 teacher={event.teacher.name}
+                teacherId={event.teacher.uuid}
                 location={event.location.name}
+                locationId={event.location.uuid}
                 room={event.room}
                 date={new Date(event.timing.beginning)}
                 top={(new Date(event.timing.beginning).getHours() - openingHour) * cellHeight}
+                duration={event.timing.duration}  
+                group={event.group}
                 height={event.timing.duration * cellHeight}
                 isActive={true}
                 isEditable={canUserEdit}
