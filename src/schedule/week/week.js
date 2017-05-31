@@ -13,7 +13,8 @@ export default function Week({officeHours, events, canUserEdit}) {
     });
 
     events.forEach(event => {
-        eventsByDay[new Date(event.timing.beginning).getDay()].push(event);
+        const day = new Date(event.timing.beginning).getDay();
+        eventsByDay[day > 0 ? day - 1 : 6].push(event);
     });
 
     function eventsOfDay(events, openingHour, cellHeight) {
@@ -28,7 +29,7 @@ export default function Week({officeHours, events, canUserEdit}) {
                 date={new Date(event.timing.beginning)}
                 top={(new Date(event.timing.beginning).getHours() - openingHour) * cellHeight}
                 height={event.timing.duration * cellHeight}
-                isActive={true}
+                isActive={event.isActive}
                 isEditable={canUserEdit}
             />
         );
