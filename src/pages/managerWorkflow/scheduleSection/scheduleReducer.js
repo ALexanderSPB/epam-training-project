@@ -29,7 +29,7 @@ export default function schedule(state = initialState, action) {
             return {
                 ...state,
                 events: [...state.events, payload]
-            }
+            };
         default:
             return state;
     }

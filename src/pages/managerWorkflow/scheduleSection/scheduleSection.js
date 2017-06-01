@@ -38,7 +38,8 @@ const institutionTiming = {
 const mapStateToProps = state => ({
     schedule: state.schedule,
     institutionUuid: state.loginData.institution || 'inst0', //tmp test string 'inst0'
-    locations: state.locations
+    locations: state.locations,
+    teachers: state.teachers
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -78,8 +79,7 @@ class ScheduleSection extends Component {
     }
 
     addButtonHandleClick() {
-        // let teacherUuid = this.props.schedule.lists.teachers.find( (element) => element.name === this.state.teacher).uuid;
-        // console.log(teacherUuid);
+        let teacherUuid = this.props.teachers.find( t => t.name === this.state.teacher).uuid;
         let groupName = this.props.schedule.lists.groups.find( (element) => element.uuid === this.state.group).name;
         let locationUuid = this.props.locations.findIndex( (element) => element.name === this.state.location);
         let newTime = moment(this.state.beginning, eventBeginning);
@@ -91,11 +91,11 @@ class ScheduleSection extends Component {
                 skills: [0, 2],
                 timing: {
                     duration: this.state.duration,
-                    beginning: newTime._d,
+                    beginning: newTime.toDate() + ''
                 },
                 type: 'event',
                 teacher: {
-                    uuid: this.state.teacher,
+                    uuid: teacherUuid,
                     name: this.state.teacher
                 },
                 location: {
@@ -108,7 +108,7 @@ class ScheduleSection extends Component {
                     name: groupName
                 }
             };
-            this.props.addEvent(event, this.props.institutionUuiD);
+            this.props.addEvent(event, this.props.institutionUuid, this.props.schedule.events.length);
         }
     }
 
@@ -123,65 +123,10 @@ class ScheduleSection extends Component {
             selectWrapper: 'col-xs-8'
         };
         const { sortType, sortOptions, events } = this.props.schedule;
-        const { changeSortType, getEvents, editEventRequest, createEvent, institutionUuid } = this.props;
+        const { changeSortType, getEvents, editEventRequest, institutionUuid } = this.props;
 
         return (
             <section>
-                <Modal openButtonTitle={UI_TEXT.addEvent}
-                       title="Add new event"
-                       footerButtons={[{text: 'Add event', type: 'success', onClick: this.addButtonHandleClick }]}>
-                    <section className="row">
-                        <form className="form-horizontal">
-                            <Input
-                                classes={inputClasses}
-                                valueChanged={ v => this.setState({'name': v}) }
-                                labelText="Name"
-                                type="text"
-                            />
-                            <Input
-                                classes={inputClasses}
-                                valueChanged={ v => this.setState({'beginning': v}) }
-                                labelText="Beginning"
-                                type="text"
-                                error={this.state.beginningError}
-                            />
-                            <Input
-                                classes={inputClasses}
-                                valueChanged={ v => this.setState({'duration': v}) }
-                                labelText="Duration"
-                                type="text"
-                            />
-                            <Select
-                                classes={selectClasses}
-                                valueChanged={ v => this.setState({'teacher': v}) }
-                                options={this.state.teachers}
-                                labelText="Teacher"
-                                type="text"
-                            />
-                            <Select
-                                classes={selectClasses}
-                                valueChanged={ v => this.setState({'group': v}) }
-                                options={this.state.groups}
-                                labelText="Group"
-                                type="text"
-                            />
-                            <Select
-                                classes={selectClasses}
-                                options={this.state.locations}
-                                valueChanged={ v => this.setState({'location': v}) }
-                                labelText="Location"
-                                type="text"
-                                error=""
-                            />
-                            <Input
-                                classes={inputClasses}
-                                valueChanged={ v => this.setState({'room': v}) }
-                                labelText="Room"
-                                type="text"
-                            />
-                        </form>
-                    </section>
-                </Modal>
                 <Select
                     labelText={UI_TEXT.sortBy}
                     options={SORT_EVENTS_OPTIONS}
@@ -204,6 +149,54 @@ class ScheduleSection extends Component {
                     />
                     : null
                 }
+                <Modal openButtonTitle={UI_TEXT.addEvent}
+                       title="Add new event"
+                       footerButtons={[{text: 'Add event', type: 'success', onClick: this.addButtonHandleClick }]}>
+                    <section className="row">
+                        <form className="form-horizontal">
+                            <Input
+                                classes={inputClasses}
+                                valueChanged={ v => this.setState({'name': v}) }
+                                labelText="Name"
+                            />
+                            <Input
+                                classes={inputClasses}
+                                valueChanged={ v => this.setState({'beginning': v}) }
+                                labelText="Beginning"
+                                error={this.state.beginningError}
+                            />
+                            <Input
+                                classes={inputClasses}
+                                valueChanged={ v => this.setState({'duration': v}) }
+                                labelText="Duration"
+                                type="number"
+                            />
+                            <Select
+                                classes={selectClasses}
+                                valueChanged={ v => this.setState({'teacher': v}) }
+                                options={this.state.teachers}
+                                labelText="Teacher"
+                            />
+                            <Select
+                                classes={selectClasses}
+                                valueChanged={ v => this.setState({'group': v}) }
+                                options={this.state.groups}
+                                labelText="Group"
+                            />
+                            <Select
+                                classes={selectClasses}
+                                options={this.state.locations}
+                                valueChanged={ v => this.setState({'location': v}) }
+                                labelText="Location"
+                            />
+                            <Input
+                                classes={inputClasses}
+                                valueChanged={ v => this.setState({'room': v}) }
+                                labelText="Room"
+                            />
+                        </form>
+                    </section>
+                </Modal>
             </section>
         );
     }
@@ -218,6 +211,9 @@ ScheduleSection.propTypes = {
     loadSelectsOptions: PropTypes.func.isRequired,
     getEvents: PropTypes.func,
     fetchEntities: PropTypes.func,
+    addEvent: PropTypes.func,
+    locations: PropTypes.array,
+    teachers: PropTypes.array
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScheduleSection);
