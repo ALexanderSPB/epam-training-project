@@ -85,7 +85,7 @@ class LoginPage extends Component {
                         <div className="row">
                             <div className="col-xs-4">
                                 <button className="btn loginForm__submitBtn">
-                                    Log in
+                                    Sign in
                                 </button>
                             </div>
                             <div className="col-xs-8 text-right">
