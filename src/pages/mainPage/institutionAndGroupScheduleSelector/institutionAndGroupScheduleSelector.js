@@ -66,8 +66,8 @@ class InstitutionAndGroupScheduleSelector extends Component {
         const {institutions, groups} = this.props;
 
         return (
-            <section className="row siteBody__searchSchedulePart">
-                <div className="row searchSchedulePart__selectionPart">
+            <section className="siteBody__searchSchedulePart">
+                <div className="searchSchedulePart__selectionPart">
                     <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
                         <Select
                             options={institutions}
@@ -85,7 +85,7 @@ class InstitutionAndGroupScheduleSelector extends Component {
                     </div>
                 </div>
                 { events !== undefined
-                    ? <div className="row searchSchedulePart__schedulePart">
+                    ? <div className="searchSchedulePart__schedulePart">
                         <div className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
                             <Shedule
                                 events={events}

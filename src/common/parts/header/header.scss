@@ -1,7 +1,9 @@
-$epam-green: #A3C644;
+@import "../../../constants/colors";
 
 .app-header {
   height: 60px;
+  padding: 0;
+  margin: 0;
 
   @media(min-width: 992px) {
     padding-left: 5.35% !important;
@@ -75,8 +77,8 @@ $epam-green: #A3C644;
       &:not(:first-child) {
         margin-left: 15px;
       }
-      background-color: white;
-      border: 2px solid $epam-green;
+      background-color: $common-background-color;
+      border: 2px solid $additional-bright-color;
       box-sizing: border-box;
       text-transform: uppercase;
       font: {
@@ -89,7 +91,7 @@ $epam-green: #A3C644;
       }
 
       .button__text, .button__glyph {
-        color: $epam-green;
+        color: $additional-bright-color;
       }
 
       @media not (min-width: 768px) {
@@ -115,9 +117,9 @@ $epam-green: #A3C644;
        margin-right: 5%;
      }
     .sign-up__button {
-      background-color: $epam-green;
+      background-color: $additional-bright-color;
       .button__text, .button__glyph {
-        color: white;
+        color: $common-background-color;
       }
     }
   }
@@ -125,7 +127,8 @@ $epam-green: #A3C644;
 .link {
     margin: 5%;
 }
+
 .linkText {
     text-decoration: none;
-    color: black;
+    color: $common-text-color;
 }
