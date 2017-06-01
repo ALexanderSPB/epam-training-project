@@ -5,6 +5,9 @@ import {connect} from 'react-redux';
 import Select from '../../../common/ui/select';
 import Schedule from '../../../schedule/schedule';
 import {changeSortType, createEventRequest, getEvents, editEventRequest, loadSelectsOptions} from './scheduleActions';
+import {TEACHERS} from '../../../constants/fetchActionsTypes';
+import {fetchEntities} from '../../../constants/fetchEntityActions';
+import {PATHS} from '../../../constants/database';
 
 const UI_TEXT = {
     addEvent: 'Add event',
@@ -39,10 +42,17 @@ const mapDispatchToProps = dispatch => ({
     getEvents: bindActionCreators(getEvents, dispatch),
     editEventRequest: bindActionCreators(editEventRequest, dispatch),
     loadSelectsOptions: bindActionCreators(loadSelectsOptions, dispatch),
+    fetchEntities: bindActionCreators(fetchEntities, dispatch),
     dispatch,
 });
 
 class ScheduleSection extends Component {
+
+    constructor(props) {
+        super(props);
+        const {users} = PATHS;
+        props.fetchEntities(users, TEACHERS);
+    }
 
     componentWillMount() {
         this.props.loadSelectsOptions(this.props.institutionUuid);
@@ -89,7 +99,8 @@ ScheduleSection.propTypes = {
     schedule: PropTypes.object.isRequired,
     institutionUuid: PropTypes.string.isRequired,
     loadSelectsOptions: PropTypes.func.isRequired,
-    getEvents: PropTypes.func
+    getEvents: PropTypes.func,
+    fetchEntities: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ScheduleSection);
