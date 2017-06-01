@@ -6,28 +6,27 @@ import Schedule from '../../schedule/schedule';
 import {fetchEntities} from '../../constants/fetchEntityActions';
 import {PATHS} from '../../constants/database';
 import Firebase from '../../common/helpers/firebase';
+import {getEvents} from './teacherWorkflowActions';
 import './teacherWorkflow.css';
 
 const mapStateToProps = state => ({
     loginData: state.loginData,
+    events: state.teacherEvents.events,
+    officeHours: state.teacherEvents.institution
 });
 
 const mapDispatchToProps = dispatch => ({
     fetchEntities: bindActionCreators(fetchEntities, dispatch),
+    getEvents: bindActionCreators(getEvents, dispatch),
     dispatch,
 });
 
 class TeacherWorkflow extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            events: [],
-        };
-
-        this.getEvents();
+        const {institution, uuid} = this.props.loginData;
+        this.props.getEvents(institution, uuid);
     }
-
 
     getEvents() {
         const {institution, uuid} = this.props.loginData;
@@ -49,7 +48,7 @@ class TeacherWorkflow extends Component {
     }
 
     render() {
-        const {events, officeHours} = this.state;
+        const {events, officeHours} = this.props;
         return (
             <section className="siteBody siteBody--teacherPage row">
                 <section className="siteBody siteBody__description col-xs-12">

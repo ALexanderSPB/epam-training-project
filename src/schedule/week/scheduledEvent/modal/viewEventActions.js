@@ -1,9 +1,9 @@
 import Firebase from '../../../../common/helpers/firebase';
 import {PATHS} from '../../../../constants/database';
-import {fetchEntities} from '../../../../constants/fetchEntityActions'
+import {getEvents} from '../../../../pages/teacherWorkflow/teacherWorkflowActions';
 import {EVENTS} from '../../../../constants/fetchActionsTypes';
 
-export const cancel = (event, institution) => dispatch => {
+export const cancel = (event, institution, loginUuid) => dispatch => {
     Firebase.get(PATHS.events)
         .then(events => events[institution].findIndex(element => element.uuid === event.uuid)
         )
@@ -12,5 +12,5 @@ export const cancel = (event, institution) => dispatch => {
             return currentEventIndex;
         })
         .then(currentEventIndex =>
-            dispatch(fetchEntities(PATHS.events + (institution || 'inst0') + '/' + currentEventIndex, EVENTS)));
+            dispatch(getEvents(institution, loginUuid )));
 };

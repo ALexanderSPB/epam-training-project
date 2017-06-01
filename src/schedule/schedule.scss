@@ -1,6 +1,7 @@
 $color-grid: #ddd;
 $color-event: #eee;
-
+$bgcolor-active-event: #30f42b;
+$color-active-event: #000;
 .schedule {
   .bg-table {
     width: 100%;
@@ -42,7 +43,10 @@ $color-event: #eee;
         opacity: 0;
     }
   }
-
+  .event--active {
+      background-color: $bgcolor-active-event;
+      color: $color-active-event;
+  }
   .text-center {
     margin: 0;
   }

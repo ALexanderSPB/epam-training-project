@@ -17,25 +17,29 @@ export default function Week({officeHours, events, canUserEdit}) {
     });
 
     function eventsOfDay(events, openingHour, cellHeight) {
-        return events.map(event =>
-            <ScheduledEvent
-                key={event.uuid}
-                uuid={event.uuid}
-                name={event.name}
-                teacher={event.teacher.name}
-                teacherId={event.teacher.uuid}
-                location={event.location.name}
-                locationId={event.location.uuid}
-                room={event.room}
-                date={new Date(event.timing.beginning)}
-                top={(new Date(event.timing.beginning).getHours() - openingHour) * cellHeight}
-                duration={event.timing.duration}  
-                group={event.group}
-                height={event.timing.duration * cellHeight}
-                isActive={true}
-                isEditable={canUserEdit}
-            />
-        );
+        return events.map(event => {
+            if (event.isActive === undefined) event.isActive = true;
+            return (
+                <ScheduledEvent
+                    key={event.uuid}
+                    uuid={event.uuid}
+                    name={event.name}
+                    teacher={event.teacher.name}
+                    teacherId={event.teacher.uuid}
+                    location={event.location.name}
+                    locationId={event.location.uuid}
+                    room={event.room}
+                    date={new Date(event.timing.beginning)}
+                    beginning={event.timing.beginning}
+                    top={(new Date(event.timing.beginning).getHours() - openingHour) * cellHeight}
+                    duration={event.timing.duration}
+                    group={event.group}
+                    height={event.timing.duration * cellHeight}
+                    isActive={event.isActive}
+                    isEditable={canUserEdit}
+                />
+            );
+        });
     }
 
     function timeColumn(opening, closing, cellHeight) {

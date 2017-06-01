@@ -5,7 +5,7 @@ import * as formats from '../../../constants/dateTimeFormats';
 import Edit from './modal/editEvent';
 import ViewEvent from './modal/viewEvent';
 
-export default function ScheduledEvent({uuid, name, teacher, teacherId, location, locationId, group, duration, room, date, top, height, isActive, isEditable}) {
+export default function ScheduledEvent({uuid, name, teacher, teacherId, location, locationId, group, duration, room, beginning, date, top, height, isActive, isEditable}) {
     function getTime(date) {
         return moment(date).format(formats.hoursAndMinutes);
     }
@@ -28,7 +28,8 @@ export default function ScheduledEvent({uuid, name, teacher, teacherId, location
                 : <ViewEvent
                     uuid={uuid}
                     name={name}
-                    beginning={date}
+                    beginning={beginning}
+                    date={date}
                     teacher={teacher}
                     teacherId={teacherId}
                     location={location}
@@ -36,6 +37,7 @@ export default function ScheduledEvent({uuid, name, teacher, teacherId, location
                     room={room}
                     group={group}
                     duration={duration}
+                    isActive={isActive}
                 />
             }
         </div>
@@ -52,6 +54,7 @@ ScheduledEvent.propTypes = {
     teacher: PropTypes.string.isRequired,
     teacherId: PropTypes.string,
     date: PropTypes.object.isRequired,
+    beginning: PropTypes.string.isRequired,
     top: PropTypes.number.isRequired,
     duration: PropTypes.number,
     group: PropTypes.object,
