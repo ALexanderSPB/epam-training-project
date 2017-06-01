@@ -5,7 +5,7 @@ import TimeGrid from './timeGrid';
 import ScheduledEvent from './scheduledEvent/scheduledEvent';
 import {daysOfWeek, scheduleCellHeight} from '../../constants/scheduleOptions';
 
-export default function Week({officeHours, events, canUserEdit}) {
+export default function Week({officeHours, events, canUserEdit, userRole}) {
     const tableHeight = scheduleCellHeight * (officeHours.closing - officeHours.opening);
 
     let eventsByDay = [];
@@ -38,6 +38,7 @@ export default function Week({officeHours, events, canUserEdit}) {
                     height={event.timing.duration * cellHeight}
                     isActive={event.isActive}
                     isEditable={canUserEdit}
+                    userRole={userRole}
                 />
             );
         });

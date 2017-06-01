@@ -78,6 +78,7 @@ class TeacherWorkflow extends Component {
                         ? <Schedule
                             events={events}
                             officeHours={officeHours}
+                            userRole={ROLE_TEACHER}
                         />
                         : null
                     }

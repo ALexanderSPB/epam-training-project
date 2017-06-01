@@ -4,8 +4,9 @@ import moment from 'moment';
 import * as formats from '../../../constants/dateTimeFormats';
 import Edit from './modal/editEvent';
 import ViewEvent from './modal/viewEvent';
+import {ROLE_TEACHER} from '../../../constants/roles';
 
-export default function ScheduledEvent({uuid, name, teacher, teacherId, location, locationId, group, duration, room, beginning, date, top, height, isActive, isEditable}) {
+export default function ScheduledEvent({uuid, name, teacher, teacherId, location, locationId, group, duration, room, beginning, date, top, height, isActive, isEditable, userRole}) {
     function getTime(date) {
         return moment(date).format(formats.hoursAndMinutes);
     }
@@ -25,7 +26,10 @@ export default function ScheduledEvent({uuid, name, teacher, teacherId, location
             <p className="additional">{teacher}</p>
             {isEditable
                 ? <Edit uuid={uuid}/>
-                : <ViewEvent
+                : null
+            }
+            {(userRole === ROLE_TEACHER)
+                ? <ViewEvent
                     uuid={uuid}
                     name={name}
                     beginning={beginning}
@@ -39,6 +43,7 @@ export default function ScheduledEvent({uuid, name, teacher, teacherId, location
                     duration={duration}
                     isActive={isActive}
                 />
+                : null
             }
         </div>
     );
