@@ -6,7 +6,7 @@ import {deleteLocation} from './deleteLocationAction';
 import {connect} from 'react-redux';
 
 const mapStateToProps = state => ({
-    institution : state.loginData.institution
+    institution: state.loginData.institution
 });
 
 const mapDispatchToProps = dispatch => ({

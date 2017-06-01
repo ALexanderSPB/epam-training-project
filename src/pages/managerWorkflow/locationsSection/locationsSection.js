@@ -54,9 +54,8 @@ class LocationsSection extends Component {
 
         const {locations, institutionId} = this.props;
 
-        let filledLocations = locations.filter((loc) => {
-            return loc !== null;
-        });
+        const filledLocations = locations.filter(loc => loc !== null);
+
         let firstLocation = filledLocations[0].name;
 
         let locationId = '';
@@ -116,10 +115,8 @@ class LocationsSection extends Component {
 
     render() {
 
-        let filledLocations = fillHolesIn(this.props.locations);
-        let notNullLocations = filledLocations.filter((loc) => {
-            return loc !== null;
-        });
+        let filledLocationsToSelect = fillHolesIn(this.props.locations);
+        const notNullLocations = filledLocationsToSelect.filter((loc) => loc !== null);
 
         return (
             <section className="col-xs-9">
