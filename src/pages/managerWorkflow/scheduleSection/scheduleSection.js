@@ -34,7 +34,8 @@ const institutionTiming = {
 
 const mapStateToProps = state => ({
     schedule: state.schedule,
-    institutionUuid: state.loginData.institution || 'inst0' //tmp test string 'inst0'
+    institutionUuid: state.loginData.institution || 'inst0', //tmp test string 'inst0'
+    locations: state.locations
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -71,6 +72,10 @@ class ScheduleSection extends Component {
     }
 
     addButtonHandleClick() {
+        // let teacherUuid = this.props.schedule.lists.teachers.find( (element) => element.name === this.state.teacher).uuid;
+        // console.log(teacherUuid);
+        let groupName = this.props.schedule.lists.groups.find( (element) => element.uuid === this.state.group).name;
+        let locationUuid = this.props.locations.findIndex( (element) => element.name === this.state.location);
         let newTime = moment(this.state.beginning, eventBeginning);
         if (!newTime.isValid()) this.setState({beginningError: 'Wrong Time'});
         else {
@@ -88,13 +93,13 @@ class ScheduleSection extends Component {
                     name: this.state.teacher
                 },
                 location: {
-                    uuid: 0,
+                    uuid: locationUuid,
                     name: this.state.location
                 },
                 room: this.state.room,
                 group: {
-                    uuid: this.state.group + this.state.room,
-                    name: this.state.group
+                    uuid: this.state.group,
+                    name: groupName
                 }
             };
             this.props.addEvent(event, this.props.institutionUuiD);
