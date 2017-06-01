@@ -89,7 +89,7 @@ class ScheduleSection extends Component {
                 },
                 type: 'event',
                 teacher: {
-                    uuid: 'fyHa2LjckRTfuSfMRWAOdWAUAgG3',
+                    uuid: this.state.teacher,
                     name: this.state.teacher
                 },
                 location: {
