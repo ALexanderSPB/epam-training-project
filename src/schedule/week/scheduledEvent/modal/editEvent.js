@@ -51,6 +51,7 @@ class EditEvent extends Component {
                 uuid: group.uuid,
                 name: this.props.lists.groups.find(g => g.uuid === group.uuid)
             },
+            isActive: true,
             timing,
             teacher,
             uuid,
