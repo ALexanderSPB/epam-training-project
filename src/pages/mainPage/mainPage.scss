@@ -3,6 +3,18 @@
         padding: {
             bottom: 3%;
         }
+
+        .schedule {
+            margin-top: .5em;
+        }
+
+
+        @media(min-width: 992px) {
+            .common-select__label {
+                text-align: right;
+            }
+        }
+
     }
     &__introduction {
         background-color: #39C2D7;

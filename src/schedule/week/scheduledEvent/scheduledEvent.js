@@ -18,10 +18,10 @@ export default function ScheduledEvent({uuid, name, teacher, teacherId, location
                 height: height + 'px'
             }}
         >
+            <p className="name">{name}</p>
             <p className="additional">
                 {`${getTime(date)} ${room}, ${location}`}
             </p>
-            <p className="name">{name}</p>
             <p className="additional">{teacher}</p>
             {isEditable
                 ? <Edit uuid={uuid}/>

@@ -2,14 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default function Select({classes = {}, labelText = '', valueChanged, options, selectId, multiple = false, selected = ''}) {
+const defaultClasses =  {
+    wrapper: 'common-select',
+    label: 'common-select__label col-xs-12 col-md-3',
+    selectWrapper: 'col-xs-12 col-md-9'
+};
+
+export default function Select({classes = defaultClasses, labelText = '', valueChanged, options, selectId, multiple = false, selected = ''}) {
     function handleChange(event) {
         valueChanged(event.target.value);
     }
+
     const selectedOption = options.find(opt => (opt.name === selected || opt.uuid === selected));
 
     return (
-        <div className={classNames(classes.wrapper)}>
+        <div className={'container-fluid ' + classNames(classes.wrapper)}>
             <label className={classNames(classes.label)} htmlFor={selectId}>
                 {labelText}
             </label>
@@ -21,8 +28,9 @@ export default function Select({classes = {}, labelText = '', valueChanged, opti
                     value={selectedOption && (selectedOption.name || selectedOption.uuid)}
                 >
                     <option hidden={true}/>
-                    {options.map((option, index) => <option key={`${index}_${option.uuid || option.name}`}
-                                                            value={option.uuid || option.name}>{option.name}</option>)}
+                    {options.map((option, index) => option === null ? null :
+                        <option key={`${index}_${option.uuid || option.name}`}
+                                value={option.uuid || option.name}>{option.name}</option>)}
                 </select>
             </div>
         </div>

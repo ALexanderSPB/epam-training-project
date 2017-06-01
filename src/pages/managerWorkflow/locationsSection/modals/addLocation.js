@@ -7,7 +7,7 @@ import Modal from '../../../../common/ui/modal/modalComponent';
 import {save} from './addLocationActions';
 import * as formats from '../../../../constants/dateTimeFormats';
 import Input from '../../../../common/ui/input';
-import OfficeHoursBlock from '../officeHoursBlock';
+import EditHoursBlock from '../editHoursBlock';
 import {saveTime} from '../locationActions';
 
 const mapStateToProps = state => ({
@@ -44,7 +44,11 @@ class AddLocationModal extends Component {
         return (
             <Modal
                 openButtonTitle="Add location"
-                footerButtons={[{text: 'save', type: 'success', onClick: () => this.saveLocation(() => this.props.redirectTo(name))}]}
+                footerButtons={[{
+                    text: 'save',
+                    type: 'success',
+                    onClick: () => this.saveLocation(() => this.props.redirectTo(name))
+                }]}
             >
                 <div>
                     <Input
@@ -55,7 +59,7 @@ class AddLocationModal extends Component {
                         labelText="Name:"
                         valueChanged={value => this.setState({name: value})}
                     />
-                    <OfficeHoursBlock
+                    <EditHoursBlock
                         formattedTime={formattedTime}
                         labelText="Office hours:"
                         saveTime={(time) => this.setState({timing: time})}

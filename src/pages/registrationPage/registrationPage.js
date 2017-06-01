@@ -65,7 +65,7 @@ class RegistrationPage extends Component {
     }
 
     isValidEmail(email) {
-        let r = /^[\w\.\d-_]+@[\w\.\d-_]+\.\w{2,4}$/i;
+        let r = /^[\w.\d-_]+@[\w.\d-_]+\.\w{2,4}$/i;
         return r.test(email);
 
     }

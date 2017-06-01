@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import TimeGrid from './timeGrid';
 import ScheduledEvent from './scheduledEvent/scheduledEvent';
 import {daysOfWeek, scheduleCellHeight} from '../../constants/scheduleOptions';
@@ -13,7 +14,7 @@ export default function Week({officeHours, events, canUserEdit}) {
     });
 
     events.forEach(event => {
-        eventsByDay[new Date(event.timing.beginning).getDay()].push(event);
+        eventsByDay[moment(event.timing.beginning).isoWeekday() - 1].push(event);
     });
 
     function eventsOfDay(events, openingHour, cellHeight) {
