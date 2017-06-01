@@ -43,8 +43,6 @@ class EditEvent extends Component {
     handleSave() {
         const {uuid, name, timing, teacher, location, group, room} = this.state;
 
-        console.log(this.state, this.props.teachers.find(t => t.name === teacher.name));
-
         let event = {
             location: {
                 uuid: this.props.lists.locations.findIndex(l => l.name === location.name),
