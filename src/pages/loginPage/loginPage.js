@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Input from '../../common/ui/input';
 import {loginAttempt} from './loginActions';
+import {ROUTE_PATHS} from '../../constants/routes';
 import './loginPage.css';
 
 const mapStateToProps = state => ({
@@ -85,12 +86,12 @@ class LoginPage extends Component {
                         <div className="row">
                             <div className="col-xs-4">
                                 <button className="btn loginForm__submitBtn">
-                                    Log in
+                                    Sign in
                                 </button>
                             </div>
                             <div className="col-xs-8 text-right">
                                 <p className="loginForm__registrationComment">
-                                    No account? <Link to="/">Register now</Link>
+                                    No account? <Link to={ROUTE_PATHS.registration}>Register now</Link>
                                 </p>
                             </div>
                         </div>
