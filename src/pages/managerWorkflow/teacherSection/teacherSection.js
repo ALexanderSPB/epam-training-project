@@ -7,6 +7,7 @@ import TeacherCard from '../../managerWorkflow/teacherSection/teacherCard/teache
 import {SKILLS, TEACHERS} from '../../../constants/fetchActionsTypes';
 import {PATHS} from '../../../constants/database';
 import Input from '../../../common/ui/input';
+import {saveTeacher} from './teacherActions';
 
 const mapStateToProps = state => ({
     teachers: state.teachers,
@@ -14,6 +15,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    saveTeacher: bindActionCreators(saveTeacher, dispatch),
     fetchEntities: bindActionCreators(fetchEntities, dispatch),
     dispatch,
 });
@@ -51,7 +53,7 @@ class TeacherSection extends Component {
                     (teachers === undefined || skills === undefined)
                         ? null
                         : teachers.map(teacher => ({...teacher, skills: teacher.skills.map(skillID => skills[skillID])}))
-                            .map(teacher => <TeacherCard key={teacher.uuid} {...teacher}/>)
+                            .map(teacher => <TeacherCard key={teacher.uuid} save={(data) => this.props.saveTeacher(data, teacher, skills)} {...teacher}/>)
                 }
             </section>
         );
@@ -61,6 +63,7 @@ class TeacherSection extends Component {
 TeacherSection.propTypes = {
     fetchEntities: PropTypes.func,
     teachers: PropTypes.array,
+    saveTeacher: PropTypes.func,
     skills: PropTypes.array,
 };
 

@@ -18,6 +18,20 @@
             size: 3rem;
         }
     }
+
+    & .card-wrapper {
+        position: relative;
+
+        & .modal__open-button {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+        }
+    }
 }
 
 .location-info {

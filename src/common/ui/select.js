@@ -10,9 +10,18 @@ const defaultClasses =  {
 
 export default function Select({classes = defaultClasses, labelText = '', valueChanged, options, selectId, multiple = false, selected = ''}) {
     function handleChange(event) {
-        valueChanged(event.target.value);
+        if (multiple) {
+            let result = [];
+            for (let opt of event.target.options) {
+                if (opt.selected) {
+                    result.push(opt.value);
+                }
+            }
+            valueChanged(result);
+        }
+        else
+            valueChanged(event.target.value);
     }
-
     const selectedOption = options.find(opt => (opt.name === selected || opt.uuid === selected));
 
     return (
@@ -28,9 +37,12 @@ export default function Select({classes = defaultClasses, labelText = '', valueC
                     value={selectedOption && (selectedOption.name || selectedOption.uuid)}
                 >
                     <option hidden={true}/>
-                    {options.map((option, index) => option === null ? null :
-                        <option key={`${index}_${option.uuid || option.name}`}
-                                value={option.uuid || option.name}>{option.name}</option>)}
+                    {options.map((option, index) => option === null
+                        ? null
+                        :<option key={`${index}_${option.uuid || option.name || option}`}
+                                 value={option.uuid || option.name || option}>
+                            {option.name || option}
+                        </option>)}
                 </select>
             </div>
         </div>
