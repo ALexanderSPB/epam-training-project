@@ -1,6 +1,4 @@
-$color-grid: #ddd;
-$color-event: #eee;
-$color-bright: #39C2D7;
+@import "../constants/colors";
 
 .schedule {
   .bg-table {
@@ -9,7 +7,7 @@ $color-bright: #39C2D7;
     padding: 0;
 
     .bg-row{
-      border-bottom: 1px solid $color-grid;
+      border-bottom: 1px solid $schedule-grid-color;
       &:last-of-type {
         border: none;
       }
@@ -21,10 +19,10 @@ $color-bright: #39C2D7;
     width: 99%;
     margin: 1px;
     border-radius: 4px;
-    background-color: white;
+    background-color: $common-background-color;
     text-align: left;
     overflow: hidden;
-    border: solid 3px $color-grid;
+    border: solid 3px $schedule-grid-color;
 
     .additional {
       font-size: .9em;
@@ -34,18 +32,18 @@ $color-bright: #39C2D7;
     .name {
         margin: 0 0 .3em;
         width: 100%;
-        background-color: $color-grid;
-        color: white;
+        background-color: $schedule-grid-color;
+        color: $lightest-text-color;
 
         padding: 0.4em;
         font-weight: bold;
     }
 
       &--active {
-        border: solid 3px $color-bright;
+        border: solid 3px $main-bright-color;
 
         .name {
-          background-color: $color-bright;
+          background-color: $main-bright-color;
         }
       }
 
@@ -71,7 +69,7 @@ $color-bright: #39C2D7;
 
   .time-cell {
     width: 100%;
-    border-bottom: 1px solid $color-grid;
+    border-bottom: 1px solid $schedule-grid-color;
     text-align: center;
     font-size: .9em;
 

@@ -1,6 +1,23 @@
+@import "../../constants/colors";
+
 .manager-workflow {
-    display: flex;
     padding: 1em 0;
+    min-height: calc(100vh - 120px);
+
+    & .modal__open-button {
+        width: 8em;
+        margin-left: calc(50% - 4em);
+    }
+
+    h2 {
+        margin-top: 3rem;
+        margin-bottom: 0;
+        color: $main-bright-color;
+        font: {
+            family: OswaldRegular, sans-serif;
+            size: 3rem;
+        }
+    }
 
     & .card-wrapper {
         position: relative;
@@ -13,6 +30,44 @@
             left: 0;
             right: 0;
             opacity: 0;
+        }
+    }
+}
+
+.location-info {
+    &>div {
+        margin: 1em 0;
+        padding: 0 0 .7em;
+        border: solid 3px $epam-soft-highlight;
+        border-radius: 4px;
+
+        h3 {
+            margin: 0 0 1em;
+            padding: .5em 2%;
+            font-size: 1.6rem;
+            color: $epam-dark-gray;
+            background-color: $epam-soft-highlight;
+        }
+
+        & .control-label {
+            color: $epam-dark-gray;
+            font-weight: normal;
+            text-align: right;
+        }
+
+        #officeHoursBlock__SaveButton {
+            width: 4em;
+            margin-left: calc(100% - 6em);
+        }
+
+        .modal__open-button {
+            width: auto;
+        }
+
+        .room {
+            .modal__open-button {
+                margin-left: .5em;
+            }
         }
     }
 }

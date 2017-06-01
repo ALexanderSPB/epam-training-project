@@ -1,12 +1,10 @@
-import React from 'react';
-import {Component} from 'react';
-import {browserHistory} from 'react-router';
-import {bindActionCreators} from 'redux';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
-import logo from '../../../../public/img/logo.png';
+import {browserHistory, Link} from 'react-router';
 import {ROUTE_PATHS} from '../../../constants/routes';
-import * as headerActions from './headerAction';
+import {logOut} from '../../../pages/loginPage/loginActions';
+import logo from '../../../../public/img/logo.png';
 import './header.css';
 
 class Header extends Component {
@@ -16,14 +14,13 @@ class Header extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(e) {
-        e.preventDefault();
-        this.props.headerActions.logOut();
+    handleClick() {
+        this.props.dispatch(logOut());
         browserHistory.push('/');
     }
 
     loggedIn() {
-        return(
+        return (
             <div
                 className="app-header__buttons">
                 <h4 className="my-schedule__greeting">
@@ -37,23 +34,25 @@ class Header extends Component {
         );
     }
 
+    //noinspection JSMethodCanBeStatic
     loggedOut() {
         return (
-            <div className="app-header__buttons col-xs-4 col-xs-offset-2 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-4">
+            <div
+                className="app-header__buttons col-xs-4 col-xs-offset-2 col-sm-4 col-sm-offset-1 col-md-3 col-md-offset-4">
                 <Link className='link' to={ROUTE_PATHS.login}>
-                <button className="button sign-in__button">
-                    <span className="glyphicon glyphicon-log-in button__glyph"/>
-                    <span className="button__text">Log in</span>
-                </button>
+                    <button className="button sign-in__button">
+                        <span className="glyphicon glyphicon-log-in button__glyph"/>
+                        <span className="button__text">Sign in</span>
+                    </button>
                 </Link>
                 <Link className='link' to={ROUTE_PATHS.registration}>
-                <button className="button sign-up__button">
-                    <span className="glyphicon glyphicon-edit button__glyph"/>
-                    <span className="button__text">Sign up</span>
-                </button>
+                    <button className="button sign-up__button">
+                        <span className="glyphicon glyphicon-edit button__glyph"/>
+                        <span className="button__text">Sign up</span>
+                    </button>
                 </Link>
             </div>
-        )
+        );
     }
 
     render() {
@@ -62,7 +61,7 @@ class Header extends Component {
                 <div
                     className="app-header__logo-wrapper col-xs-2 col-sm-2 col-md-1 col-md-offset-0">
                     <Link to={ROUTE_PATHS.root}>
-                        <img src={logo} alt="logo" />
+                        <img src={logo} alt="logo"/>
                     </Link>
                 </div>
                 <div className="col-xs-4 col-sm-4 col-md-3">
@@ -80,17 +79,17 @@ class Header extends Component {
     }
 }
 
-function mapStatetoProps(state) {
-    if (state.loginData.name === undefined) state.loginData = {name: ''};
-    return {
-        userName: state.loginData.name
-    };
-}
+const mapStateToProps = (state) => ({
+    userName: state.loginData.name || ''
+});
 
-function mapDispatchtoProps(dispatch) {
-    return {
-        headerActions: bindActionCreators(headerActions, dispatch)
-    };
-}
+const mapDispatchToProps = (dispatch) => ({
+    dispatch
+});
 
-export default connect(mapStatetoProps, mapDispatchtoProps)(Header);
+Header.propTypes = {
+    userName: PropTypes.string,
+    dispatch: PropTypes.func,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

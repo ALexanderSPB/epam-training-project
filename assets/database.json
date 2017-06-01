@@ -278,6 +278,31 @@
                     "uuid": 0,
                     "name": "Office 1"
                 },
+                "isActive": true,
+                "room": "12a",
+                "group": {
+                    "uuid": "group0x1x42",
+                    "name": "Group 42"
+                }
+            },
+            {
+                "uuid": "ev0x12543",
+                "name": "JavaScript",
+                "skills": [0, 2],
+                "timing": {
+                    "duration": 2,
+                    "beginning": "Tue Apr 18 2017 16:13:02 GMT+0300 (E. Africa Standard Time)"
+                },
+                "type": "",
+                "teacher": {
+                    "uuid": "3JnVuRSG5DdB9IhQouF3BnrQQfJ3",
+                    "name": "Gennadii Petrova"
+                },
+                "location": {
+                    "uuid": 0,
+                    "name": "Office 1"
+                },
+                "isActive": true,
                 "room": "12a",
                 "group": {
                     "uuid": "group0x1x42",
@@ -301,6 +326,7 @@
                     "uuid": 1,
                     "name": "Office 2"
                 },
+                "isActive": true,
                 "room": "1",
                 "group": {
                     "uuid": "group0x1x42",

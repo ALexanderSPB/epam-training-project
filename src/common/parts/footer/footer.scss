@@ -1,14 +1,12 @@
-$epam-light-gray: #CCCCCC;
-$epam-dark-gray: #666666;
+@import "../../../constants/colors";
 
 .app-footer {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
   height: 60px;
   display: flex;
   align-items: center;
   background-color: $epam-dark-gray;
+  margin: 0;
+  padding: 0;
   padding-left: 7.35% !important;
 
   .app-footer__navigate-list {
