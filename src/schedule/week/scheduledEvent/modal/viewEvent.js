@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 import {cancel} from './viewEventActions';
 import moment from 'moment';
 import Modal from '../../../../common/ui/modal/modalComponent';
-import Record from '../../../../common/ui/record';
+import Record from './record';
 import * as formats from '../../../../constants/dateTimeFormats';
 
 const mapStateToProps = state => ({
