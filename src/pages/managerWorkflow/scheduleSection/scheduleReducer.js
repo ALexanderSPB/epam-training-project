@@ -24,6 +24,12 @@ export default function schedule(state = initialState, action) {
                     [action.field]: payload
                 }
             };
+        case actionTypes.ADD_EVENT:
+            if (!state.events) state.events = [];
+            return {
+                ...state,
+                events: [...state.events, payload]
+            }
         default:
             return state;
     }

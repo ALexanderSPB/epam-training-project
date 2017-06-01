@@ -2,9 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import moment from 'moment';
 import Select from '../../../common/ui/select';
 import Schedule from '../../../schedule/schedule';
-import {changeSortType, createEventRequest, getEvents, editEventRequest, loadSelectsOptions} from './scheduleActions';
+import {changeSortType, createEventRequest, getEvents, editEventRequest, loadSelectsOptions, addEvent} from './scheduleActions';
+import Modal from '../../../common/ui/modal/modalComponent';
+import Input from '../../../common/ui/input';
+import { eventBeginning } from '../../../constants/dateTimeFormats';
 
 const UI_TEXT = {
     addEvent: 'Add event',
@@ -30,7 +34,8 @@ const institutionTiming = {
 
 const mapStateToProps = state => ({
     schedule: state.schedule,
-    institutionUuid: state.loginData.institution || 'inst0' //tmp test string 'inst0'
+    institutionUuid: state.loginData.institution || 'inst0', //tmp test string 'inst0'
+    locations: state.locations
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -39,6 +44,7 @@ const mapDispatchToProps = dispatch => ({
     getEvents: bindActionCreators(getEvents, dispatch),
     editEventRequest: bindActionCreators(editEventRequest, dispatch),
     loadSelectsOptions: bindActionCreators(loadSelectsOptions, dispatch),
+    addEvent: bindActionCreators(addEvent, dispatch),
     dispatch,
 });
 
@@ -48,12 +54,128 @@ class ScheduleSection extends Component {
         this.props.loadSelectsOptions(this.props.institutionUuid);
     }
 
+    constructor(props, context) {
+        super(props, context);
+        this.addButtonHandleClick = this.addButtonHandleClick.bind(this);
+        this.state = {
+            teachers: [],
+            locations: [],
+            groups: []
+        };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!nextProps.schedule.lists) return;
+        for (let field of ['groups', 'locations', 'teachers']) {
+            if (nextProps.schedule.lists[field]) this.setState({[field]: nextProps.schedule.lists[field]});
+        }
+    }
+
+    addButtonHandleClick() {
+        // let teacherUuid = this.props.schedule.lists.teachers.find( (element) => element.name === this.state.teacher).uuid;
+        // console.log(teacherUuid);
+        let groupName = this.props.schedule.lists.groups.find( (element) => element.uuid === this.state.group).name;
+        let locationUuid = this.props.locations.findIndex( (element) => element.name === this.state.location);
+        let newTime = moment(this.state.beginning, eventBeginning);
+        if (!newTime.isValid()) this.setState({beginningError: 'Wrong Time'});
+        else {
+            let event = {
+                uuid: this.state.name + newTime._d.getMilliseconds(),
+                name: this.state.name,
+                skills: [0, 2],
+                timing: {
+                    duration: this.state.duration,
+                    beginning: newTime._d,
+                },
+                type: 'event',
+                teacher: {
+                    uuid: this.state.teacher,
+                    name: this.state.teacher
+                },
+                location: {
+                    uuid: locationUuid,
+                    name: this.state.location
+                },
+                room: this.state.room,
+                group: {
+                    uuid: this.state.group,
+                    name: groupName
+                }
+            };
+            this.props.addEvent(event, this.props.institutionUuiD);
+        }
+    }
+
     render() {
+        const inputClasses = {
+            label: 'col-xs-2',
+            inputWrapper: 'col-xs-9',
+            error: 'col-xs-3 text-danger'
+        };
+        const selectClasses = {
+            label: 'col-xs-3',
+            selectWrapper: 'col-xs-8'
+        };
         const { sortType, sortOptions, events } = this.props.schedule;
         const { changeSortType, getEvents, editEventRequest, createEvent, institutionUuid } = this.props;
 
         return (
             <section>
+                <Modal openButtonTitle={UI_TEXT.addEvent}
+                       title="Add new event"
+                       footerButtons={[{text: 'Add event', type: 'success', onClick: this.addButtonHandleClick }]}>
+                    <section className="row">
+                        <form className="form-horizontal">
+                            <Input
+                                classes={inputClasses}
+                                valueChanged={ v => this.setState({'name': v}) }
+                                labelText="Name"
+                                type="text"
+                            />
+                            <Input
+                                classes={inputClasses}
+                                valueChanged={ v => this.setState({'beginning': v}) }
+                                labelText="Beginning"
+                                type="text"
+                                error={this.state.beginningError}
+                            />
+                            <Input
+                                classes={inputClasses}
+                                valueChanged={ v => this.setState({'duration': v}) }
+                                labelText="Duration"
+                                type="text"
+                            />
+                            <Select
+                                classes={selectClasses}
+                                valueChanged={ v => this.setState({'teacher': v}) }
+                                options={this.state.teachers}
+                                labelText="Teacher"
+                                type="text"
+                            />
+                            <Select
+                                classes={selectClasses}
+                                valueChanged={ v => this.setState({'group': v}) }
+                                options={this.state.groups}
+                                labelText="Group"
+                                type="text"
+                            />
+                            <Select
+                                classes={selectClasses}
+                                options={this.state.locations}
+                                valueChanged={ v => this.setState({'location': v}) }
+                                labelText="Location"
+                                type="text"
+                                error=""
+                            />
+                            <Input
+                                classes={inputClasses}
+                                valueChanged={ v => this.setState({'room': v}) }
+                                labelText="Room"
+                                type="text"
+                            />
+                        </form>
+                    </section>
+                </Modal>
                 <Select
                     labelText={UI_TEXT.sortBy}
                     options={SORT_EVENTS_OPTIONS}
@@ -76,7 +198,6 @@ class ScheduleSection extends Component {
                     />
                     : null
                 }
-                <button onClick={createEvent}>{UI_TEXT.addEvent}</button>
             </section>
         );
     }
