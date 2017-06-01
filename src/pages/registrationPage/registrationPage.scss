@@ -1,29 +1,32 @@
+@import "../../constants/colors";
+
 .registration {
-    background-color: #464547;
-    background-image: url("../../../public/img/line.png");
-    background-repeat: no-repeat;
-    background-position: 95%;
-    padding: 11% 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background: $dark-background-color url("../../../public/img/line.png") no-repeat 95%;
 
     &__form {
         padding: 4%;
         margin: 0 10%;
-        border: 1px solid #666;
+        border: 1px solid $epam-dark-gray;
         border-radius: 4px;
-        box-shadow: inset 3px 3px 80px #666;
+        box-shadow: inset 3px 3px 80px $epam-dark-gray;
 
         & span {
-            color: #fff;
+            color: $lightest-text-color;
         }
     }
     &__button {
-        margin-left: 85%;
+        width: 5em;
+        margin-left: auto;
     }
 }
 .registrationForm {
     &__label {
         font-size: 1.2em;
-        color: #FFF;
+        color: $lightest-text-color;
     }
 
     &__input {
@@ -32,17 +35,18 @@
 
     &__select {
         margin-left: 3%;
+        margin-bottom: 1em;
     }
 
     &__submitBtn {
         font-size: 1.2em !important;
         font-weight: 600;
-        background-color: #7F993A;
+        background-color: $additional-bright-color;
         border-radius: 0 !important;
         color: white;
 
         &:hover, &:focus {
-            background-color: #A3C644;
+            background-color: $additional-bright-color;
             color: white !important;
         }
     }

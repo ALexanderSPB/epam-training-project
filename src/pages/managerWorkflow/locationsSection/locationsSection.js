@@ -67,7 +67,7 @@ class LocationsSection extends Component {
         };
 
         return (
-            <section>
+            <section className="location-info">
                 <h2>{name}</h2>
                 <p>{address}</p>
                 <OfficeHoursBlock
@@ -75,7 +75,7 @@ class LocationsSection extends Component {
                     saveTime={(time) => this.props.saveTime(time, institutionId, locationId)}
                 />
                 <div>
-                    <p>{UI_TEXT.rooms}</p>
+                    <h3>{UI_TEXT.rooms}</h3>
                     <AddRoomModal
                         rooms={filledRooms}
                         locationId={locationId}
@@ -87,7 +87,7 @@ class LocationsSection extends Component {
                                 className="room"
                                 key={`${id}_${room.name}`}
                             >
-                                <span>name: {room.name}, capacity: {room.capacity}</span>
+                                <span><strong>{room.name}</strong>, capacity: {room.capacity}</span>
                                 <EditRoomModal
                                     room={room}
                                     institution={institutionId}
@@ -103,7 +103,7 @@ class LocationsSection extends Component {
 
     render() {
         return (
-            <section className="col-xs-9">
+            <section className="col-xs-8">
                 <Select
                     options={this.props.locations}
                     labelText={UI_TEXT.location}
