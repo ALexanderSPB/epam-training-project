@@ -8,6 +8,7 @@ import loginData from '../pages/loginPage/loginReducer';
 import locations from '../pages/managerWorkflow/locationsSection/locations';
 import registration from '../pages/registrationPage/registrationPageReducers';
 import schedule from '../pages/managerWorkflow/scheduleSection/scheduleReducer';
+import teacherEvents from '../pages/teacherWorkflow/teacherWorkflowReducers';
 
 export const rootReducer = combineReducers({
     routing: routerReducer,
@@ -18,5 +19,6 @@ export const rootReducer = combineReducers({
     loginData,
     registration,
     schedule,
-    locations
+    locations,
+    teacherEvents
 });
