@@ -5,6 +5,7 @@ export const NEW_SORT_OPTIONS = 'NEW_SORT_OPTIONS';
 export const EVENTS_RESPONSE = 'EVENTS_RESPONSE';
 export const CREATE_EVENT_REQUEST = 'CREATE_EVENT_REQUEST';
 export const EDIT_EVENT_REQUEST = 'EDIT_EVENT_REQUEST';
+export const ADD_EVENT = 'ADD_EVENT';
 
 export const LIST_RECEIVED = 'LIST_RECEIVED';
 
@@ -96,4 +97,12 @@ export const editEventRequest = (eventUuid) => {
         type: EDIT_EVENT_REQUEST,
         payload: eventUuid
     };
+};
+
+export const addEvent = (event, institution) => {
+    Firebase.push(`${PATHS.events}${institution}/`, event)
+        return {
+            type: ADD_EVENT,
+            payload: event
+        };
 };
