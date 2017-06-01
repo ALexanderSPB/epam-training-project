@@ -25,7 +25,8 @@ const UI_TEXT = {
 const mapStateToProps = state => ({
     institution: state.loginData.institution,
     events: state.schedule.events,
-    lists: state.schedule.lists
+    lists: state.schedule.lists,
+    teachers: state.teachers,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -52,8 +53,11 @@ class EditEvent extends Component {
                 name: this.props.lists.groups.find(g => g.uuid === group.uuid)
             },
             isActive: true,
+            teacher: {
+                uuid: this.props.teachers.find(t => t.name === teacher.name).uuid,
+                name: teacher.name
+            },
             timing,
-            teacher,
             uuid,
             name,
             room
@@ -160,6 +164,7 @@ EditEvent.propTypes = {
     institution: PropTypes.string.isRequired,
     uuid: PropTypes.string,
     events: PropTypes.array,
+    teachers: PropTypes.array
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditEvent);
